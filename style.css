@@ -177,8 +177,8 @@ body {
 }
 
 .portrait-wrapper {
-  width: 280px;
-  height: 280px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%; /* Circle Transformation */
   overflow: hidden;
   border: 3px solid rgba(166, 188, 201, 0.3);
