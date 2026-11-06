@@ -40,7 +40,7 @@
         </div>
 
         <div class="hero-details">
-          <div class="greeting-tag">HI! I'AM</div>
+          <div class="greeting-tag">HI! I'M</div>
           <h1 class="main-name">CAMALIG, GRACE SEBIO</h1>
           
           <div class="track-badge">
@@ -55,32 +55,9 @@
             Welcome to my portfolio! Here you can explore my career path, key achievements, IT skills, educational background, and personal journey.
           </p>
 
-          <div class="contact-info-block">
-            <div class="info-item">
-              <span class="info-label">EMAIL:</span>
-              <span class="info-value">20grace1130@gmai.com</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">LOCATION:</span>
-              <span class="info-value">La Trinidad, Philippines</span>
-            </div>
-          </div>
-
-          <div class="social-connect-bar">
-            <span class="connect-text">CONNECT WITH ME:</span>
-            <div class="social-buttons">
-              <a href="https://www.facebook.com/bruh18heh" target="_blank" class="social-btn fb-btn">
-                <span>FACEBOOK</span>
-              </a>
-              <a href="https://www.instagram.com/sleyp_paralysis/" target="_blank" class="social-btn ig-btn">
-                <span>INSTAGRAM</span>
-              </a>
-            </div>
-          </div>
-
           <div class="action-btn-container">
             <button class="info-action-btn" onclick="switchSection('about-section')">
-              <span>CLICK FOR MORE INFORMATION</span>
+              <span>MY PERSONAL INFORMATION</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
@@ -92,14 +69,30 @@
     <section id="about-section" class="view-section">
       <div class="about-grid">
         
-        <!-- Left Column: Bio & Objectives -->
+        <!-- Left Column: Bio, Personal Details & Socials -->
         <div class="about-left">
           <h1 class="about-name">CAMALIG, GRACE SEBIO</h1>
           <p class="career-obj">Aspiring UI/UX Designer dedicated to crafting intuitive, aesthetically modern digital experiences.</p>
           
           <div class="bio-card">
-            <p>I am currently pursuing a <strong>Bachelor of Science in Information Technology (BSIT)</strong> majoring in <strong>Enterprise Resource Planning (ERP)</strong> at the <strong>University of the Cordilleras</strong>.</p>
+            <div class="personal-info-grid">
+              <div class="info-row"><span class="info-label">Birthday:</span> <span class="info-val">March 18, 2008</span></div>
+              <div class="info-row"><span class="info-label">Gender:</span> <span class="info-val">Female</span></div>
+              <div class="info-row"><span class="info-label">Status:</span> <span class="info-val">College Student of University of Cordilleras</span></div>
+              <div class="info-row"><span class="info-label">Course & Major:</span> <span class="info-val">Bachelor of Science in Information Technology (BSIT) majoring in Enterprise Resource Planning (ERP)</span></div>
+              <div class="info-row"><span class="info-label">Location:</span> <span class="info-val">La Trinidad Benguet</span></div>
+            </div>
+            
             <p class="growth-text">This academic path shapes my technical expertise while building resilience, emotional awareness, problem-solving mindsets, and physical discipline for continuous personal growth.</p>
+            
+            <div class="social-connect-bar inline-connect">
+              <span class="connect-text">Connect with me:</span>
+              <div class="social-buttons">
+                <a href="https://www.facebook.com/bruh18heh" target="_blank" class="social-btn fb-btn">FACEBOOK</a>
+                <a href="https://www.instagram.com/sleyp_paralysis/" target="_blank" class="social-btn ig-btn">INSTAGRAM</a>
+                <a href="mailto:20grace1130@gmail.com" class="social-btn email-btn">EMAIL</a>
+              </div>
+            </div>
           </div>
 
           <!-- Section Navigation Buttons -->
@@ -118,11 +111,14 @@
           <h3 class="section-subtitle">SKILLS & COMPETENCIES</h3>
           
           <div class="skills-block">
-            <span class="skill-group-title">Design / Tools</span>
+            <span class="skill-group-title">Digital / Tools</span>
             <div class="skills-tags">
               <div class="skill-card heartbeat"><span class="skill-icon">🎨</span> Canva</div>
               <div class="skill-card heartbeat"><span class="skill-icon">✒️</span> Adobe Illustrator</div>
               <div class="skill-card heartbeat"><span class="skill-icon">🌐</span> Wix</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">🎬</span> CapCut</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">🖌️</span> Ibis Paint</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Visual Studio Code</div>
             </div>
           </div>
 
@@ -238,7 +234,6 @@
             </div>
           </div>
 
-          <!-- View Photo button beside Table Tennis - 3rd Place -->
           <div class="extra-card">
             <img src="extra/intrams 11.JPG" class="extra-thumb" alt="KCP Intramurals" />
             <div class="extra-card-info">
@@ -273,7 +268,6 @@
             </div>
           </div>
 
-          <!-- Special 8th Box with 4-Photo Showcase Button -->
           <div class="extra-card highlight-card">
             <div class="extra-card-info center-info">
               <h4>Other extracurricular activites</h4>
@@ -289,7 +283,6 @@
   </div>
 
   <!-- POPUP MODALS -->
-  <!-- Single Image Modal -->
   <div id="single-modal" class="modal-overlay" onclick="closeModals()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
@@ -298,7 +291,6 @@
     </div>
   </div>
 
-  <!-- 4-Photo Large Showcase Modal -->
   <div id="four-modal" class="modal-overlay" onclick="closeModals()">
     <div class="modal-content large-modal" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
