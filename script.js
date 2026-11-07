@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. CLICK TO ENLARGE ALL IMAGES FEATURE
   document.addEventListener("click", (e) => {
     const target = e.target;
-    // Don't enlarge if clicking inside a modal or clicking tiny icon buttons inside modal buttons
     if (target.tagName === 'IMG' && !target.closest('.modal-content') && !target.classList.contains('btn-icon')) {
       const src = target.getAttribute('src');
       const alt = target.getAttribute('alt') || 'Enlarged Image Preview';
@@ -102,6 +101,7 @@ function switchSection(sectionId) {
   // Update navbar active state
   if (sectionId === 'home-section') navLinks[0].classList.add('active');
   if (sectionId === 'about-section') navLinks[1].classList.add('active');
+  if (sectionId === 'achievements-section') navLinks[2].classList.add('active');
 
   // Trigger Typing Animation when entering Hobbies
   if (sectionId === 'hobbies-section') {
