@@ -66,90 +66,91 @@
     </section>
 
     <!-- ==================== PERSONAL INFORMATION SECTION ==================== -->
-    <section id="about-section" class="view-section">
-      <div class="about-grid">
+   <!-- ==================== PERSONAL INFORMATION SECTION ==================== -->
+   <section id="about-section" class="view-section">
+    <div class="about-grid">
+      
+      <!-- Left Column: Bio, Personal Details & Socials -->
+      <div class="about-left">
+        <h1 class="about-name">CAMALIG, GRACE SEBIO</h1>
         
-        <!-- Left Column: Bio, Personal Details & Socials -->
-        <div class="about-left">
-          <h1 class="about-name">CAMALIG, GRACE SEBIO</h1>
-          <p class="career-obj">Aspiring UI/UX Designer dedicated to crafting intuitive, aesthetically modern digital experiences.</p>
-          
-          <div class="bio-card">
-            <div class="personal-info-grid">
-              <div class="info-row"><span class="info-label">Birthday:</span> <span class="info-val">March 18, 2008</span></div>
-              <div class="info-row"><span class="info-label">Gender:</span> <span class="info-val">Female</span></div>
-              <div class="info-row"><span class="info-label">Civil Status:</span> <span class="info-val">Single</span></div>
-              <div class="info-row"><span class="info-label">Height:</span> <span class="info-val">157cm</span></div>
-              <div class="info-row"><span class="info-label">Weight:</span> <span class="info-val">50kg</span></div>
-              <div class="info-row"><span class="info-label">Status:</span> <span class="info-val">College Student of University of Cordilleras</span></div>
-              <div class="info-row"><span class="info-label">Course & Major:</span> <span class="info-val">Bachelor of Science in Information Technology (BSIT) majoring in Enterprise Resource Planning (ERP)</span></div>
-              <div class="info-row"><span class="info-label">Location:</span> <span class="info-val">La Trinidad Benguet</span></div>
-            </div>
-            
-            <p class="growth-text">This academic path shapes my technical expertise while building resilience, emotional awareness, problem-solving mindsets, and physical discipline for continuous personal growth.</p>
-            
-            <div class="social-connect-bar inline-connect">
-              <span class="connect-text">Connect with me:</span>
-              <div class="social-buttons">
-                <a href="https://www.facebook.com/bruh18heh" target="_blank" class="social-btn fb-btn">FACEBOOK</a>
-                <a href="https://www.instagram.com/sleyp_paralysis/" target="_blank" class="social-btn ig-btn">INSTAGRAM</a>
-                <a href="mailto:20grace1130@gmail.com" class="social-btn email-btn">EMAIL</a>
-              </div>
-            </div>
+        <!-- Career Objective with Typing Effect -->
+        <p class="career-obj"><span id="typing-career"></span><span class="typing-cursor">|</span></p>
+        
+        <div class="bio-card">
+          <div class="personal-info-grid">
+            <div class="info-row"><span class="info-label">Birthday:</span> <span class="info-val">March 18, 2008</span></div>
+            <div class="info-row"><span class="info-label">Gender:</span> <span class="info-val">Female</span></div>
+            <div class="info-row"><span class="info-label">Civil Status:</span> <span class="info-val">Single</span></div>
+            <div class="info-row"><span class="info-label">Height:</span> <span class="info-val">157cm</span></div>
+            <div class="info-row"><span class="info-label">Weight:</span> <span class="info-val">50kg</span></div>
+            <div class="info-row"><span class="info-label">Status:</span> <span class="info-val">College Student of University of Cordilleras</span></div>
+            <div class="info-row"><span class="info-label">Course & Major:</span> <span class="info-val">Bachelor of Science in Information Technology (BSIT) majoring in Enterprise Resource Planning (ERP)</span></div>
+            <div class="info-row"><span class="info-label">Location:</span> <span class="info-val">La Trinidad Benguet</span></div>
           </div>
-
-          <!-- Section Navigation Buttons -->
-          <div class="subnav-buttons">
-            <button class="subnav-btn" onclick="switchSection('hobbies-section')">
-              <span>HOBBIES</span>
-            </button>
+          
+          <p class="growth-text">This academic path shapes my technical expertise while building resilience, emotional awareness, problem-solving mindsets, and physical discipline for continuous personal growth.</p>
+          
+          <div class="social-connect-bar inline-connect">
+            <span class="connect-text">Connect with me:</span>
+            <div class="social-buttons">
+              <a href="https://www.facebook.com/bruh18heh" target="_blank" class="social-btn fb-btn">FACEBOOK</a>
+              <a href="https://www.instagram.com/sleyp_paralysis/" target="_blank" class="social-btn ig-btn">INSTAGRAM</a>
+              <a href="mailto:20grace1130@gmail.com" class="social-btn email-btn">EMAIL</a>
+            </div>
           </div>
         </div>
 
-        <!-- Right Column: Heartbeat Skills Grid & Action Button -->
-        <div class="about-right">
-          <h3 class="section-subtitle">SKILLS & COMPETENCIES</h3>
-          
-          <div class="skills-block">
-            <span class="skill-group-title">Digital / Tools</span>
-            <div class="skills-tags">
-              <div class="skill-card heartbeat"><span class="skill-icon">🎨</span> Canva</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">✒️</span> Adobe Indesign</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">🌐</span> Wix</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">🎬</span> CapCut</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">🖌️</span> Ibis Paint</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Visual Studio Code</div>
-            </div>
-          </div>
+        <!-- Aligned Hobbies & Achievements Subnav Buttons -->
+        <div class="subnav-buttons">
+          <button class="subnav-btn" onclick="switchSection('hobbies-section')">
+            <span>HOBBIES</span>
+          </button>
+          <button class="subnav-btn" onclick="switchSection('achievements-section')">
+            <span>ACHIEVEMENTS</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left: 4px; vertical-align: middle;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
 
-          <div class="skills-block">
-            <span class="skill-group-title">Development Skills</span>
-            <div class="skills-tags">
-              <div class="skill-card heartbeat"><span class="skill-icon">💻</span> HTML / CSS</div>
-            </div>
+      <!-- Right Column: Heartbeat Skills Grid -->
+      <div class="about-right">
+        <h3 class="section-subtitle">SKILLS & COMPETENCIES</h3>
+        
+        <div class="skills-block">
+          <span class="skill-group-title">Digital / Tools</span>
+          <div class="skills-tags">
+            <div class="skill-card heartbeat"><span class="skill-icon">🎨</span> Canva</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">✒️</span> Adobe Indesign</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">🌐</span> Wix</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">🎬</span> CapCut</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">🖌️</span> Ibis Paint</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Visual Studio Code</div>
           </div>
+        </div>
 
-          <div class="skills-block">
-            <span class="skill-group-title">Soft Skills</span>
-            <div class="skills-tags">
-              <div class="skill-card heartbeat"><span class="skill-icon">🤝</span> Team Collaboration</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">📖</span> Self Learner</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Fast Learner</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">💡</span> Creativity</div>
-              <div class="skill-card heartbeat"><span class="skill-icon">🔄</span> Adaptability</div>
-            </div>
+        <div class="skills-block">
+          <span class="skill-group-title">Development Skills</span>
+          <div class="skills-tags">
+            <div class="skill-card heartbeat"><span class="skill-icon">💻</span> HTML / CSS</div>
           </div>
+        </div>
 
-          <!-- Added Action Button Below Skills -->
-          <div class="skills-action-container">
-            <button class="subnav-btn full-width-btn" onclick="switchSection('achievements-section')">
-              <span>ACHIEVEMENTS AND EDUCATIONAL BACKGROUND</span>
-            </button>
+        <div class="skills-block">
+          <span class="skill-group-title">Soft Skills</span>
+          <div class="skills-tags">
+            <div class="skill-card heartbeat"><span class="skill-icon">🤝</span> Team Collaboration</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">📖</span> Self Learner</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Fast Learner</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">💡</span> Creativity</div>
+            <div class="skill-card heartbeat"><span class="skill-icon">🔄</span> Adaptability</div>
           </div>
         </div>
 
       </div>
-    </section>
+
+    </div>
+  </section>
 
     <!-- ==================== HOBBIES SECTION ==================== -->
     <section id="hobbies-section" class="view-section">
