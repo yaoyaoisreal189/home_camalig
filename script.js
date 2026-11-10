@@ -108,6 +108,32 @@ function switchSection(sectionId) {
     startHobbiesTyping();
   }
 }
+// Add inside switchSection(sectionId) function where sections are handled:
+if (sectionId === 'about-section') {
+  navLinks[1].classList.add('active');
+  startCareerTyping();
+}
+
+// Add this new function at the bottom of script.js:
+let careerTyped = false;
+function startCareerTyping() {
+const careerText = "Aspiring UI/UX Designer dedicated to crafting intuitive, aesthetically modern digital experiences.";
+const element = document.getElementById("typing-career");
+if (!element || careerTyped) return;
+
+element.textContent = "";
+let i = 0;
+careerTyped = true;
+
+function type() {
+  if (i < careerText.length) {
+    element.textContent += careerText.charAt(i);
+    i++;
+    setTimeout(type, 30);
+  }
+}
+type();
+}
 
 // 6. HOBBIES TYPEWRITER EFFECT
 let hobbiesTyped = false;
