@@ -287,7 +287,7 @@ const achievementsData = {
       { src: "./1.jpg", desc: "CSS Certificate 1" },
       { src: "./2.jpg", desc: "CSS Certificate 2" },
       { src: "./3.jpg", desc: "CSS Certificate 3" },
-      { src: "./4.jpg", desc: "CSS Certificate 4" },
+      { src: "./4.png", desc: "CSS Certificate 4" },
       { src: "./5.jpg", desc: "CSS Certificate 5" }
     ]
   },
