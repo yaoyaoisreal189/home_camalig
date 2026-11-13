@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-theme="gold">
 
   <!-- Custom Cursor Elements -->
   <div class="custom-cursor-dot" id="cursor-dot"></div>
@@ -18,12 +18,34 @@
 
   <!-- Navigation Bar -->
   <header class="navbar">
+    <!-- Top Left Digital Clock (Visible only on Home Section) -->
+    <div class="digital-clock-box" id="home-digital-clock">
+      <div class="clock-time" id="clock-time">00:00:00 AM</div>
+      <div class="clock-date" id="clock-date">Loading date...</div>
+    </div>
+
+    <!-- Center Navigation Pill -->
     <div class="nav-container">
       <button class="nav-link active" onclick="switchSection('home-section')">HOME</button>
       <button class="nav-link" onclick="switchSection('about-section')">PERSONAL INFORMATION</button>
       <button class="nav-link" onclick="switchSection('achievements-section')">ACHIEVEMENTS</button>
-      <button class="nav-link">EDUCATION</button>
       <button class="nav-link">FAMILY</button>
+    </div>
+
+    <!-- Top Right Controls (Outside Nav Container) -->
+    <div class="top-right-controls">
+      <div class="theme-switcher-dropdown">
+        <button class="theme-toggle-btn" onclick="toggleThemeMenu()">
+          <span>🎨 THEME: <span id="current-theme-name">GOLD</span></span>
+        </button>
+        <div class="theme-menu" id="theme-menu">
+          <button onclick="setTheme('gold')">Gold (Default)</button>
+          <button onclick="setTheme('black')">Black</button>
+          <button onclick="setTheme('blue')">Blue</button>
+          <button onclick="setTheme('darkgreen')">Green</button>
+          <button onclick="setTheme('darkred')">Red</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -66,91 +88,91 @@
     </section>
 
     <!-- ==================== PERSONAL INFORMATION SECTION ==================== -->
-   <!-- ==================== PERSONAL INFORMATION SECTION ==================== -->
-   <section id="about-section" class="view-section">
-    <div class="about-grid">
-      
-      <!-- Left Column: Bio, Personal Details & Socials -->
-      <div class="about-left">
-        <h1 class="about-name">CAMALIG, GRACE SEBIO</h1>
+    <section id="about-section" class="view-section">
+      <div class="about-grid">
         
-        <!-- Career Objective with Typing Effect -->
-        <p class="career-obj"><span id="typing-career"></span><span class="typing-cursor">|</span></p>
-        
-        <div class="bio-card">
-          <div class="personal-info-grid">
-            <div class="info-row"><span class="info-label">Birthday:</span> <span class="info-val">March 18, 2008</span></div>
-            <div class="info-row"><span class="info-label">Gender:</span> <span class="info-val">Female</span></div>
-            <div class="info-row"><span class="info-label">Civil Status:</span> <span class="info-val">Single</span></div>
-            <div class="info-row"><span class="info-label">Height:</span> <span class="info-val">157cm</span></div>
-            <div class="info-row"><span class="info-label">Weight:</span> <span class="info-val">50kg</span></div>
-            <div class="info-row"><span class="info-label">Status:</span> <span class="info-val">College Student of University of Cordilleras</span></div>
-            <div class="info-row"><span class="info-label">Course & Major:</span> <span class="info-val">Bachelor of Science in Information Technology (BSIT) majoring in Enterprise Resource Planning (ERP)</span></div>
-            <div class="info-row"><span class="info-label">Location:</span> <span class="info-val">La Trinidad Benguet</span></div>
-          </div>
+        <!-- Left Column: Bio, Personal Details & Socials -->
+        <div class="about-left">
+          <button class="back-btn top-back-btn" onclick="switchSection('home-section')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span>BACK TO HOME</span>
+          </button>
+
+          <h1 class="about-name">CAMALIG, GRACE SEBIO</h1>
           
-          <p class="growth-text">This academic path shapes my technical expertise while building resilience, emotional awareness, problem-solving mindsets, and physical discipline for continuous personal growth.</p>
+          <!-- Career Objective with Typing Effect -->
+          <p class="career-obj"><span id="typing-career"></span><span class="typing-cursor">|</span></p>
           
-          <div class="social-connect-bar inline-connect">
-            <span class="connect-text">Connect with me:</span>
-            <div class="social-buttons">
-              <a href="https://www.facebook.com/bruh18heh" target="_blank" class="social-btn fb-btn">FACEBOOK</a>
-              <a href="https://www.instagram.com/sleyp_paralysis/" target="_blank" class="social-btn ig-btn">INSTAGRAM</a>
-              <a href="mailto:20grace1130@gmail.com" class="social-btn email-btn">EMAIL</a>
+          <div class="bio-card">
+            <div class="personal-info-grid">
+              <div class="info-row"><span class="info-label">Birthday:</span> <span class="info-val">March 18, 2008</span></div>
+              <div class="info-row"><span class="info-label">Gender:</span> <span class="info-val">Female</span></div>
+              <div class="info-row"><span class="info-label">Civil Status:</span> <span class="info-val">Single</span></div>
+              <div class="info-row"><span class="info-label">Height:</span> <span class="info-val">157cm</span></div>
+              <div class="info-row"><span class="info-label">Weight:</span> <span class="info-val">50kg</span></div>
+              <div class="info-row"><span class="info-label">Status:</span> <span class="info-val">College Student of University of Cordilleras</span></div>
+              <div class="info-row"><span class="info-label">Course & Major:</span> <span class="info-val">Bachelor of Science in Information Technology (BSIT) majoring in Enterprise Resource Planning (ERP)</span></div>
+              <div class="info-row"><span class="info-label">Location:</span> <span class="info-val">La Trinidad Benguet</span></div>
+            </div>
+            
+            <p class="growth-text">This academic path shapes my technical expertise while building resilience, emotional awareness, problem-solving mindsets, and physical discipline for continuous personal growth.</p>
+            
+            <div class="social-connect-bar inline-connect">
+              <span class="connect-text">Connect with me:</span>
+              <div class="social-buttons">
+                <a href="https://www.facebook.com/bruh18heh" target="_blank" class="social-btn fb-btn">FACEBOOK</a>
+                <a href="https://www.instagram.com/sleyp_paralysis/" target="_blank" class="social-btn ig-btn">INSTAGRAM</a>
+                <a href="mailto:20grace1130@gmail.com" class="social-btn email-btn">EMAIL</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Aligned Hobbies & Achievements Subnav Buttons -->
-        <div class="subnav-buttons">
-          <button class="subnav-btn" onclick="switchSection('hobbies-section')">
-            <span>HOBBIES</span>
-          </button>
-          <button class="subnav-btn" onclick="switchSection('achievements-section')">
-            <span>ACHIEVEMENTS</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left: 4px; vertical-align: middle;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Right Column: Heartbeat Skills Grid -->
-      <div class="about-right">
-        <h3 class="section-subtitle">SKILLS & COMPETENCIES</h3>
-        
-        <div class="skills-block">
-          <span class="skill-group-title">Digital / Tools</span>
-          <div class="skills-tags">
-            <div class="skill-card heartbeat"><span class="skill-icon">🎨</span> Canva</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">✒️</span> Adobe Indesign</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">🌐</span> Wix</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">🎬</span> CapCut</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">🖌️</span> Ibis Paint</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Visual Studio Code</div>
+          <!-- Hobbies Subnav Button -->
+          <div class="subnav-buttons">
+            <button class="subnav-btn" onclick="switchSection('hobbies-section')">
+              <span>HOBBIES</span>
+            </button>
           </div>
         </div>
 
-        <div class="skills-block">
-          <span class="skill-group-title">Development Skills</span>
-          <div class="skills-tags">
-            <div class="skill-card heartbeat"><span class="skill-icon">💻</span> HTML / CSS</div>
+        <!-- Right Column: Heartbeat Skills Grid -->
+        <div class="about-right">
+          <h3 class="section-subtitle">SKILLS & COMPETENCIES</h3>
+          
+          <div class="skills-block">
+            <span class="skill-group-title">Digital / Tools</span>
+            <div class="skills-tags">
+              <div class="skill-card heartbeat"><span class="skill-icon">🎨</span> Canva</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">✒️</span> Adobe Indesign</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">🌐</span> Wix</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">🎬</span> CapCut</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">🖌️</span> Ibis Paint</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Visual Studio Code</div>
+            </div>
           </div>
-        </div>
 
-        <div class="skills-block">
-          <span class="skill-group-title">Soft Skills</span>
-          <div class="skills-tags">
-            <div class="skill-card heartbeat"><span class="skill-icon">🤝</span> Team Collaboration</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">📖</span> Self Learner</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Fast Learner</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">💡</span> Creativity</div>
-            <div class="skill-card heartbeat"><span class="skill-icon">🔄</span> Adaptability</div>
+          <div class="skills-block">
+            <span class="skill-group-title">Development Skills</span>
+            <div class="skills-tags">
+              <div class="skill-card heartbeat"><span class="skill-icon">💻</span> HTML / CSS</div>
+            </div>
           </div>
+
+          <div class="skills-block">
+            <span class="skill-group-title">Soft Skills</span>
+            <div class="skills-tags">
+              <div class="skill-card heartbeat"><span class="skill-icon">🤝</span> Team Collaboration</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">📖</span> Self Learner</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">⚡</span> Fast Learner</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">💡</span> Creativity</div>
+              <div class="skill-card heartbeat"><span class="skill-icon">🔄</span> Adaptability</div>
+            </div>
+          </div>
+
         </div>
 
       </div>
-
-    </div>
-  </section>
+    </section>
 
     <!-- ==================== HOBBIES SECTION ==================== -->
     <section id="hobbies-section" class="view-section">
@@ -197,7 +219,7 @@
       </div>
     </section>
 
-    <!-- ==================== ACHIEVEMENTS SECTION ==================== -->
+   <!-- ==================== ACHIEVEMENTS SECTION (4 SCHOOL BOXES + MARQUEE) ==================== -->
     <section id="achievements-section" class="view-section">
       <div class="extra-layout">
         <div class="extra-header-bar">
@@ -205,87 +227,167 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <span>BACK TO PERSONAL INFORMATION</span>
           </button>
-          <h2 class="extra-main-title">ACHIEVEMENTS & EXTRACURRICULAR ACTIVITIES</h2>
+          <h2 class="extra-main-title">ACHIEVEMENTS & EDUCATIONAL MILESTONES</h2>
         </div>
 
-        <div class="extra-grid">
-          <div class="extra-card">
-            <img src="./singing contest.jpg" class="extra-thumb" alt="Singing Competition" />
-            <div class="extra-card-info">
-              <h4>Singing Competition</h4>
+        <div class="school-boxes-grid">
+          
+          <!-- BOX 1: ELEMENTARY -->
+          <div class="school-box">
+            <div class="school-top-group">
+              <div class="school-logo-circle">
+                <img src="./pfp.jpeg" alt="Lubas Elementary School Logo" class="no-enlarge" />
+              </div>
+              <a href="https://maps.google.com" target="_blank" class="school-map-link" title="Open in Google Maps">
+                📍 Daycare, Preschool and Elementary at Lubas Elementary School
+                <span class="map-click-note">Click to show location</span>
+              </a>
+            </div>
+
+            <div class="school-bottom-group">
+              <div class="school-categories">
+                <!-- Category 1 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('elem-edu')">
+                  <img src="./cert 1.jpg" alt="Elementary Educational Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Educational Achievements</button>
+                </div>
+
+                <!-- Category 2 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('elem-extra')">
+                  <img src="./district 10.jpeg" alt="Elementary Extra-curricular Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Extra-curricular Achievements</button>
+                </div>
+              </div>
+              <div class="total-achievements-badge heartbeat">6 total Achievements</div>
             </div>
           </div>
 
-          <div class="extra-card">
-            <img src="./mural.png" class="extra-thumb" alt="Mural Painting" />
-            <div class="extra-card-info">
-              <h4>Mural Painting</h4>
+          <!-- BOX 2: JUNIOR HIGHSCHOOL -->
+          <div class="school-box">
+            <div class="school-top-group">
+              <div class="school-logo-circle">
+                <img src="./pfp.jpeg" alt="La Trinidad National High School Logo" class="no-enlarge" />
+              </div>
+              <a href="https://maps.google.com" target="_blank" class="school-map-link" title="Open in Google Maps">
+                📍 Junior Highschool at La Trinidad National Highschool
+                <span class="map-click-note">Click to show location</span>
+              </a>
+            </div>
+
+            <div class="school-bottom-group">
+              <div class="school-categories">
+                <!-- Category 1 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('jhs-edu')">
+                  <img src="./cert 2.jpg" alt="JHS Educational Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Educational Achievements</button>
+                </div>
+
+                <!-- Category 2 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('jhs-extra')">
+                  <img src="./Talaw.jpg" alt="JHS Extra-curricular Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Extra-curricular Achievements</button>
+                </div>
+              </div>
+              <div class="total-achievements-badge heartbeat">12 total Achievements</div>
             </div>
           </div>
 
-          <div class="extra-card">
-            <img src="./cooking comp.jpg" class="extra-thumb" alt="Cooking Competition" />
-            <div class="extra-card-info">
-              <h4>Cooking Competition</h4>
+          <!-- BOX 3: SENIOR HIGHSCHOOL -->
+          <div class="school-box">
+            <div class="school-top-group">
+              <div class="school-logo-circle">
+                <img src="./pfp.jpeg" alt="King's Colleges of the Philippines Logo" class="no-enlarge" />
+              </div>
+              <a href="https://maps.google.com" target="_blank" class="school-map-link" title="Open in Google Maps">
+                📍 Senior Highschool at King's Colleges of the Philippines
+                <span class="map-click-note">Click to show location</span>
+              </a>
+            </div>
+
+            <div class="school-bottom-group">
+              <div class="school-categories">
+                <!-- Category 1 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('shs-edu')">
+                  <img src="./cert 3.jpg" alt="SHS Educational Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Educational Achievements</button>
+                </div>
+
+                <!-- Category 2 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('shs-extra')">
+                  <img src="./intrams 11.JPG" alt="SHS Extra-curricular Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Extra-curricular Achievements</button>
+                </div>
+              </div>
+              <div class="total-achievements-badge heartbeat">21 total Achievements</div>
             </div>
           </div>
 
-          <div class="extra-card">
-            <img src="./district 10.jpeg" class="extra-thumb" alt="Table Tennis District" />
-            <div class="extra-card-info">
-              <h4>Table Tennis District (Grade 4-6 & Grade 9-10)</h4>
+          <!-- BOX 4: COLLEGE (PRESENT) -->
+          <div class="school-box">
+            <div class="school-top-group">
+              <div class="school-logo-circle">
+                <img src="./pfp.jpeg" alt="University of the Cordilleras Logo" class="no-enlarge" />
+              </div>
+              <a href="https://maps.google.com" target="_blank" class="school-map-link" title="Open in Google Maps">
+                📍 College(Present) at University of the Cordillera
+                <span class="map-click-note">Click to show location</span>
+              </a>
             </div>
-          </div>
 
-          <div class="extra-card">
-            <img src="./intrams 11.JPG" class="extra-thumb" alt="KCP Intramurals" />
-            <div class="extra-card-info">
-              <h4>Intramurals at King's Colleges of the Philippines</h4>
-              <div class="inline-detail-row">
-                <p>Table Tennis - 3rd Place</p>
-                <button class="modal-open-btn" onclick="openSingleModal('./medal.jpg', 'KCP Intramurals - Table Tennis 3rd Place')">
-                  <img src="./medal.jpg" alt="" class="btn-icon"> VIEW PHOTO
-                </button>
+            <div class="school-bottom-group">
+              <div class="school-categories">
+                <!-- Category 1 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('college-edu')">
+                  <img src="./cert 4.jpg" alt="College Educational Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Educational Achievements</button>
+                </div>
+
+                <!-- Category 2 + Preview Image -->
+                <div class="category-item" onclick="openAchievementModal('college-extra')">
+                  <img src="./school concert.jpg" alt="College Extra-curricular Preview" class="category-preview-img no-enlarge" />
+                  <button class="category-btn">Extra-curricular Achievements</button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="extra-card">
-            <img src="./Talaw.jpg" class="extra-thumb" alt="Talaw Dance" />
-            <div class="extra-card-info">
-              <h4>Talaw Dance (LTNHS Representative)</h4>
-              <div class="inline-detail-row">
-                <p>Performed at La Trinidad Municipal Hall</p>
-                <button class="modal-open-btn" onclick="openSingleModal('./talawcert.jpg', 'Talaw Dance Certificate')">
-                  <img src="./talawcert.jpg" alt="" class="btn-icon"> VIEW PHOTO
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="extra-card">
-            <img src="./school concert.jpg" class="extra-thumb" alt="King's Concert" />
-            <div class="extra-card-info">
-              <h4>King's Concert</h4>
-              <p>Ebenezer Convention Center of KCP</p>
-            </div>
-          </div>
-
-          <div class="extra-card highlight-card">
-            <div class="extra-card-info center-info">
-              <h4>Other extracurricular activities</h4>
-              <p>click to view</p>
-              <button class="modal-open-btn big-btn" onclick="openFourModal()">CERTIFICATES</button>
-            </div>
-          </div>
-
         </div>
+
+        <!-- 10-PHOTO MOVING MARQUEE (RIGHT TO LEFT) -->
+        <div class="achievements-marquee">
+          <div class="marquee-track">
+            <!-- Set 1: Your 10 Photos (Replace src with your own images) -->
+            <div class="marquee-item"><img src="./cert 1.jpg" alt="Milestone 1" /></div>
+            <div class="marquee-item"><img src="./cert 2.jpg" alt="Milestone 2" /></div>
+            <div class="marquee-item"><img src="./cert 3.jpg" alt="Milestone 3" /></div>
+            <div class="marquee-item"><img src="./cert 4.jpg" alt="Milestone 4" /></div>
+            <div class="marquee-item"><img src="./Talaw.jpg" alt="Milestone 5" /></div>
+            <div class="marquee-item"><img src="./intrams 11.JPG" alt="Milestone 6" /></div>
+            <div class="marquee-item"><img src="./medal.jpg" alt="Milestone 7" /></div>
+            <div class="marquee-item"><img src="./mural.png" alt="Milestone 8" /></div>
+            <div class="marquee-item"><img src="./singing contest.jpg" alt="Milestone 9" /></div>
+            <div class="marquee-item"><img src="./school concert.jpg" alt="Milestone 10" /></div>
+
+            <!-- Set 2: Duplicate of the same 10 Photos for a seamless infinite loop -->
+            <div class="marquee-item"><img src="./cert 1.jpg" alt="Milestone 1" /></div>
+            <div class="marquee-item"><img src="./cert 2.jpg" alt="Milestone 2" /></div>
+            <div class="marquee-item"><img src="./cert 3.jpg" alt="Milestone 3" /></div>
+            <div class="marquee-item"><img src="./cert 4.jpg" alt="Milestone 4" /></div>
+            <div class="marquee-item"><img src="./Talaw.jpg" alt="Milestone 5" /></div>
+            <div class="marquee-item"><img src="./intrams 11.JPG" alt="Milestone 6" /></div>
+            <div class="marquee-item"><img src="./medal.jpg" alt="Milestone 7" /></div>
+            <div class="marquee-item"><img src="./mural.png" alt="Milestone 8" /></div>
+            <div class="marquee-item"><img src="./singing contest.jpg" alt="Milestone 9" /></div>
+            <div class="marquee-item"><img src="./school concert.jpg" alt="Milestone 10" /></div>
+          </div>
+        </div>
+
       </div>
     </section>
 
   </div>
 
-  <!-- POPUP MODALS -->
+  <!-- GENERAL SINGLE IMAGE POPUP MODAL (For Portrait/Hobbies) -->
   <div id="single-modal" class="modal-overlay" onclick="closeModals()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
@@ -294,16 +396,37 @@
     </div>
   </div>
 
-  <div id="four-modal" class="modal-overlay" onclick="closeModals()">
-    <div class="modal-content large-modal" onclick="event.stopPropagation()">
+  <!-- DYNAMIC ACHIEVEMENTS GALLERY MODAL -->
+  <div id="achievement-gallery-modal" class="modal-overlay" onclick="closeModals()">
+    <div id="ach-modal-box" class="modal-content gallery-modal-box" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
-      <h3>Featured Photo Collection</h3>
-      <div class="four-photo-grid">
-        <img src="./cert 1.jpg" alt="Featured 1" />
-        <img src="./cert 2.jpg" alt="Featured 2" />
-        <img src="./cert 3.jpg" alt="Featured 3" />
-        <img src="./cert 4.jpg" alt="Featured 4" />
-      </div>
+      <h3 id="ach-modal-title">Category Title</h3>
+      
+      <!-- Dynamic Content Container (Populated by JS) -->
+      <div id="ach-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- GENERAL SINGLE IMAGE POPUP MODAL (For Portrait/Hobbies) -->
+  <div id="single-modal" class="modal-overlay" onclick="closeModals()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="close-modal-btn" onclick="closeModals()">&times;</button>
+      <h3 id="modal-caption"></h3>
+      <img id="modal-img" src="" alt="Popup Preview" />
+      <p class="modal-exit-note">Click outside the image to exit</p>
+    </div>
+  </div>
+
+  <!-- DYNAMIC ACHIEVEMENTS GALLERY MODAL (Carousel & Multi-Photo Support) -->
+  <div id="achievement-gallery-modal" class="modal-overlay" onclick="closeModals()">
+    <div class="modal-content gallery-modal-box" onclick="event.stopPropagation()">
+      <button class="close-modal-btn" onclick="closeModals()">&times;</button>
+      <h3 id="ach-modal-title">Category Title</h3>
+      
+      <!-- Dynamic Content Container (Populated by JS) -->
+      <div id="ach-modal-body"></div>
+
+      <p class="modal-exit-note">Click outside the image to exit</p>
     </div>
   </div>
 
