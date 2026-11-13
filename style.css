@@ -823,7 +823,7 @@ img {
   background: linear-gradient(135deg, var(--bronze-aura), rgba(45, 45, 45, 0.9));
   border: 1px solid var(--gilded-champagne);
   color: var(--champagne-sparkle);
-  padding: 0.7rem 0.9rem;
+  padding: 0.7rem 0.1rem;
   border-radius: 8px;
   font-size: 0.82rem;
   font-weight: 700;

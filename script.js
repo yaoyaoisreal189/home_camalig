@@ -267,8 +267,8 @@ const achievementsData = {
     items: [
       { src: "./family grad pic.png", desc: "Senior Highschool Graduation" },
       { src: "./with honors 11.jpg", desc: "Senior Highschool(Grade 11)-With Honors" },
-      { src: "./grd 11.jpg", desc: "Grade 11 Honor Certificate" },
-      { src: "./grd 12.jpg", desc: "Grade 12 Honor Certificate" },
+      { src: "./grd 11 honor.jpg", desc: "Grade 11 Honor Certificate" },
+      { src: "./grd 12 honor.jpg", desc: "Grade 12 Honor Certificate" },
       { src: "./special award.jpg", desc: "Special Award Certificate" },
       { src: "./diploma 3.jpg", desc: "Diploma- Senio Highschool Graduate 2024-2026" },
       { src: "./NC2.jpg", desc: "NC II Certificate of Competency" }
@@ -335,8 +335,8 @@ const achievementsData = {
     ],
     sideLinks: [
       { label: "🎨 Ug-ugbo layout", url: "https://canva.link/mn1aaj2p7lw5r5o" },
-      { label: "DSPC January, 2025 Grade 11", url: "https://www.facebook.com/share/p/18Zjjwexow/" },
-      { label: "DSPC December, 2025 Grade 12", url: "https://www.facebook.com/share/p/1KXLqFAWRJ/" },
+      { label: "DSPC January,2025", url: "https://www.facebook.com/share/p/18Zjjwexow/" },
+      { label: "DSPC December,2025", url: "https://www.facebook.com/share/p/1KXLqFAWRJ/" },
       { label: "Vanguards Member 2025", url: "https://www.facebook.com/share/1L6Z9WCZ3V/" },
       { label: "DSPC Web Layout", url: "https://20grace1130.wixsite.com/news-web" }
     ]
