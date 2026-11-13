@@ -220,56 +220,58 @@ const achievementsData = {
     title: "Lubas Elementary School — Educational Achievements",
     mode: "carousel",
     items: [
-      { src: "./cert 1.jpg", desc: "Elementary Educational Achievement 1" },
-      { src: "./cert 2.jpg", desc: "Elementary Educational Achievement 2" },
-      { src: "./cert 3.jpg", desc: "Elementary Educational Achievement 3" },
-      { src: "./cert 4.jpg", desc: "Elementary Educational Achievement 4" }
+      { src: "./daycare accomplishment.jpg", desc: "Accomplished Daycare" },
+      { src: "./Awards 2.jpg", desc: "Accomplished Preschool with Award" },
+      { src: "./awards.jpg", desc: "Ranked Top 2 in Grade 1 and Top 10 consistently from Grades 2–6" },
+      { src: "./diploma 1.jpg", desc: "Diploma-Elementary Graduate Year 2014-2020" }
     ]
   },
   "elem-extra": {
     title: "Lubas Elementary School — Extra-curricular Achievements",
     mode: "grid",
     items: [
-      { src: "./district 10.jpeg", desc: "Elementary Extra-curricular 1" },
-      { src: "./drawing.jpeg", desc: "Elementary Extra-curricular 2" }
+      { src: "./cooking comp.jpg", desc: "Grade 6-Cooking Contest (4th place)" },
+      { src: "./singing contest.jpg", desc: "Daycare-1st Place Singing Contest Preschool-3rd Place Singing Contest" }
     ]
   },
   "jhs-edu": {
     title: "La Trinidad National Highschool — Educational Achievements",
     mode: "carousel",
     items: [
-      { src: "./cert 1.jpg", desc: "JHS Educational Achievement 1" },
-      { src: "./cert 2.jpg", desc: "JHS Educational Achievement 2" },
-      { src: "./cert 3.jpg", desc: "JHS Educational Achievement 3" },
-      { src: "./cert 4.jpg", desc: "JHS Educational Achievement 4" },
-      { src: "./pfp.jpeg", desc: "JHS Educational Achievement 5" }
+      { src: "./grade 8.jpg", desc: "Consistent Honor Student from Grade 7-10 = Grade 8 Honor Student" },
+      { src: "./honor medals.png", desc: "Grade 7,9,10 Honor Student" },
+      { src: "./grd 10.jpg", desc: "Grade 10 Graduation" },
+      { src: "./Acad excel.jpg", desc: "Academic Excellence Award" },
+      { src: "./diploma 2.jpg", desc: "Diploma-Junior Highschool Graduate 2020-2024" }
     ]
   },
   "jhs-extra": {
     title: "La Trinidad National Highschool — Extra-curricular Achievements",
     mode: "carousel",
     items: [
-      { src: "./Talaw.jpg", desc: "JHS Extra-curricular 1" },
-      { src: "./talawcert.jpg", desc: "JHS Extra-curricular 2" },
-      { src: "./district 10.jpeg", desc: "JHS Extra-curricular 3" },
-      { src: "./mural.png", desc: "JHS Extra-curricular 4" },
-      { src: "./singing contest.jpg", desc: "JHS Extra-curricular 5" },
-      { src: "./cooking comp.jpg", desc: "JHS Extra-curricular 6" },
-      { src: "./drawing.jpeg", desc: "JHS Extra-curricular 7" },
-      { src: "./painting.jpeg", desc: "JHS Extra-curricular 8" },
-      { src: "./guitar.jpeg", desc: "JHS Extra-curricular 9" },
-      { src: "./singing.jpg", desc: "JHS Extra-curricular 10" }
+      { src: "./journ 9.jpeg", desc: "District School Press Conference-4th in Cartooning" },
+      { src: "./cert 4.jpg", desc: "Certificate of Participation-District School Press Conference" },
+      { src: "./district 9.jpeg", desc: "District-Table Tennis 2023" },
+      { src: "./mural.png", desc: "Strawberry Festival Mural Painting Contest-7th Place" },
+      { src: "./Talaw.jpg", desc: "Talaw Dance Competition representing La Trinidad National Highschool 2023" },
+      { src: "./talawcert.jpg", desc: "Talaw Dance Certificate of Recognition" },
+      { src: "./cert 3.jpg", desc: "Campus Journalism Seminar-Workshop Certificate 2022" },
+      { src: "./cert 1.jpg", desc: "Campus Journalism Seminar-Workshop Certificate 2023" },
+      { src: "./cert 2.jpg", desc: "Certificate of Appreciation as a Member of Technical Working Committee" },
+      { src: "./district 10.jpeg", desc: "District-Table Tennis 2024" }
     ]
   },
   "shs-edu": {
     title: "King's Colleges of the Philippines — Educational Achievements",
     mode: "extended-carousel",
     items: [
-      { src: "./cert 1.jpg", desc: "SHS Educational Achievement 1" },
-      { src: "./cert 2.jpg", desc: "SHS Educational Achievement 2" },
-      { src: "./cert 3.jpg", desc: "SHS Educational Achievement 3" },
-      { src: "./cert 4.jpg", desc: "SHS Educational Achievement 4" },
-      { src: "./pfp.jpeg", desc: "SHS Educational Achievement 5" }
+      { src: "./family grad pic.png", desc: "Senior Highschool Graduation" },
+      { src: "./with honors 11.jpg", desc: "Senior Highschool(Grade 11)-With Honors" },
+      { src: "./grd 11.jpg", desc: "Grade 11 Honor Certificate" },
+      { src: "./grd 12.jpg", desc: "Grade 12 Honor Certificate" },
+      { src: "./special award.jpg", desc: "Special Award Certificate" },
+      { src: "./diploma 3.jpg", desc: "Diploma- Senio Highschool Graduate 2024-2026" },
+      { src: "./NC2.jpg", desc: "NC II Certificate of Competency" }
     ],
     sideButtons: [
       { label: "CSS Certificates", action: "openAchievementModal('shs-css-certs')" },
@@ -282,11 +284,11 @@ const achievementsData = {
     mode: "carousel",
     parentKey: "shs-edu",
     items: [
-      { src: "./cert 1.jpg", desc: "CSS Certificate 1" },
-      { src: "./cert 2.jpg", desc: "CSS Certificate 2" },
-      { src: "./cert 3.jpg", desc: "CSS Certificate 3" },
-      { src: "./cert 4.jpg", desc: "CSS Certificate 4" },
-      { src: "./pfp.jpeg", desc: "CSS Certificate 5" }
+      { src: "./1.jpg", desc: "CSS Certificate 1" },
+      { src: "./2.jpg", desc: "CSS Certificate 2" },
+      { src: "./3.jpg", desc: "CSS Certificate 3" },
+      { src: "./4.jpg", desc: "CSS Certificate 4" },
+      { src: "./5.jpg", desc: "CSS Certificate 5" }
     ]
   },
   "shs-triq": {
@@ -294,13 +296,13 @@ const achievementsData = {
     mode: "tri-project",
     parentKey: "shs-edu",
     items: [
-      { src: "./cert 1.jpg", desc: "TRI-Q Project Photo 1" },
-      { src: "./cert 2.jpg", desc: "TRI-Q Project Photo 2" },
-      { src: "./cert 3.jpg", desc: "TRI-Q Project Photo 3" }
+      { src: "./process 1.jpeg", desc: "TRI-Q Project Process" },
+      { src: "./process 2.jpeg", desc: "TRI-Q Project Process" },
+      { src: "./process 3.jpeg", desc: "TRI-Q Project Testing" }
     ],
     fileLinks: [
-      { label: "📄 TRI-Q Research Paper", url: "./tri-q-research-paper.pdf" },
-      { label: "📄 Extended Abstract", url: "./extended-abstract.pdf" }
+      { label: "📄 TRI-Q Research Paper", url: "https://canva.link/nq9cea2132heoch" },
+      { label: "📄 Extended Abstract", url: "https://canva.link/djbyvh3gnmzweq3" }
     ]
   },
   "shs-immersion": {
@@ -308,41 +310,49 @@ const achievementsData = {
     mode: "carousel",
     parentKey: "shs-edu",
     items: [
-      { src: "./cert 4.jpg", desc: "Work Immersion Photo" }
+      { src: "./immersion grp photo.png", desc: "Work Immersion Group Photo" },
+      { src: "./WI.jpeg", desc: "Work Immersion Photo with Pines International Academy staffs" },
+      { src: "./immersion 1.jpg", desc: "Work Immersion Photo" },
+      { src: "./completion.jpg", desc: "Certificate of Completion given by Kings Colleges of the Philippines" },
+      { src: "./completion 2.jpg", desc: "Certificate of Completion given by Pines International Academy" }
     ]
   },
   "shs-extra": {
     title: "King's Colleges of the Philippines — Extra-curricular Achievements",
     mode: "extended-carousel",
     items: [
-      { src: "./intrams 11.JPG", desc: "SHS Extra-curricular 1" },
-      { src: "./medal.jpg", desc: "SHS Extra-curricular 2" },
-      { src: "./school concert.jpg", desc: "SHS Extra-curricular 3" },
-      { src: "./singing contest.jpg", desc: "SHS Extra-curricular 4" },
-      { src: "./mural.png", desc: "SHS Extra-curricular 5" },
-      { src: "./cooking comp.jpg", desc: "SHS Extra-curricular 6" },
-      { src: "./drawing.jpeg", desc: "SHS Extra-curricular 7" },
-      { src: "./painting.jpeg", desc: "SHS Extra-curricular 8" },
-      { src: "./phtography.jpeg", desc: "SHS Extra-curricular 9" },
-      { src: "./skating.jpg", desc: "SHS Extra-curricular 10" },
-      { src: "./guitar.jpeg", desc: "SHS Extra-curricular 11" }
+      { src: "./intrams 11.JPG", desc: "Intramurals in Kings Colleges of the Philippines(KCP)-Table Tennis" },
+      { src: "./3rd place tabletennis.png", desc: "3rd Place Intramurals-Table Tennis" },
+      { src: "./bspc 11.jpg", desc: "Barangay Schools Press Conference Journalism-Layout Web Artist" },
+      { src: "./bspc 1st.jpg", desc: "1st Place in Barangay Schools Press Conference-Web Layouting" },
+      { src: "./dspc 11.jpg", desc: "Division Schools Press Conference Best Performing Secondary School-5th Place" },
+      { src: "./dspc 12.jpeg", desc: "9th Place Division Schools Press Conference" },
+      { src: "./club.jpg", desc: "Certificate of Appreciation" },
+      { src: "./school concert.jpg", desc: "Grade 11 Concert in Kings Colleges of the Philippines" },
+      { src: "./school layout.jpeg", desc: "Ug-ugbo Member" },
+      { src: "./Seminar 11.jpg", desc: "Seminar 1" },
+      { src: "./Journ Sem 11.jpg", desc: "Seminar 2" }
     ],
     sideLinks: [
-      { label: "🎨 Ug-ugbo layout", url: "https://www.canva.com" }
+      { label: "🎨 Ug-ugbo layout", url: "https://canva.link/mn1aaj2p7lw5r5o" },
+      { label: "DSPC January, 2025 Grade 11", url: "https://www.facebook.com/share/p/18Zjjwexow/" },
+      { label: "DSPC December, 2025 Grade 12", url: "https://www.facebook.com/share/p/1KXLqFAWRJ/" },
+      { label: "Vanguards Member 2025", url: "https://www.facebook.com/share/1L6Z9WCZ3V/" },
+      { label: "DSPC Web Layout", url: "https://20grace1130.wixsite.com/news-web" }
     ]
   },
   "college-edu": {
     title: "University of the Cordilleras — Educational Achievements",
     mode: "carousel",
     items: [
-      { src: "./cert 3.jpg", desc: "College Educational Achievement" }
+      { src: "./blank.jpe", desc: "Will be updated soon" }
     ]
   },
   "college-extra": {
     title: "University of the Cordilleras — Extra-curricular Achievements",
     mode: "carousel",
     items: [
-      { src: "./school concert.jpg", desc: "College Extra-curricular Achievement" }
+      { src: "./blank.jpe", desc: "will be updated soon" }
     ]
   }
 };
