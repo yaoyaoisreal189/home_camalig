@@ -231,6 +231,7 @@ const achievementsData = {
     mode: "grid",
     items: [
       { src: "./cooking comp.jpg", desc: "Grade 6-Cooking Contest (4th place)" },
+      { src: "./DAL.jpg", desc: "Strawberry Festival Drum and Lyre-Flag" },
       { src: "./singing contest.jpg", desc: "Daycare-1st Place Singing Contest Preschool-3rd Place Singing Contest" }
     ]
   },
