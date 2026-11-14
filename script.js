@@ -278,6 +278,7 @@ const achievementsData = {
       { label: "CSS Certificates", action: "openAchievementModal('shs-css-certs')" },
       { label: "TRI-Q Research Project", action: "openAchievementModal('shs-triq')" },
       { label: "Work Immersion", action: "openAchievementModal('shs-immersion')" }
+      
     ]
   },
   "shs-css-certs": {
@@ -330,6 +331,7 @@ const achievementsData = {
       { src: "./dspc 12.jpeg", desc: "9th Place Division Schools Press Conference" },
       { src: "./club.jpg", desc: "Certificate of Appreciation" },
       { src: "./school concert.jpg", desc: "Grade 11 Concert in Kings Colleges of the Philippines" },
+      { src: "./school concert.jpg", desc: "Intramural Champion-Grade 12" },
       { src: "./school layout.jpeg", desc: "Ug-ugbo Member" },
       { src: "./Seminar 11.jpg", desc: "Seminar 1" },
       { src: "./Journ Sem 11.jpg", desc: "Seminar 2" }
@@ -339,7 +341,8 @@ const achievementsData = {
       { label: "DSPC January,2025", url: "https://www.facebook.com/share/p/18Zjjwexow/" },
       { label: "DSPC December,2025", url: "https://www.facebook.com/share/p/1KXLqFAWRJ/" },
       { label: "Vanguards Member 2025", url: "https://www.facebook.com/share/1L6Z9WCZ3V/" },
-      { label: "DSPC Web Layout", url: "https://20grace1130.wixsite.com/news-web" }
+      { label: "DSPC Web Layout", url: "https://20grace1130.wixsite.com/news-web" },
+      { label: "Intramural Champion Grade 12", url: "https://www.facebook.com/100070915232476/posts/919408283766338/?mibextid=rS40aB7S9Ucbxw6v" }
     ]
   },
   "college-edu": {
