@@ -338,8 +338,8 @@ const achievementsData = {
     ],
     sideLinks: [
       { label: "🎨 Ug-ugbo layout", url: "https://canva.link/mn1aaj2p7lw5r5o" },
-      { label: "DSPC January,2025", url: "https://www.facebook.com/share/p/18Zjjwexow/" },
-      { label: "DSPC December,2025", url: "https://www.facebook.com/share/p/1KXLqFAWRJ/" },
+      { label: "DSPC January 2025", url: "https://www.facebook.com/share/p/18Zjjwexow/" },
+      { label: "DSPC December 2025", url: "https://www.facebook.com/share/p/1KXLqFAWRJ/" },
       { label: "Vanguards Member 2025", url: "https://www.facebook.com/share/1L6Z9WCZ3V/" },
       { label: "DSPC Web Layout", url: "https://20grace1130.wixsite.com/news-web" },
       { label: "Intramural Champion Grade 12", url: "https://www.facebook.com/100070915232476/posts/919408283766338/?mibextid=rS40aB7S9Ucbxw6v" }
