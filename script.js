@@ -331,7 +331,7 @@ const achievementsData = {
       { src: "./dspc 12.jpeg", desc: "9th Place Division Schools Press Conference" },
       { src: "./club.jpg", desc: "Certificate of Appreciation" },
       { src: "./school concert.jpg", desc: "Grade 11 Concert in Kings Colleges of the Philippines" },
-      { src: "./trophy.jpg", desc: "Intramural Champion-Grade 12" },
+      { src: "./Trophy.jpg", desc: "Intramural Champion-Grade 12" },
       { src: "./school layout.jpeg", desc: "Ug-ugbo Member" },
       { src: "./Seminar 11.jpg", desc: "Seminar 1" },
       { src: "./Journ Sem 11.jpg", desc: "Seminar 2" }
