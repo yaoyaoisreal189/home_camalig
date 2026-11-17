@@ -29,7 +29,7 @@
       <button class="nav-link active" onclick="switchSection('home-section')">HOME</button>
       <button class="nav-link" onclick="switchSection('about-section')">PERSONAL INFORMATION</button>
       <button class="nav-link" onclick="switchSection('achievements-section')">ACHIEVEMENTS</button>
-      <button class="nav-link">FAMILY</button>
+      <button class="nav-link" onclick="switchSection('family-friends-section')">FAMILY AND FRIENDS</button>
     </div>
 
     <!-- Top Right Controls (Outside Nav Container) -->
@@ -42,8 +42,8 @@
           <button onclick="setTheme('gold')">Gold (Default)</button>
           <button onclick="setTheme('black')">Black</button>
           <button onclick="setTheme('blue')">Blue</button>
-          <button onclick="setTheme('darkgreen')">Green</button>
-          <button onclick="setTheme('darkred')">Red</button>
+          <button onclick="setTheme('green')">Green</button>
+          <button onclick="setTheme('red')">Red</button>
         </div>
       </div>
     </div>
@@ -219,7 +219,7 @@
       </div>
     </section>
 
-   <!-- ==================== ACHIEVEMENTS SECTION (4 SCHOOL BOXES + MARQUEE) ==================== -->
+    <!-- ==================== ACHIEVEMENTS SECTION (4 SCHOOL BOXES + MARQUEE) ==================== -->
     <section id="achievements-section" class="view-section">
       <div class="extra-layout">
         <div class="extra-header-bar">
@@ -246,13 +246,11 @@
 
             <div class="school-bottom-group">
               <div class="school-categories">
-                <!-- Category 1 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('elem-edu')">
                   <img src="./awards.jpg" alt="Elementary Educational Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Educational Achievements</button>
                 </div>
 
-                <!-- Category 2 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('elem-extra')">
                   <img src="./cooking comp.jpg" alt="Elementary Extra-curricular Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Extra-curricular Achievements</button>
@@ -276,13 +274,11 @@
 
             <div class="school-bottom-group">
               <div class="school-categories">
-                <!-- Category 1 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('jhs-edu')">
                   <img src="./honor medals.png" alt="JHS Educational Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Educational Achievements</button>
                 </div>
 
-                <!-- Category 2 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('jhs-extra')">
                   <img src="./mural.png" alt="JHS Extra-curricular Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Extra-curricular Achievements</button>
@@ -306,13 +302,11 @@
 
             <div class="school-bottom-group">
               <div class="school-categories">
-                <!-- Category 1 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('shs-edu')">
                   <img src="./special award.jpg" alt="SHS Educational Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Educational Achievements</button>
                 </div>
 
-                <!-- Category 2 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('shs-extra')">
                   <img src="./dspc 12.jpeg" alt="SHS Extra-curricular Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Extra-curricular Achievements</button>
@@ -336,13 +330,11 @@
 
             <div class="school-bottom-group">
               <div class="school-categories">
-                <!-- Category 1 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('college-edu')">
                   <img src="./blank.jpe" alt="College Educational Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Educational Achievements</button>
                 </div>
 
-                <!-- Category 2 + Preview Image -->
                 <div class="category-item" onclick="openAchievementModal('college-extra')">
                   <img src="./blank.jpe" alt="College Extra-curricular Preview" class="category-preview-img no-enlarge" />
                   <button class="category-btn">Extra-curricular Achievements</button>
@@ -356,7 +348,6 @@
         <!-- 10-PHOTO MOVING MARQUEE (RIGHT TO LEFT) -->
         <div class="achievements-marquee">
           <div class="marquee-track">
-            <!-- Set 1: Your 10 Photos (Replace src with your own images) -->
             <div class="marquee-item"><img src="./cert 1.jpg" alt="Milestone 1" /></div>
             <div class="marquee-item"><img src="./cert 2.jpg" alt="Milestone 2" /></div>
             <div class="marquee-item"><img src="./cert 3.jpg" alt="Milestone 3" /></div>
@@ -368,7 +359,6 @@
             <div class="marquee-item"><img src="./3.jpg" alt="Milestone 9" /></div>
             <div class="marquee-item"><img src="./5.jpg" alt="Milestone 10" /></div>
 
-            <!-- Set 2: Duplicate of the same 10 Photos for a seamless infinite loop -->
             <div class="marquee-item"><img src="./Awards 2.jpg" alt="Milestone 1" /></div>
             <div class="marquee-item"><img src="./awards.jpg" alt="Milestone 2" /></div>
             <div class="marquee-item"><img src="./club.jpg" alt="Milestone 3" /></div>
@@ -385,14 +375,92 @@
       </div>
     </section>
 
+    <!-- ==================== FAMILY AND FRIENDS SECTION ==================== -->
+    <section id="family-friends-section" class="view-section">
+      <div class="family-layout">
+        <div class="extra-header-bar">
+          <button class="back-btn" onclick="switchSection('home-section')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span>BACK TO HOME</span>
+          </button>
+          <h2 class="extra-main-title">FAMILY AND FRIENDS</h2>
+        </div>
+
+        <!-- 4 Frames Grid -->
+        <div class="family-frames-grid">
+          <!-- Frame 1: Family -->
+          <div class="family-frame-card" onclick="openFamilyModal(0)">
+            <div class="family-img-box">
+              <img src="./family1.jpg" alt="Family Member 1" class="no-enlarge" />
+            </div>
+            <p class="family-short-desc">Short description for Family Frame 1</p>
+          </div>
+
+          <!-- Frame 2: Family -->
+          <div class="family-frame-card" onclick="openFamilyModal(1)">
+            <div class="family-img-box">
+              <img src="./family2.jpg" alt="Family Member 2" class="no-enlarge" />
+            </div>
+            <p class="family-short-desc">Short description for Family Frame 2</p>
+          </div>
+
+          <!-- Frame 3: Family -->
+          <div class="family-frame-card" onclick="openFamilyModal(2)">
+            <div class="family-img-box">
+              <img src="./family3.jpg" alt="Family Member 3" class="no-enlarge" />
+            </div>
+            <p class="family-short-desc">Short description for Family Frame 3</p>
+          </div>
+
+          <!-- Frame 4: Friends (Triggers 4-Photo 1s Panning Slideshow) -->
+          <div class="family-frame-card" onclick="openFamilyModal(3)">
+            <div class="family-img-box">
+              <img src="./friends_cover.jpg" alt="My Friends" class="no-enlarge" />
+            </div>
+            <p class="family-short-desc">My Friends — Click to view slideshow</p>
+          </div>
+        </div>
+
+        <!-- 10 Moving Images (Right to Left) -->
+        <div class="achievements-marquee">
+          <div class="marquee-track">
+            <!-- Set 1: 10 Photos -->
+            <div class="marquee-item"><img src="./ff1.jpg" alt="Memory 1" /></div>
+            <div class="marquee-item"><img src="./ff2.jpg" alt="Memory 2" /></div>
+            <div class="marquee-item"><img src="./ff3.jpg" alt="Memory 3" /></div>
+            <div class="marquee-item"><img src="./ff4.jpg" alt="Memory 4" /></div>
+            <div class="marquee-item"><img src="./ff5.jpg" alt="Memory 5" /></div>
+            <div class="marquee-item"><img src="./ff6.jpg" alt="Memory 6" /></div>
+            <div class="marquee-item"><img src="./ff7.jpg" alt="Memory 7" /></div>
+            <div class="marquee-item"><img src="./ff8.jpg" alt="Memory 8" /></div>
+            <div class="marquee-item"><img src="./ff9.jpg" alt="Memory 9" /></div>
+            <div class="marquee-item"><img src="./ff10.jpg" alt="Memory 10" /></div>
+
+            <!-- Set 2: Duplicate of the same 10 Photos for seamless infinite loop -->
+            <div class="marquee-item"><img src="./ff1.jpg" alt="Memory 1" /></div>
+            <div class="marquee-item"><img src="./ff2.jpg" alt="Memory 2" /></div>
+            <div class="marquee-item"><img src="./ff3.jpg" alt="Memory 3" /></div>
+            <div class="marquee-item"><img src="./ff4.jpg" alt="Memory 4" /></div>
+            <div class="marquee-item"><img src="./ff5.jpg" alt="Memory 5" /></div>
+            <div class="marquee-item"><img src="./ff6.jpg" alt="Memory 6" /></div>
+            <div class="marquee-item"><img src="./ff7.jpg" alt="Memory 7" /></div>
+            <div class="marquee-item"><img src="./ff8.jpg" alt="Memory 8" /></div>
+            <div class="marquee-item"><img src="./ff9.jpg" alt="Memory 9" /></div>
+            <div class="marquee-item"><img src="./ff10.jpg" alt="Memory 10" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <!-- GENERAL SINGLE IMAGE POPUP MODAL (For Portrait/Hobbies) -->
+  <!-- GENERAL SINGLE IMAGE POPUP MODAL (For Portrait/Hobbies/Marquee) -->
   <div id="single-modal" class="modal-overlay" onclick="closeModals()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
       <h3 id="modal-caption"></h3>
       <img id="modal-img" src="" alt="Popup Preview" />
+      <p class="modal-exit-note">Click outside the image to exit</p>
     </div>
   </div>
 
@@ -401,32 +469,28 @@
     <div id="ach-modal-box" class="modal-content gallery-modal-box" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
       <h3 id="ach-modal-title">Category Title</h3>
-      
-      <!-- Dynamic Content Container (Populated by JS) -->
       <div id="ach-modal-body"></div>
-    </div>
-  </div>
-
-  <!-- GENERAL SINGLE IMAGE POPUP MODAL (For Portrait/Hobbies) -->
-  <div id="single-modal" class="modal-overlay" onclick="closeModals()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <button class="close-modal-btn" onclick="closeModals()">&times;</button>
-      <h3 id="modal-caption"></h3>
-      <img id="modal-img" src="" alt="Popup Preview" />
       <p class="modal-exit-note">Click outside the image to exit</p>
     </div>
   </div>
 
-  <!-- DYNAMIC ACHIEVEMENTS GALLERY MODAL (Carousel & Multi-Photo Support) -->
-  <div id="achievement-gallery-modal" class="modal-overlay" onclick="closeModals()">
-    <div class="modal-content gallery-modal-box" onclick="event.stopPropagation()">
+  <!-- FAMILY & FRIENDS SPLIT MODAL (Image/Slideshow on Left, Paragraph on Right) -->
+  <div id="family-modal" class="modal-overlay" onclick="closeModals()">
+    <div class="modal-content family-modal-box" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
-      <h3 id="ach-modal-title">Category Title</h3>
+      <h3 id="family-modal-title">Title</h3>
       
-      <!-- Dynamic Content Container (Populated by JS) -->
-      <div id="ach-modal-body"></div>
+      <div class="family-modal-split">
+        <!-- Left Side: Enlarged Image OR 4-Photo Panning Slideshow -->
+        <div class="family-modal-media" id="family-modal-media"></div>
+        
+        <!-- Right Side: Paragraph -->
+        <div class="family-modal-text">
+          <p id="family-modal-paragraph"></p>
+        </div>
+      </div>
 
-      <p class="modal-exit-note">Click outside the image to exit</p>
+      <p class="modal-exit-note">Can also click outside the box to exit</p>
     </div>
   </div>
 

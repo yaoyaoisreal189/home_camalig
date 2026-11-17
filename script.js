@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ampm = hours >= 12 ? 'PM' : 'AM';
     
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12;
     const formattedHours = String(hours).padStart(2, '0');
     
     const timeString = `${formattedHours}:${minutes}:${seconds} ${ampm}`;
@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (
       target.tagName === 'IMG' &&
       !target.closest('.modal-content') &&
+      !target.closest('.family-frame-card') &&
       !target.classList.contains('btn-icon') &&
       !target.classList.contains('no-enlarge')
     ) {
@@ -162,12 +163,13 @@ function switchSection(sectionId) {
     }
   }
 
-  if (sectionId === 'home-section') navLinks[0].classList.add('active');
-  if (sectionId === 'about-section') {
+  if (sectionId === 'home-section' && navLinks[0]) navLinks[0].classList.add('active');
+  if (sectionId === 'about-section' && navLinks[1]) {
     navLinks[1].classList.add('active');
     startCareerTyping();
   }
-  if (sectionId === 'achievements-section') navLinks[2].classList.add('active');
+  if (sectionId === 'achievements-section' && navLinks[2]) navLinks[2].classList.add('active');
+  if (sectionId === 'family-friends-section' && navLinks[3]) navLinks[3].classList.add('active');
 
   if (sectionId === 'hobbies-section') {
     startHobbiesTyping();
@@ -278,7 +280,6 @@ const achievementsData = {
       { label: "CSS Certificates", action: "openAchievementModal('shs-css-certs')" },
       { label: "TRI-Q Research Project", action: "openAchievementModal('shs-triq')" },
       { label: "Work Immersion", action: "openAchievementModal('shs-immersion')" }
-      
     ]
   },
   "shs-css-certs": {
@@ -481,12 +482,88 @@ function changeAchievementSlide(direction) {
 
 function openSingleModal(imgUrl, caption) {
   const modal = document.getElementById('single-modal');
+  if (!modal) return;
   document.getElementById('modal-img').src = imgUrl;
   document.getElementById('modal-caption').textContent = caption;
   modal.classList.add('active');
 }
 
+// 9. FAMILY AND FRIENDS DATA & MODAL SLIDESHOW
+const familyFriendsData = [
+  {
+    title: "Family Frame 1",
+    type: "single",
+    src: "./family1.jpg",
+    paragraph: "Write your full story or paragraph about this family photo here. It appears cleanly on the right side of the enlarged image."
+  },
+  {
+    title: "Family Frame 2",
+    type: "single",
+    src: "./family2.jpg",
+    paragraph: "Write your full story or paragraph about this second family photo here."
+  },
+  {
+    title: "Family Frame 3",
+    type: "single",
+    src: "./family3.jpg",
+    paragraph: "Write your full story or paragraph about this third family photo here."
+  },
+  {
+    title: "My Friends",
+    type: "slideshow",
+    slides: [
+      "./friend1.jpg",
+      "./friend2.jpg",
+      "./friend3.jpg",
+      "./friend4.jpg"
+    ],
+    paragraph: "Write your paragraph about your friends here! While you read this on the right, the 4 photos on the left cycle automatically every 1 second with a smooth panning animation."
+  }
+];
+
+let friendsSlideshowInterval = null;
+
+function openFamilyModal(index) {
+  const data = familyFriendsData[index];
+  if (!data) return;
+
+  if (friendsSlideshowInterval) {
+    clearInterval(friendsSlideshowInterval);
+    friendsSlideshowInterval = null;
+  }
+
+  const titleEl = document.getElementById("family-modal-title");
+  const mediaEl = document.getElementById("family-modal-media");
+  const paraEl = document.getElementById("family-modal-paragraph");
+  const modalEl = document.getElementById("family-modal");
+
+  if (!titleEl || !mediaEl || !paraEl || !modalEl) return;
+
+  titleEl.textContent = data.title;
+  paraEl.textContent = data.paragraph;
+
+  if (data.type === "single") {
+    mediaEl.innerHTML = `<img src="${data.src}" alt="${data.title}" class="single-enlarged no-enlarge" />`;
+  } else if (data.type === "slideshow") {
+    let currentSlide = 0;
+
+    function renderSlide() {
+      mediaEl.innerHTML = `<img src="${data.slides[currentSlide]}" alt="Friend Photo ${currentSlide + 1}" class="slideshow-pan-img no-enlarge" />`;
+      currentSlide = (currentSlide + 1) % data.slides.length;
+    }
+
+    renderSlide();
+    friendsSlideshowInterval = setInterval(renderSlide, 1000);
+  }
+
+  modalEl.classList.add("active");
+}
+
 function closeModals() {
+  if (friendsSlideshowInterval) {
+    clearInterval(friendsSlideshowInterval);
+    friendsSlideshowInterval = null;
+  }
   document.querySelectorAll('.modal-overlay').forEach(modal => {
     modal.classList.remove('active');
   });
