@@ -857,7 +857,7 @@ const familyFriendsPhotos = [
     category: "Mother",
     title: "Mother — Mary Camalig",
     subtitle: "My First Teacher & Guiding Light",
-    src: "./family1.jpg",
+    src: "./mother.jpe",
     phrase: "“A mother’s love is the quiet strength behind every dream I dare to chase.”",
     letter: "Dear Mama,\n\nThank you for your endless patience, sacrifices, and unconditional love. Through every late-night study session and every milestone I have reached, your encouragement has been my anchor. Everything I am today starts with the kindness and resilience you taught me."
   },
@@ -866,7 +866,7 @@ const familyFriendsPhotos = [
     category: "Father",
     title: "Father — Silang Camalig",
     subtitle: "My Pillar of Strength & Wisdom",
-    src: "./family2.jpg",
+    src: "./father.jpe",
     phrase: "“Behind every confident step I take is a father who believed in me first.”",
     letter: "Dear Papa,\n\nThank you for always working hard for our family and teaching me the value of perseverance, humility, and integrity. No matter how challenging life gets, knowing you are always there gives me the courage to keep pushing forward."
   },
@@ -875,7 +875,7 @@ const familyFriendsPhotos = [
     category: "Sibling",
     title: "My Sibling",
     subtitle: "Lifelong Companion & Best Friend",
-    src: "./family3.jpg",
+    src: "./sister.jpg",
     phrase: "“Side by side or miles apart, siblings are always connected by heart.”",
     letter: "To my sibling,\n\nFrom childhood laughter to growing up together, thank you for being my built-in teammate and confidant. No matter where our paths take us, I will always have your back just as you have always had mine."
   },
