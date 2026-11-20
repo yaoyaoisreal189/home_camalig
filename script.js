@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resize();
     window.addEventListener("resize", resize);
 
-    const INTRO_DURATION_MS = 5000;
+    const INTRO_DURATION_MS = 1000;
     const startTime = performance.now();
     let completed = false;
     let animationActive = true;
