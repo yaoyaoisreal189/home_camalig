@@ -882,7 +882,7 @@ const familyFriendsPhotos = [
   {
     id: 3,
     category: "Friends",
-    title: "Friend 1 — Shared Laughter & Good Vibes",
+    title: "<3",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friends 3.jpg",
     phrase: "“Good friends make even the most ordinary days feel like a celebration.”",
@@ -891,7 +891,7 @@ const familyFriendsPhotos = [
   {
     id: 4,
     category: "Friends",
-    title: "Friend 2 — Creative Sparks & Jam Sessions",
+    title: "Childhood and ",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friends 2.png",
     phrase: "“Real friendship inspires you to create, grow, and be unapologetically yourself.”",
@@ -900,7 +900,7 @@ const familyFriendsPhotos = [
   {
     id: 5,
     category: "Friends",
-    title: "Friend 3 — Steady Support Through Every Season",
+    title: "",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friend 1.jpg",
     phrase: "“A true friend stays steady when everything else feels uncertain.”",
@@ -909,7 +909,7 @@ const familyFriendsPhotos = [
   {
     id: 6,
     category: "Friends",
-    title: "Friend 4 — Spontaneous Adventures & Stories",
+    title: "",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friend 4.jpg",
     phrase: "“The best stories are the ones we write together along the way.”",
@@ -918,11 +918,29 @@ const familyFriendsPhotos = [
   {
     id: 7,
     category: "Friends",
-    title: "Friend 5 — Lasting Bond & Gratitude",
+    title: "",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friend 5.jpg",
     phrase: "“Friendship is one of life’s greatest gifts—rare, honest, and enduring.”",
     letter: "Dear Friend 5,\n\nThank you for the kindness, loyalty, and memories we’ve built together. No matter how much time passes or how busy life gets, I’m truly grateful for the friendship we share."
+  }
+  {
+    id: 8,
+    category: "Friends",
+    title: "Childhood Friend",
+    subtitle: "Click to view enlarged photo & letter",
+    src: "./friend 6.jpg",
+    phrase: "“Friendship is one of life’s greatest gifts—rare, honest, and enduring.”",
+    letter: "Dear Bestfriend 5,\n\nThank you for the kindness, loyalty, and memories we’ve built together. No matter how much time passes or how busy life gets, I’m truly grateful for the friendship we share. And I hope someday we see each other again, we both are still doing well and still the best person we knew."
+  }
+  {
+    id: 9,
+    category: "Family Group Picture",
+    title: "My whole guide and support from the day I was born",
+    subtitle: "Click to view enlarged photo & letter",
+    src: "./grp pic.png",
+    phrase: "“Friendship is one of life’s greatest gifts—rare, honest, and enduring.”",
+    letter: "Dear Family 5,\n\nFirst of all, I want to thank you for all love, patience, support, guidance, teachings and never ending care that you all given to me. I cannot name all efforts you have given me but I'am here to achieve my dreams and make you proud. I will make sure that every single thing that you all did for me, will be given back to you with love and respect. I hope you all in good health and always be safe. <3"
   }
 ];
 
