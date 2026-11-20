@@ -17,18 +17,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 2. LIVE DIGITAL CLOCK & DATE
+  // 2. LIVE DIGITAL CLOCK & DATE (+ Cyber Portrait HUD Time)
   function updateClock() {
     const now = new Date();
     let hours = now.getHours();
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
-    
+
+    const hudTimeEl = document.getElementById("hud-live-time");
+    if (hudTimeEl) {
+      hudTimeEl.textContent = `${String(now.getHours()).padStart(2, '0')}:${minutes}:${seconds}`;
+    }
+
     hours = hours % 12;
     hours = hours ? hours : 12;
     const formattedHours = String(hours).padStart(2, '0');
-    
+
     const timeString = `${formattedHours}:${minutes}:${seconds} ${ampm}`;
     const timeEl = document.getElementById("clock-time");
     if (timeEl) timeEl.textContent = timeString;
@@ -41,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateClock, 1000);
   updateClock();
 
-  // 3. 5-SECOND GOLD & BLACK CIRCUIT BOARD INTRO + 0%-100% LOADING BAR
+  // 3. GOLD & BLACK CIRCUIT BOARD INTRO WITH "Info Tech Data" CPU + RETICLE
   function startGalaxyIntro() {
     const introOverlay = document.getElementById("intro-overlay");
     const canvas = document.getElementById("circuit-intro-canvas");
@@ -63,17 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
     resize();
     window.addEventListener("resize", resize);
 
-    const INTRO_DURATION_MS = 1000;
+    const INTRO_DURATION_MS = 2200;
     const startTime = performance.now();
     let completed = false;
     let animationActive = true;
 
-    // Build radial PCB trace branches converging toward the center IC chip
     const traceCount = 34;
     const traces = Array.from({ length: traceCount }, (_, idx) => {
       const baseAngle = (idx / traceCount) * Math.PI * 2 + (Math.random() - 0.5) * 0.08;
       const maxRadius = Math.max(canvas.width, canvas.height) * (0.48 + Math.random() * 0.16);
-      const innerRadius = 64;
+      const innerRadius = 68;
       const midRadius = innerRadius + (maxRadius - innerRadius) * (0.35 + Math.random() * 0.3);
       const bendOffset = (Math.random() - 0.5) * 0.24;
 
@@ -110,6 +114,54 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     }
 
+    function drawIntroReticle(cx, cy, now) {
+      const angle = now * 0.0018;
+      const outerR = 138;
+      const innerR = 96;
+
+      ctx.save();
+      ctx.translate(cx, cy);
+
+      ctx.save();
+      ctx.rotate(angle);
+      ctx.strokeStyle = "rgba(217, 197, 160, 0.72)";
+      ctx.lineWidth = 1.8;
+      ctx.setLineDash([18, 12]);
+      ctx.beginPath();
+      ctx.arc(0, 0, outerR, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.save();
+      ctx.rotate(-angle * 1.4);
+      ctx.strokeStyle = "rgba(166, 124, 82, 0.85)";
+      ctx.lineWidth = 1.4;
+      ctx.setLineDash([8, 10]);
+      ctx.beginPath();
+      ctx.arc(0, 0, innerR, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.strokeStyle = "rgba(246, 224, 182, 0.8)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(-outerR - 22, 0);
+      ctx.lineTo(-innerR + 12, 0);
+      ctx.moveTo(innerR - 12, 0);
+      ctx.lineTo(outerR + 22, 0);
+      ctx.moveTo(0, -outerR - 22);
+      ctx.lineTo(0, -innerR + 12);
+      ctx.moveTo(0, innerR - 12);
+      ctx.lineTo(0, outerR + 22);
+      ctx.stroke();
+
+      ctx.font = "bold 11px 'Fira Code', monospace";
+      ctx.fillStyle = "rgba(246, 224, 182, 0.85)";
+      ctx.fillText("SYS.RETICLE // LOCKED", outerR + 14, -8);
+
+      ctx.restore();
+    }
+
     function drawCircuitBoard(now, progressRatio) {
       ctx.fillStyle = "rgba(4, 4, 4, 0.28)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -123,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.scale(burstScale, burstScale);
       ctx.translate(-cx, -cy);
 
-      // Subtle concentric gold PCB rings
       [115, 195, 285].forEach((ringR, i) => {
         ctx.strokeStyle = `rgba(166, 124, 82, ${0.14 - i * 0.03})`;
         ctx.lineWidth = 1;
@@ -132,13 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.stroke();
       });
 
-      // Draw traces & inward energy pulses
       for (const trace of traces) {
         const pOuter = getPointOnTrace(trace, 0, cx, cy);
         const pMid = getPointOnTrace(trace, 0.55, cx, cy);
         const pInner = getPointOnTrace(trace, 1, cx, cy);
 
-        // Base gold/bronze trace
         ctx.strokeStyle = completed
           ? "rgba(246, 224, 182, 0.75)"
           : "rgba(166, 124, 82, 0.36)";
@@ -149,7 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.lineTo(pInner.x, pInner.y);
         ctx.stroke();
 
-        // Solder node at bend
         if (trace.hasPin) {
           ctx.fillStyle = "#D9C5A0";
           ctx.beginPath();
@@ -157,7 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
           ctx.fill();
         }
 
-        // Traveling gold signal pulse moving toward center chip
         const pulseT = ((now / 1000) * trace.pulseSpeed + trace.pulsePhase) % 1;
         const pulsePos = getPointOnTrace(trace, pulseT, cx, cy);
 
@@ -172,21 +219,20 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fill();
       }
 
-      // Central IC Chip (Gold & Black)
-      const chipSize = 92;
+      drawIntroReticle(cx, cy, now);
+
+      const chipSize = 104;
       const chipHalf = chipSize / 2;
 
-      // Chip pins on 4 sides
       ctx.fillStyle = "#D9C5A0";
       for (let i = -3; i <= 3; i++) {
-        const offset = i * 11;
+        const offset = i * 12;
         ctx.fillRect(cx + offset - 2, cy - chipHalf - 9, 4, 8);
         ctx.fillRect(cx + offset - 2, cy + chipHalf + 1, 4, 8);
         ctx.fillRect(cx - chipHalf - 9, cy + offset - 2, 8, 4);
         ctx.fillRect(cx + chipHalf + 1, cy + offset - 2, 8, 4);
       }
 
-      // Chip housing
       ctx.fillStyle = "#090909";
       ctx.strokeStyle = "#D9C5A0";
       ctx.lineWidth = 2.5;
@@ -195,20 +241,18 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fill();
       ctx.stroke();
 
-      // Inner gold die frame
       ctx.strokeStyle = "rgba(217, 197, 160, 0.55)";
       ctx.lineWidth = 1.2;
-      ctx.strokeRect(cx - chipHalf + 14, cy - chipHalf + 14, chipSize - 28, chipSize - 28);
+      ctx.strokeRect(cx - chipHalf + 10, cy - chipHalf + 10, chipSize - 20, chipSize - 20);
 
-      // Core label
-      ctx.font = "bold 12px 'Fira Code', monospace";
+      ctx.font = "bold 11.5px 'Fira Code', monospace";
       ctx.fillStyle = "#F6E0B6";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText("BSIT", cx, cy - 7);
+      ctx.fillText("Info Tech", cx, cy - 8);
       ctx.fillStyle = "#D9C5A0";
-      ctx.font = "bold 10px 'Fira Code', monospace";
-      ctx.fillText("ERP", cx, cy + 9);
+      ctx.font = "bold 11.5px 'Fira Code', monospace";
+      ctx.fillText("Data", cx, cy + 9);
       ctx.textAlign = "start";
       ctx.textBaseline = "alphabetic";
 
@@ -254,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(tick);
   }
 
-  // 4. UPGRADED MATRIX RAIN + AUTONOMOUS MOVING RETICLE BACKGROUND
+  // 4. MATRIX RAIN + AUTONOMOUS MOVING RETICLE BACKGROUND
   function setupMatrixAndReticle(canvasId, fontSize = 16) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -271,7 +315,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let columns = Math.floor(canvas.width / fontSize);
     let drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -100));
 
-    // Autonomous Reticle State
     const reticle = {
       x: canvas.width * 0.5,
       y: canvas.height * 0.5,
@@ -299,7 +342,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.save();
       ctx.translate(reticle.x, reticle.y);
 
-      // Outer dashed rotating ring
       ctx.save();
       ctx.rotate(reticle.angle);
       ctx.strokeStyle = "rgba(217, 197, 160, 0.75)";
@@ -310,7 +352,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.stroke();
       ctx.restore();
 
-      // Inner counter-rotating ring
       ctx.save();
       ctx.rotate(-reticle.angle * 1.5);
       ctx.strokeStyle = "rgba(166, 124, 82, 0.85)";
@@ -321,7 +362,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.stroke();
       ctx.restore();
 
-      // Crosshairs
       ctx.strokeStyle = "rgba(217, 197, 160, 0.65)";
       ctx.lineWidth = 1.2;
       ctx.beginPath();
@@ -335,7 +375,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.lineTo(0, reticle.radius + 16);
       ctx.stroke();
 
-      // Center lock dot + coordinates readout
       ctx.fillStyle = "#D9C5A0";
       ctx.beginPath();
       ctx.arc(0, 0, 3, 0, Math.PI * 2);
@@ -372,7 +411,6 @@ document.addEventListener("DOMContentLoaded", () => {
         drops[i]++;
       }
 
-      // Draw autonomous reticle while codes fall
       drawReticle();
     }
     setInterval(draw, 40);
@@ -398,46 +436,18 @@ document.addEventListener("DOMContentLoaded", () => {
     typeText();
   }
 
-  // Launch 5-Second Gold & Black Circuit Intro
   startGalaxyIntro();
 
-  // 6. CONTINUOUSLY SWAPPING NATIONAL ID PREVIEW PHOTO (2 PHOTOS)
-  const nationalIdPhotos = ["./id1.jpg", "./id2.jpg"];
-  let idPreviewIndex = 0;
-  setInterval(() => {
-    const idPreviewEl = document.getElementById("id-preview-img");
-    if (idPreviewEl) {
-      idPreviewIndex = (idPreviewIndex + 1) % nationalIdPhotos.length;
-      idPreviewEl.style.opacity = "0.25";
-      setTimeout(() => {
-        idPreviewEl.src = nationalIdPhotos[idPreviewIndex];
-        idPreviewEl.style.opacity = "1";
-      }, 200);
-    }
-  }, 2000);
+  // 6. INITIALIZE FAMILY & FRIENDS 8-PHOTO CASCADING CAROUSEL
+  renderFamilyCarousel();
 
-  // 7. CONTINUOUS SLIDESHOW PREVIEW FOR "MY FRIENDS" CARD
-  const friendsCardPhotos = ["./friend1.jpg", "./friend2.jpg", "./friend3.jpg", "./friend4.jpg"];
-  let friendsCardIndex = 0;
-  setInterval(() => {
-    const friendsCardEl = document.getElementById("friends-card-preview");
-    if (friendsCardEl) {
-      friendsCardIndex = (friendsCardIndex + 1) % friendsCardPhotos.length;
-      friendsCardEl.classList.remove("friends-card-slide-anim");
-      void friendsCardEl.offsetWidth;
-      friendsCardEl.src = friendsCardPhotos[friendsCardIndex];
-      friendsCardEl.classList.add("friends-card-slide-anim");
-    }
-  }, 1800);
-
-  // 8. CLICK TO ENLARGE GENERAL IMAGES FEATURE
+  // 7. CLICK TO ENLARGE GENERAL IMAGES FEATURE
   document.addEventListener("click", (e) => {
     const target = e.target;
     if (
       target.tagName === 'IMG' &&
       !target.closest('.modal-content') &&
-      !target.closest('.family-frame-card') &&
-      !target.closest('.id-preview-box') &&
+      !target.closest('.diary-card') &&
       !target.classList.contains('btn-icon') &&
       !target.classList.contains('no-enlarge')
     ) {
@@ -448,7 +458,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Close theme menu if clicking outside
     if (!target.closest('.theme-switcher-dropdown')) {
       const menu = document.getElementById('theme-menu');
       if (menu) menu.classList.remove('active');
@@ -456,34 +465,70 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// 9. NATIONAL ID MODAL CONTROLS (2 PICTURES + NEXT BUTTON)
-const nationalIdSlides = [
-  { src: "./id1.jpg", title: "Philippine National ID — Front View" },
-  { src: "./id2.jpg", title: "Philippine National ID — Back View" }
-];
-let currentNidSlide = 0;
+// 8. SECTION TYPEWRITER HELPERS
+let careerTypingTimer = null;
+let hobbiesTypingTimer = null;
 
-function openNationalIdModal() {
-  currentNidSlide = 0;
-  renderNationalIdModal();
-  const modal = document.getElementById("national-id-modal");
-  if (modal) modal.classList.add("active");
+function runSectionTypewriters(sectionId) {
+  if (sectionId === "about-section") {
+    const el = document.getElementById("typing-career");
+    if (el) {
+      clearTimeout(careerTypingTimer);
+      const text = "Aspiring BSIT — Enterprise Resource Planning Specialist | Blending Technology, Creativity & Discipline";
+      el.textContent = "";
+      let idx = 0;
+      function stepCareer() {
+        if (idx < text.length) {
+          el.textContent += text.charAt(idx);
+          idx++;
+          careerTypingTimer = setTimeout(stepCareer, 24);
+        }
+      }
+      stepCareer();
+    }
+  } else if (sectionId === "hobbies-section") {
+    const el = document.getElementById("typing-hobbies");
+    if (el) {
+      clearTimeout(hobbiesTypingTimer);
+      const text = "CREATIVE OUTLETS & HOBBIES";
+      el.textContent = "";
+      let idx = 0;
+      function stepHobbies() {
+        if (idx < text.length) {
+          el.textContent += text.charAt(idx);
+          idx++;
+          hobbiesTypingTimer = setTimeout(stepHobbies, 32);
+        }
+      }
+      stepHobbies();
+    }
+  }
 }
 
-function nextNationalIdSlide() {
-  currentNidSlide = (currentNidSlide + 1) % nationalIdSlides.length;
-  renderNationalIdModal();
-}
+// 9. APPLY SECTION SWITCH (Previously missing, causing transitions to freeze)
+function applySectionSwitch(sectionId) {
+  const targetSection = document.getElementById(sectionId);
+  if (!targetSection) return;
 
-function renderNationalIdModal() {
-  const slide = nationalIdSlides[currentNidSlide];
-  const titleEl = document.getElementById("nid-modal-title");
-  const imgEl = document.getElementById("nid-modal-img");
-  const counterEl = document.getElementById("nid-counter");
+  document.querySelectorAll(".view-section").forEach((sec) => {
+    sec.classList.remove("active");
+  });
+  targetSection.classList.add("active");
 
-  if (titleEl) titleEl.textContent = slide.title;
-  if (imgEl) imgEl.src = slide.src;
-  if (counterEl) counterEl.textContent = `${currentNidSlide + 1} / ${nationalIdSlides.length}`;
+  // Update active nav pill state
+  const activeNavTarget = sectionId === "hobbies-section" ? "about-section" : sectionId;
+  document.querySelectorAll(".nav-link").forEach((btn) => {
+    const onclickAttr = btn.getAttribute("onclick") || "";
+    btn.classList.toggle("active", onclickAttr.includes(`'${activeNavTarget}'`));
+  });
+
+  // Toggle home digital clock visibility
+  const clockBox = document.getElementById("home-digital-clock");
+  if (clockBox) {
+    clockBox.classList.toggle("hidden", sectionId !== "home-section");
+  }
+
+  runSectionTypewriters(sectionId);
 }
 
 // 10. THEME SWITCHING FUNCTION
@@ -501,15 +546,31 @@ function setTheme(themeName) {
   toggleThemeMenu();
 }
 
-// 11. 3-SECOND CODE-TAKEOVER PAGE TRANSITION ENGINE
+// 11. 1-SECOND THEME-SYNCED GALAXY EXPLOSION + CENTER RETICLE PAGE TRANSITION ENGINE
 let isTransitioning = false;
 
-function switchSection(sectionId) {
+function getThemeTransitionPalette() {
+  const styles = getComputedStyle(document.body);
+  const champagne = styles.getPropertyValue("--gilded-champagne").trim() || "#D9C5A0";
+  const sparkle = styles.getPropertyValue("--champagne-sparkle").trim() || "#E5DFD0";
+  const bronze = styles.getPropertyValue("--bronze-aura").trim() || "#A67C52";
+  const darkBg = styles.getPropertyValue("--dark-bg").trim() || "#000000";
+
+  return {
+    core: sparkle,
+    primary: champagne,
+    secondary: bronze,
+    backdrop: darkBg,
+    stars: [sparkle, champagne, bronze, "#FFFFFF"]
+  };
+}
+
+function switchSection(sectionId, triggerBtn = null) {
   const currentActive = document.querySelector('.view-section.active');
   if (isTransitioning || (currentActive && currentActive.id === sectionId)) return;
 
   const overlay = document.getElementById("page-transition-overlay");
-  const canvas = document.getElementById("transition-code-canvas");
+  const canvas = document.getElementById("transition-galaxy-canvas");
 
   if (!overlay || !canvas) {
     applySectionSwitch(sectionId);
@@ -517,127 +578,161 @@ function switchSection(sectionId) {
   }
 
   isTransitioning = true;
+  const palette = getThemeTransitionPalette();
+
+  let originX = window.innerWidth / 2;
+  let originY = 42;
+
+  let targetEl = triggerBtn;
+  if (!targetEl) {
+    const navButtons = document.querySelectorAll('.nav-link');
+    navButtons.forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(sectionId)) {
+        targetEl = btn;
+      }
+    });
+  }
+
+  if (targetEl) {
+    const rect = targetEl.getBoundingClientRect();
+    originX = rect.left + rect.width / 2;
+    originY = rect.top + rect.height / 2;
+    targetEl.classList.remove("galaxy-burst-word");
+    void targetEl.offsetWidth;
+    targetEl.classList.add("galaxy-burst-word");
+  }
+
   overlay.classList.add("active");
 
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const fontSize = 18;
-  const cols = Math.floor(canvas.width / fontSize);
-  const drops = Array.from({ length: cols }, () => Math.floor(Math.random() * -25));
-  const chars = "010101BSITERP<>/{}[]=$#@!+=-~*";
+  const maxRadius = Math.hypot(
+    Math.max(originX, canvas.width - originX),
+    Math.max(originY, canvas.height - originY)
+  ) * 1.15;
 
-  const codeInterval = setInterval(() => {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.16)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = `bold ${fontSize}px 'Fira Code', monospace`;
-
-    for (let i = 0; i < drops.length; i++) {
-      const char = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillStyle = Math.random() > 0.7 ? "#D9C5A0" : "#4ADE80";
-      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.94) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }, 30);
-
-  // Swap underlying page content halfway through (at 1.5s) while code covers the screen
-  setTimeout(() => {
-    applySectionSwitch(sectionId);
-  }, 1500);
-
-  // Dissolve code overlay at 3.0 seconds leaving the next page content visible
-  setTimeout(() => {
-    overlay.classList.remove("active");
-    setTimeout(() => {
-      clearInterval(codeInterval);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      isTransitioning = false;
-    }, 450);
-  }, 2600);
-}
-
-function applySectionSwitch(sectionId) {
-  const sections = document.querySelectorAll('.view-section');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const clockBox = document.getElementById('home-digital-clock');
-
-  sections.forEach(sec => sec.classList.remove('active'));
-  navLinks.forEach(link => {
-    if (!link.closest('.theme-switcher-dropdown')) {
-      link.classList.remove('active');
-    }
+  const particleCount = 360;
+  const particles = Array.from({ length: particleCount }, (_, i) => {
+    const arm = i % 5;
+    const baseAngle = (arm / 5) * Math.PI * 2 + (Math.random() - 0.5) * 0.65;
+    return {
+      angle: baseAngle,
+      distance: Math.random() * 14,
+      targetDist: (0.14 + Math.random() * 0.92) * maxRadius,
+      spinSpeed: (0.04 + Math.random() * 0.06) * (i % 2 === 0 ? 1 : -0.7),
+      size: 1.4 + Math.random() * 3.2,
+      color: palette.stars[i % palette.stars.length]
+    };
   });
 
-  const targetSection = document.getElementById(sectionId);
-  if (targetSection) {
-    targetSection.classList.add('active');
-  }
+  const DURATION_MS = 1000;
+  const startTime = performance.now();
+  let sectionSwapped = false;
 
-  // Show/Hide Digital Clock based on whether Home is active
-  if (clockBox) {
-    if (sectionId === 'home-section') {
-      clockBox.classList.remove('hidden');
+  function renderGalaxyTransition(now) {
+    const elapsed = now - startTime;
+    const t = Math.min(1, elapsed / DURATION_MS);
+
+    const expandEase = t < 0.55
+      ? 1 - Math.pow(1 - (t / 0.55), 3)
+      : 1;
+
+    const fadeOutAlpha = t > 0.72 ? Math.max(0, 1 - (t - 0.72) / 0.28) : 1;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+    ctx.globalAlpha = fadeOutAlpha;
+
+    const nebulaRadius = Math.max(36, maxRadius * expandEase * 1.1);
+    const nebulaGrad = ctx.createRadialGradient(originX, originY, 6, originX, originY, nebulaRadius);
+    nebulaGrad.addColorStop(0, palette.core);
+    nebulaGrad.addColorStop(0.22, palette.primary);
+    nebulaGrad.addColorStop(0.55, palette.secondary);
+    nebulaGrad.addColorStop(1, palette.backdrop);
+
+    ctx.fillStyle = nebulaGrad;
+    ctx.beginPath();
+    ctx.arc(originX, originY, nebulaRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    for (const p of particles) {
+      p.angle += p.spinSpeed;
+      const currentDist = p.distance + p.targetDist * expandEase;
+      const swirlAngle = p.angle + currentDist * 0.0045;
+      const px = originX + Math.cos(swirlAngle) * currentDist;
+      const py = originY + Math.sin(swirlAngle) * currentDist;
+
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(px, py, p.size * (0.65 + 0.55 * expandEase), 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    const reticleAngle = now * 0.012;
+    const reticleR = 32 + Math.sin(now * 0.018) * 3;
+
+    ctx.save();
+    ctx.translate(originX, originY);
+
+    ctx.save();
+    ctx.rotate(reticleAngle);
+    ctx.strokeStyle = palette.core;
+    ctx.lineWidth = 2.2;
+    ctx.setLineDash([12, 8]);
+    ctx.beginPath();
+    ctx.arc(0, 0, reticleR, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.rotate(-reticleAngle * 1.6);
+    ctx.strokeStyle = palette.primary;
+    ctx.lineWidth = 1.6;
+    ctx.setLineDash([5, 6]);
+    ctx.beginPath();
+    ctx.arc(0, 0, reticleR * 0.58, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.strokeStyle = palette.core;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(-reticleR - 14, 0);
+    ctx.lineTo(-10, 0);
+    ctx.moveTo(10, 0);
+    ctx.lineTo(reticleR + 14, 0);
+    ctx.moveTo(0, -reticleR - 14);
+    ctx.lineTo(0, -10);
+    ctx.moveTo(0, 10);
+    ctx.lineTo(0, reticleR + 14);
+    ctx.stroke();
+
+    ctx.fillStyle = palette.core;
+    ctx.beginPath();
+    ctx.arc(0, 0, 4, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+    ctx.restore();
+
+    if (elapsed >= 500 && !sectionSwapped) {
+      sectionSwapped = true;
+      applySectionSwitch(sectionId);
+    }
+
+    if (t < 1) {
+      requestAnimationFrame(renderGalaxyTransition);
     } else {
-      clockBox.classList.add('hidden');
+      overlay.classList.remove("active");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      isTransitioning = false;
     }
   }
 
-  if (sectionId === 'home-section' && navLinks[0]) navLinks[0].classList.add('active');
-  if (sectionId === 'about-section' && navLinks[1]) {
-    navLinks[1].classList.add('active');
-    startCareerTyping();
-  }
-  if (sectionId === 'achievements-section' && navLinks[2]) navLinks[2].classList.add('active');
-  if (sectionId === 'family-friends-section' && navLinks[3]) navLinks[3].classList.add('active');
-
-  if (sectionId === 'hobbies-section') {
-    startHobbiesTyping();
-  }
-}
-
-let careerTyped = false;
-function startCareerTyping() {
-  const careerText = "Aspiring UI/UX Designer dedicated to crafting intuitive, aesthetically modern digital experiences.";
-  const element = document.getElementById("typing-career");
-  if (!element || careerTyped) return;
-
-  element.textContent = "";
-  let i = 0;
-  careerTyped = true;
-
-  function type() {
-    if (i < careerText.length) {
-      element.textContent += careerText.charAt(i);
-      i++;
-      setTimeout(type, 30);
-    }
-  }
-  type();
-}
-
-let hobbiesTyped = false;
-function startHobbiesTyping() {
-  const hobbyText = "MY HOBBIES & CREATIVE PASSIONS";
-  const element = document.getElementById("typing-hobbies");
-  if (!element || hobbiesTyped) return;
-
-  element.textContent = "";
-  let i = 0;
-  hobbiesTyped = true;
-
-  function type() {
-    if (i < hobbyText.length) {
-      element.textContent += hobbyText.charAt(i);
-      i++;
-      setTimeout(type, 45);
-    }
-  }
-  type();
+  requestAnimationFrame(renderGalaxyTransition);
 }
 
 // 12. ACHIEVEMENTS GALLERY DATA
@@ -912,82 +1007,184 @@ function openSingleModal(imgUrl, caption) {
   modal.classList.add('active');
 }
 
-// 13. FAMILY AND FRIENDS DATA & MODAL SLIDESHOW
-const familyFriendsData = [
+// 13. FAMILY AND FRIENDS 8-PHOTO GALLERY & ENLARGED SPLIT MODAL
+const familyFriendsPhotos = [
   {
-    title: "Family Frame 1",
-    type: "single",
+    id: 0,
+    category: "Mother",
+    title: "Mother — Mary Camalig",
+    subtitle: "My First Teacher & Guiding Light",
     src: "./family1.jpg",
-    paragraph: "Write your full story or paragraph about this family photo here. It appears cleanly on the right side of the enlarged image."
+    phrase: "“A mother’s love is the quiet strength behind every dream I dare to chase.”",
+    letter: "Dear Mama,\n\nThank you for your endless patience, sacrifices, and unconditional love. Through every late-night study session and every milestone I have reached, your encouragement has been my anchor. Everything I am today starts with the kindness and resilience you taught me."
   },
   {
-    title: "Family Frame 2",
-    type: "single",
+    id: 1,
+    category: "Father",
+    title: "Father — Silang Camalig",
+    subtitle: "My Pillar of Strength & Wisdom",
     src: "./family2.jpg",
-    paragraph: "Write your full story or paragraph about this second family photo here."
+    phrase: "“Behind every confident step I take is a father who believed in me first.”",
+    letter: "Dear Papa,\n\nThank you for always working hard for our family and teaching me the value of perseverance, humility, and integrity. No matter how challenging life gets, knowing you are always there gives me the courage to keep pushing forward."
   },
   {
-    title: "Family Frame 3",
-    type: "single",
+    id: 2,
+    category: "Sibling",
+    title: "My Sibling",
+    subtitle: "Lifelong Companion & Best Friend",
     src: "./family3.jpg",
-    paragraph: "Write your full story or paragraph about this third family photo here."
+    phrase: "“Side by side or miles apart, siblings are always connected by heart.”",
+    letter: "To my sibling,\n\nFrom childhood laughter to growing up together, thank you for being my built-in teammate and confidant. No matter where our paths take us, I will always have your back just as you have always had mine."
   },
   {
-    title: "My Friends",
-    type: "slideshow",
-    slides: [
-      "./friend1.jpg",
-      "./friend2.jpg",
-      "./friend3.jpg",
-      "./friend4.jpg"
-    ],
-    paragraph: "Write your paragraph about your friends here! While you read this on the right, the 4 photos on the left cycle automatically every 1 second with a smooth panning animation."
+    id: 3,
+    category: "Friends",
+    title: "My Friends — Memory 1",
+    subtitle: "Click to view all 5 Friends photos",
+    src: "./friend1.jpg"
+  },
+  {
+    id: 4,
+    category: "Friends",
+    title: "My Friends — Memory 2",
+    subtitle: "Click to view all 5 Friends photos",
+    src: "./friend2.jpg"
+  },
+  {
+    id: 5,
+    category: "Friends",
+    title: "My Friends — Memory 3",
+    subtitle: "Click to view all 5 Friends photos",
+    src: "./friend3.jpg"
+  },
+  {
+    id: 6,
+    category: "Friends",
+    title: "My Friends — Memory 4",
+    subtitle: "Click to view all 5 Friends photos",
+    src: "./friend4.jpg"
+  },
+  {
+    id: 7,
+    category: "Friends",
+    title: "My Friends — Memory 5",
+    subtitle: "Click to view all 5 Friends photos",
+    src: "./ff1.jpg"
   }
 ];
 
-let friendsSlideshowInterval = null;
+const friendsSharedStory = {
+  title: "My Friends — Cherished Memories Together",
+  phrase: "“True friends turn ordinary days into unforgettable chapters of laughter and growth.”",
+  letter: "To my closest friends,\n\nThank you for every spontaneous hangout, jamming session, shared laugh, and honest conversation. You have cheered for my art, stood by me during stressful school days, and made every memory brighter. Life is infinitely better with all five of you in it."
+};
+
+let activeFamilyIndex = 0;
+
+function renderFamilyCarousel() {
+  const stage = document.getElementById("diary-carousel-stage");
+  if (!stage) return;
+
+  const total = familyFriendsPhotos.length;
+
+  stage.innerHTML = familyFriendsPhotos.map((item, idx) => {
+    let diff = idx - activeFamilyIndex;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+
+    let slotClass = "slot-hidden";
+    if (diff === 0) slotClass = "slot-center";
+    else if (diff === -1) slotClass = "slot-left-1";
+    else if (diff === 1) slotClass = "slot-right-1";
+    else if (diff === -2) slotClass = "slot-left-2";
+    else if (diff === 2) slotClass = "slot-right-2";
+
+    return `
+      <div class="diary-card ${slotClass}" onclick="handleFamilyCardClick(${idx})">
+        <span class="diary-card-badge">${item.category}</span>
+        <img src="${item.src}" alt="${item.title}" class="no-enlarge" />
+        <div class="diary-card-caption">
+          <h4>${item.title}</h4>
+          <span>${item.subtitle}</span>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  const currentCat = familyFriendsPhotos[activeFamilyIndex].category;
+  document.querySelectorAll('.diary-pill').forEach(pill => {
+    const pillCat = pill.getAttribute('data-category');
+    pill.classList.toggle('active', pillCat === currentCat);
+  });
+}
+
+function selectFamilyCategory(category, btnEl) {
+  document.querySelectorAll('.diary-pill').forEach(p => p.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+
+  if (category === "all") {
+    activeFamilyIndex = 0;
+  } else {
+    const foundIdx = familyFriendsPhotos.findIndex(item => item.category === category);
+    if (foundIdx !== -1) {
+      activeFamilyIndex = foundIdx;
+    }
+  }
+  renderFamilyCarousel();
+}
+
+function stepFamilyCarousel(direction) {
+  const total = familyFriendsPhotos.length;
+  activeFamilyIndex = (activeFamilyIndex + direction + total) % total;
+  renderFamilyCarousel();
+}
+
+function handleFamilyCardClick(index) {
+  if (index !== activeFamilyIndex) {
+    activeFamilyIndex = index;
+    renderFamilyCarousel();
+  }
+  openFamilyModal(index);
+}
 
 function openFamilyModal(index) {
-  const data = familyFriendsData[index];
-  if (!data) return;
-
-  if (friendsSlideshowInterval) {
-    clearInterval(friendsSlideshowInterval);
-    friendsSlideshowInterval = null;
-  }
+  const item = familyFriendsPhotos[index];
+  if (!item) return;
 
   const titleEl = document.getElementById("family-modal-title");
   const mediaEl = document.getElementById("family-modal-media");
+  const phraseEl = document.getElementById("family-modal-phrase");
   const paraEl = document.getElementById("family-modal-paragraph");
   const modalEl = document.getElementById("family-modal");
 
-  if (!titleEl || !mediaEl || !paraEl || !modalEl) return;
+  if (!titleEl || !mediaEl || !phraseEl || !paraEl || !modalEl) return;
 
-  titleEl.textContent = data.title;
-  paraEl.textContent = data.paragraph;
+  if (item.category === "Friends") {
+    const friendItems = familyFriendsPhotos.filter(p => p.category === "Friends");
+    titleEl.textContent = friendsSharedStory.title;
+    phraseEl.textContent = friendsSharedStory.phrase;
+    paraEl.textContent = friendsSharedStory.letter;
 
-  if (data.type === "single") {
-    mediaEl.innerHTML = `<img src="${data.src}" alt="${data.title}" class="single-enlarged no-enlarge" />`;
-  } else if (data.type === "slideshow") {
-    let currentSlide = 0;
-
-    function renderSlide() {
-      mediaEl.innerHTML = `<img src="${data.slides[currentSlide]}" alt="Friend Photo ${currentSlide + 1}" class="slideshow-pan-img no-enlarge" />`;
-      currentSlide = (currentSlide + 1) % data.slides.length;
-    }
-
-    renderSlide();
-    friendsSlideshowInterval = setInterval(renderSlide, 1000);
+    mediaEl.innerHTML = `
+      <div class="friends-five-grid">
+        ${friendItems.map((f, idx) => `
+          <div class="friends-five-item">
+            <img src="${f.src}" alt="Friend ${idx + 1}" class="no-enlarge" />
+          </div>
+        `).join("")}
+      </div>
+    `;
+  } else {
+    titleEl.textContent = item.title;
+    phraseEl.textContent = item.phrase;
+    paraEl.textContent = item.letter;
+    mediaEl.innerHTML = `<img src="${item.src}" alt="${item.title}" class="single-enlarged no-enlarge" />`;
   }
 
   modalEl.classList.add("active");
 }
 
 function closeModals() {
-  if (friendsSlideshowInterval) {
-    clearInterval(friendsSlideshowInterval);
-    friendsSlideshowInterval = null;
-  }
   document.querySelectorAll('.modal-overlay').forEach(modal => {
     modal.classList.remove('active');
   });

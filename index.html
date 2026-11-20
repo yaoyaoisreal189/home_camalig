@@ -9,7 +9,7 @@
 </head>
 <body data-theme="gold">
 
-  <!-- 5-SECOND GOLD & BLACK CIRCUIT BOARD INTRO OVERLAY -->
+  <!-- GOLD & BLACK CIRCUIT BOARD INTRO OVERLAY WITH RETICLE -->
   <div id="intro-overlay" class="intro-overlay">
     <canvas id="circuit-intro-canvas"></canvas>
     <div class="intro-hud-panel">
@@ -21,9 +21,9 @@
     </div>
   </div>
 
-  <!-- 3-SECOND CODE TAKEOVER PAGE TRANSITION OVERLAY -->
+  <!-- 1-SECOND THEME-SYNCED GALAXY EXPLOSION + RETICLE PAGE TRANSITION OVERLAY -->
   <div id="page-transition-overlay" class="page-transition-overlay">
-    <canvas id="transition-code-canvas"></canvas>
+    <canvas id="transition-galaxy-canvas"></canvas>
   </div>
 
   <!-- Custom Cursor Elements -->
@@ -43,10 +43,10 @@
 
     <!-- Center Navigation Pill -->
     <div class="nav-container">
-      <button class="nav-link active" onclick="switchSection('home-section')">HOME</button>
-      <button class="nav-link" onclick="switchSection('about-section')">PERSONAL INFORMATION</button>
-      <button class="nav-link" onclick="switchSection('achievements-section')">ACHIEVEMENTS</button>
-      <button class="nav-link" onclick="switchSection('family-friends-section')">FAMILY AND FRIENDS</button>
+      <button class="nav-link active" data-section="home-section" onclick="switchSection('home-section', this)">HOME</button>
+      <button class="nav-link" data-section="about-section" onclick="switchSection('about-section', this)">PERSONAL INFORMATION</button>
+      <button class="nav-link" data-section="achievements-section" onclick="switchSection('achievements-section', this)">ACHIEVEMENTS</button>
+      <button class="nav-link" data-section="family-friends-section" onclick="switchSection('family-friends-section', this)">FAMILY AND FRIENDS</button>
     </div>
 
     <!-- Top Right Controls (Outside Nav Container) -->
@@ -73,10 +73,55 @@
     <!-- ==================== HOME SECTION ==================== -->
     <section id="home-section" class="view-section active">
       <div class="hero-section">
-        <!-- Full Body Transparent Portrait Container (No Frame) -->
+        <!-- Cybercore CCTV / HUD Frame Portrait Container -->
         <div class="portrait-container">
-          <div class="portrait-wrapper transparent-body">
+          <div class="cyber-portrait-frame">
+            <!-- Top HUD Telemetry -->
+            <div class="hud-top-bar">
+              <div class="hud-top-left">
+                <span class="hud-rec-dot"></span>
+                <span>CAM 01</span>
+                <span class="hud-sub">PROFILE // SUBJECT</span>
+              </div>
+              <div class="hud-top-right">
+                <span id="hud-live-time">13:01:49</span>
+                <span class="hud-sub">SCAN 05/20</span>
+              </div>
+            </div>
+
+            <!-- Main Subject Portrait -->
             <img id="user-portrait" src="./pfp.png" alt="Grace Sebio Camalig" class="portrait-img" />
+
+            <!-- Primary Target Bounding Box -->
+            <div class="hud-target-box">
+              <span class="hud-target-tag">BSIT • ERP</span>
+            </div>
+
+            <!-- Decorative Pixel/HUD Accents -->
+            <div class="hud-alert-badge" title="System Active">⚠</div>
+            <div class="hud-folder-stack">
+              <div class="hud-folder-icon">📁 <span>DATA_01</span></div>
+              <div class="hud-folder-icon">📂 <span>UI_UX</span></div>
+            </div>
+
+            <!-- Zoomed Mini Inset Box -->
+            <div class="hud-inset-card">
+              <span class="hud-inset-code">#GSC2008</span>
+              <img src="./pfp.png" alt="Inset Preview" class="no-enlarge" />
+            </div>
+
+            <!-- Bottom HUD Telemetry -->
+            <div class="hud-bottom-bar">
+              <div class="hud-bottom-left">
+                <span>DATA UPDATE</span>
+                <span>CAMALIG, GRACE S.</span>
+                <span>BENGUET, PH</span>
+              </div>
+              <div class="hud-bottom-right">
+                <span>PORTFOLIO OS</span>
+                <span>VER 2.6</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -97,7 +142,7 @@
           </p>
 
           <div class="action-btn-container">
-            <button class="info-action-btn" onclick="switchSection('about-section')">
+            <button class="info-action-btn" onclick="switchSection('about-section', this)">
               <span>MY PERSONAL INFORMATION</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
@@ -110,10 +155,10 @@
     <section id="about-section" class="view-section">
       <div class="about-grid">
         
-        <!-- Left Column: Expanded Bio, Personal Details, Socials & National ID -->
+        <!-- Left Column: Expanded Bio, Personal Details & Socials -->
         <div class="about-left">
           <div class="about-top-header">
-            <button class="back-btn top-back-btn" onclick="switchSection('home-section')">
+            <button class="back-btn top-back-btn" onclick="switchSection('home-section', this)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
               <span>HOME</span>
             </button>
@@ -157,16 +202,6 @@
                   <a href="mailto:20grace1130@gmail.com" class="social-btn email-btn">EMAIL</a>
                 </div>
               </div>
-
-              <!-- Swapping National ID Preview + Check National ID Button -->
-              <div class="national-id-widget">
-                <div class="id-preview-box" onclick="openNationalIdModal()">
-                  <img id="id-preview-img" src="./id1.jpg" alt="National ID Preview" class="no-enlarge" />
-                </div>
-                <button class="check-id-btn" onclick="openNationalIdModal()">
-                  <span>Check National ID</span>
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -205,9 +240,9 @@
             </div>
           </div>
 
-          <!-- Hobbies Subnav Button (Moved to Right Side) -->
+          <!-- Hobbies Subnav Button -->
           <div class="subnav-buttons right-aligned-subnav">
-            <button class="subnav-btn" onclick="switchSection('hobbies-section')">
+            <button class="subnav-btn" onclick="switchSection('hobbies-section', this)">
               <span>HOBBIES &rarr;</span>
             </button>
           </div>
@@ -219,7 +254,7 @@
     <!-- ==================== HOBBIES SECTION ==================== -->
     <section id="hobbies-section" class="view-section">
       <div class="hobbies-layout">
-        <button class="back-btn" onclick="switchSection('about-section')">
+        <button class="back-btn" onclick="switchSection('about-section', this)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           <span>PERSONAL INFORMATION</span>
         </button>
@@ -264,11 +299,11 @@
       </div>
     </section>
 
-    <!-- ==================== ACHIEVEMENTS SECTION (BIGGER SIZING) ==================== -->
+    <!-- ==================== ACHIEVEMENTS SECTION ==================== -->
     <section id="achievements-section" class="view-section">
       <div class="extra-layout">
         <div class="extra-header-bar">
-          <button class="back-btn" onclick="switchSection('about-section')">
+          <button class="back-btn" onclick="switchSection('about-section', this)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <span>BACK TO PERSONAL INFORMATION</span>
           </button>
@@ -276,7 +311,6 @@
         </div>
 
         <div class="school-boxes-grid">
-          
           <!-- BOX 1: ELEMENTARY -->
           <div class="school-box">
             <div class="school-top-group">
@@ -387,7 +421,6 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <!-- 10-PHOTO MOVING MARQUEE (RIGHT TO LEFT) -->
@@ -416,106 +449,38 @@
             <div class="marquee-item"><img src="./NC2.jpg" alt="Milestone 10" /></div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ==================== FAMILY AND FRIENDS SECTION ==================== -->
+    <!-- ==================== FAMILY AND FRIENDS SECTION (CASCADING GALLERY LAYOUT) ==================== -->
     <section id="family-friends-section" class="view-section">
-      <div class="family-layout">
-        <div class="extra-header-bar">
-          <button class="back-btn" onclick="switchSection('home-section')">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            <span>BACK TO HOME</span>
-          </button>
-          <h2 class="extra-main-title">FAMILY AND FRIENDS</h2>
+      <div class="diary-gallery-layout">
+        <div class="diary-header">
+          <span class="diary-eyebrow">GALLERY</span>
+          <h2 class="diary-main-title">Family and Friends</h2>
+          <p class="diary-subtitle">Cherished moments with the people who inspire, support, and walk beside me every day.</p>
         </div>
 
-        <!-- 4 Frames Grid (Bigger Sizing) -->
-        <div class="family-frames-grid">
-          <!-- Frame 1: Family -->
-          <div class="family-frame-card" onclick="openFamilyModal(0)">
-            <div class="family-img-box">
-              <img src="./family1.jpg" alt="Family Member 1" class="no-enlarge" />
-            </div>
-            <p class="family-short-desc">Short description for Family Frame 1</p>
-          </div>
-
-          <!-- Frame 2: Family -->
-          <div class="family-frame-card" onclick="openFamilyModal(1)">
-            <div class="family-img-box">
-              <img src="./family2.jpg" alt="Family Member 2" class="no-enlarge" />
-            </div>
-            <p class="family-short-desc">Short description for Family Frame 2</p>
-          </div>
-
-          <!-- Frame 3: Family -->
-          <div class="family-frame-card" onclick="openFamilyModal(2)">
-            <div class="family-img-box">
-              <img src="./family3.jpg" alt="Family Member 3" class="no-enlarge" />
-            </div>
-            <p class="family-short-desc">Short description for Family Frame 3</p>
-          </div>
-
-          <!-- Frame 4: Friends (Auto-Cycling Preview Slideshow + Triggers Modal) -->
-          <div class="family-frame-card" onclick="openFamilyModal(3)">
-            <div class="family-img-box">
-              <img id="friends-card-preview" src="./friend1.jpg" alt="My Friends" class="no-enlarge" />
-            </div>
-            <p class="family-short-desc">My Friends — Click to view slideshow</p>
-          </div>
+        <div class="diary-categories" id="diary-category-pills">
+          <button class="diary-pill active" data-category="all" onclick="selectFamilyCategory('all', this)">Important people to me</button>
+          <button class="diary-pill" data-category="Mother" onclick="selectFamilyCategory('Mother', this)">Mother</button>
+          <button class="diary-pill" data-category="Father" onclick="selectFamilyCategory('Father', this)">Father</button>
+          <button class="diary-pill" data-category="Sibling" onclick="selectFamilyCategory('Sibling', this)">Sibling</button>
+          <button class="diary-pill" data-category="Friends" onclick="selectFamilyCategory('Friends', this)">Friends</button>
         </div>
 
-        <!-- 10 Moving Images (Right to Left) -->
-        <div class="achievements-marquee">
-          <div class="marquee-track">
-            <!-- Set 1: 10 Photos -->
-            <div class="marquee-item"><img src="./ff1.jpg" alt="Memory 1" /></div>
-            <div class="marquee-item"><img src="./ff2.jpg" alt="Memory 2" /></div>
-            <div class="marquee-item"><img src="./ff3.jpg" alt="Memory 3" /></div>
-            <div class="marquee-item"><img src="./ff4.jpg" alt="Memory 4" /></div>
-            <div class="marquee-item"><img src="./ff5.jpg" alt="Memory 5" /></div>
-            <div class="marquee-item"><img src="./ff6.jpg" alt="Memory 6" /></div>
-            <div class="marquee-item"><img src="./ff7.jpg" alt="Memory 7" /></div>
-            <div class="marquee-item"><img src="./ff8.jpg" alt="Memory 8" /></div>
-            <div class="marquee-item"><img src="./ff9.jpg" alt="Memory 9" /></div>
-            <div class="marquee-item"><img src="./ff10.jpg" alt="Memory 10" /></div>
+        <div class="diary-carousel-stage" id="diary-carousel-stage"></div>
 
-            <!-- Set 2: Duplicate of the same 10 Photos for seamless infinite loop -->
-            <div class="marquee-item"><img src="./ff1.jpg" alt="Memory 1" /></div>
-            <div class="marquee-item"><img src="./ff2.jpg" alt="Memory 2" /></div>
-            <div class="marquee-item"><img src="./ff3.jpg" alt="Memory 3" /></div>
-            <div class="marquee-item"><img src="./ff4.jpg" alt="Memory 4" /></div>
-            <div class="marquee-item"><img src="./ff5.jpg" alt="Memory 5" /></div>
-            <div class="marquee-item"><img src="./ff6.jpg" alt="Memory 6" /></div>
-            <div class="marquee-item"><img src="./ff7.jpg" alt="Memory 7" /></div>
-            <div class="marquee-item"><img src="./ff8.jpg" alt="Memory 8" /></div>
-            <div class="marquee-item"><img src="./ff9.jpg" alt="Memory 9" /></div>
-            <div class="marquee-item"><img src="./ff10.jpg" alt="Memory 10" /></div>
-          </div>
+        <div class="diary-nav-arrows">
+          <button class="diary-arrow-btn" onclick="stepFamilyCarousel(-1)" aria-label="Previous Photo">&#8592;</button>
+          <button class="diary-arrow-btn" onclick="stepFamilyCarousel(1)" aria-label="Next Photo">&#8594;</button>
         </div>
       </div>
     </section>
 
   </div>
 
-  <!-- NATIONAL ID MODAL (2 Photos with NEXT Button) -->
-  <div id="national-id-modal" class="modal-overlay" onclick="closeModals()">
-    <div class="modal-content national-id-modal-box" onclick="event.stopPropagation()">
-      <button class="close-modal-btn" onclick="closeModals()">&times;</button>
-      <h3 id="nid-modal-title">Philippine National ID — Front View</h3>
-      <div class="nid-viewer">
-        <img id="nid-modal-img" src="./id1.jpg" alt="National ID" class="no-enlarge" />
-      </div>
-      <div class="carousel-controls">
-        <span id="nid-counter" class="carousel-counter">1 / 2</span>
-        <button class="carousel-nav-btn" onclick="nextNationalIdSlide()">NEXT &rarr;</button>
-      </div>
-      <p class="modal-exit-note">Click outside the box to exit</p>
-    </div>
-  </div>
-
-  <!-- GENERAL SINGLE IMAGE POPUP MODAL (For Portrait/Hobbies/Marquee) -->
+  <!-- GENERAL SINGLE IMAGE POPUP MODAL -->
   <div id="single-modal" class="modal-overlay" onclick="closeModals()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
@@ -535,23 +500,21 @@
     </div>
   </div>
 
-  <!-- FAMILY & FRIENDS SPLIT MODAL (Image/Slideshow on Left, Paragraph on Right) -->
+  <!-- FAMILY & FRIENDS SPLIT MODAL -->
   <div id="family-modal" class="modal-overlay" onclick="closeModals()">
     <div class="modal-content family-modal-box" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeModals()">&times;</button>
       <h3 id="family-modal-title">Title</h3>
       
       <div class="family-modal-split">
-        <!-- Left Side: Enlarged Image OR 4-Photo Panning Slideshow -->
         <div class="family-modal-media" id="family-modal-media"></div>
-        
-        <!-- Right Side: Paragraph -->
         <div class="family-modal-text">
-          <p id="family-modal-paragraph"></p>
+          <blockquote id="family-modal-phrase" class="family-modal-phrase"></blockquote>
+          <p id="family-modal-paragraph" class="family-modal-letter"></p>
         </div>
       </div>
 
-      <p class="modal-exit-note">Can also click outside the box to exit</p>
+      <p class="modal-exit-note">Click outside the box to exit</p>
     </div>
   </div>
 
