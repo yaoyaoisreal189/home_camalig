@@ -873,66 +873,66 @@ const familyFriendsPhotos = [
   {
     id: 2,
     category: "Sibling",
-    title: "My Sibling",
+    title: "Sister - Emerald Camlaig",
     subtitle: "Lifelong Companion & Best Friend",
     src: "./sister.jpg",
     phrase: "“Side by side or miles apart, siblings are always connected by heart.”",
-    letter: "To my sibling,\n\nFrom childhood laughter to growing up together, thank you for being my built-in teammate and confidant. No matter where our paths take us, I will always have your back just as you have always had mine."
+    letter: "To my makulit 2.me,\n\nFrom childhood laughter to growing up together, thank you for being my built-in teammate, confidant and curing my loneliness No matter where our paths take us, I will always have your back just as you have always had mine."
   },
   {
     id: 3,
     category: "Friends",
-    title: "<3",
+    title: "Senior Highschool bestfriends",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friends 3.jpg",
     phrase: "“Good friends make even the most ordinary days feel like a celebration.”",
-    letter: "Dear Friend 1,\n\nThank you for always bringing warmth, humor, and genuine care into our moments together. Whenever things get overwhelming at school or in life, talking and laughing with you reminds me to breathe and keep going."
+    letter: "Dear Senior High friends,\n\nThank you for always bringing warmth, humor, and genuine care into our moments together. Whenever things get overwhelming at school or in life, talking and laughing with you reminds me to breathe and keep going."
   },
   {
     id: 4,
     category: "Friends",
-    title: "Childhood and ",
+    title: "Craziest Friends Ever",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friends 2.png",
     phrase: "“Real friendship inspires you to create, grow, and be unapologetically yourself.”",
-    letter: "Dear Friend 2,\n\nThank you for encouraging my art, music, and ideas without hesitation. Being around you makes it easy to stay inspired and confident in the things I love doing."
+    letter: "Dear friends,\n\nThank you for every understanding and acceptance for who I am as a friend. Being around ya'll makes it easy to stay inspired and confident in the things I love doing."
   },
   {
     id: 5,
     category: "Friends",
-    title: "",
+    title: "BESTfrrrrrienddd",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friend 1.jpg",
     phrase: "“A true friend stays steady when everything else feels uncertain.”",
-    letter: "Dear Friend 3,\n\nThank you for listening, understanding, and standing by me through busy schedules and tough weeks. Having someone as dependable and kind as you in my corner means more than words can say."
+    letter: "Dear parey,\n\nThank you for listening, understanding, and standing by me through busy schedules and tough weeks. Having someone as dependable and kind as you in my corner means more than words can say."
   },
   {
     id: 6,
     category: "Friends",
-    title: "",
+    title: "Bestfriend since Elementary",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friend 4.jpg",
-    phrase: "“The best stories are the ones we write together along the way.”",
-    letter: "Dear Friend 4,\n\nThank you for every random walk, hangout, and story we’ve shared. Every memory with you adds color to my journey and gives me something to smile about whenever I look back."
+    phrase: "“The best stories are the ones we talked about everyday.”",
+    letter: "Sup bro,\n\nThank you for teaching me what a friend really is, adventures, food trips and story we’ve shared. Every memory with you adds color to my journey and gives me something to smile about whenever I look back."
   },
   {
     id: 7,
     category: "Friends",
-    title: "",
+    title: "College friends!!!",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friend 5.jpg",
-    phrase: "“Friendship is one of life’s greatest gifts—rare, honest, and enduring.”",
-    letter: "Dear Friend 5,\n\nThank you for the kindness, loyalty, and memories we’ve built together. No matter how much time passes or how busy life gets, I’m truly grateful for the friendship we share."
-  }
+    phrase: "“How I love the way we rock our frustrations out!!!”",
+    letter: "EIWHAAAA,\n\nThank you for being my friends in college! Without you guys, I might be alone every school days. I really thank you for apporocahing me 'cause I really don't know how to start a convo. I wish we can still continue our band 𑣲𝄞Syntax Error𑣲𝄞."
+  },
   {
     id: 8,
     category: "Friends",
-    title: "Childhood Friend",
+    title: "Childhood Bestfriend",
     subtitle: "Click to view enlarged photo & letter",
     src: "./friend 6.jpg",
     phrase: "“Friendship is one of life’s greatest gifts—rare, honest, and enduring.”",
-    letter: "Dear Bestfriend 5,\n\nThank you for the kindness, loyalty, and memories we’ve built together. No matter how much time passes or how busy life gets, I’m truly grateful for the friendship we share. And I hope someday we see each other again, we both are still doing well and still the best person we knew."
-  }
+    letter: "Dear Bestfriend,\n\nThank you for being my bestfriend whom I share most of my best memories even though most of it are just laughing out loud without any care where and singing out loud like crazy at the rooftop. No matter how much time passes or how busy life gets, I’m truly grateful for the friendship we share. And I hope someday we see each other again, we both are still doing well and still the best person we knew."
+  },
   {
     id: 9,
     category: "Family Group Picture",
