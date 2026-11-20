@@ -505,7 +505,7 @@ function runSectionTypewriters(sectionId) {
   }
 }
 
-// 9. APPLY SECTION SWITCH (Previously missing, causing transitions to freeze)
+// 9. APPLY SECTION SWITCH
 function applySectionSwitch(sectionId) {
   const targetSection = document.getElementById(sectionId);
   if (!targetSection) return;
@@ -515,14 +515,12 @@ function applySectionSwitch(sectionId) {
   });
   targetSection.classList.add("active");
 
-  // Update active nav pill state
   const activeNavTarget = sectionId === "hobbies-section" ? "about-section" : sectionId;
   document.querySelectorAll(".nav-link").forEach((btn) => {
     const onclickAttr = btn.getAttribute("onclick") || "";
     btn.classList.toggle("active", onclickAttr.includes(`'${activeNavTarget}'`));
   });
 
-  // Toggle home digital clock visibility
   const clockBox = document.getElementById("home-digital-clock");
   if (clockBox) {
     clockBox.classList.toggle("hidden", sectionId !== "home-section");
@@ -546,193 +544,38 @@ function setTheme(themeName) {
   toggleThemeMenu();
 }
 
-// 11. 1-SECOND THEME-SYNCED GALAXY EXPLOSION + CENTER RETICLE PAGE TRANSITION ENGINE
+// 11. 2-SECOND FADE IN / FADE OUT PAGE TRANSITION ENGINE
 let isTransitioning = false;
+let transitionFadeTimer = null;
+let transitionDoneTimer = null;
 
-function getThemeTransitionPalette() {
-  const styles = getComputedStyle(document.body);
-  const champagne = styles.getPropertyValue("--gilded-champagne").trim() || "#D9C5A0";
-  const sparkle = styles.getPropertyValue("--champagne-sparkle").trim() || "#E5DFD0";
-  const bronze = styles.getPropertyValue("--bronze-aura").trim() || "#A67C52";
-  const darkBg = styles.getPropertyValue("--dark-bg").trim() || "#000000";
-
-  return {
-    core: sparkle,
-    primary: champagne,
-    secondary: bronze,
-    backdrop: darkBg,
-    stars: [sparkle, champagne, bronze, "#FFFFFF"]
-  };
-}
-
-function switchSection(sectionId, triggerBtn = null) {
+function switchSection(sectionId) {
   const currentActive = document.querySelector('.view-section.active');
   if (isTransitioning || (currentActive && currentActive.id === sectionId)) return;
 
   const overlay = document.getElementById("page-transition-overlay");
-  const canvas = document.getElementById("transition-galaxy-canvas");
-
-  if (!overlay || !canvas) {
+  if (!overlay) {
     applySectionSwitch(sectionId);
     return;
   }
 
   isTransitioning = true;
-  const palette = getThemeTransitionPalette();
+  clearTimeout(transitionFadeTimer);
+  clearTimeout(transitionDoneTimer);
 
-  let originX = window.innerWidth / 2;
-  let originY = 42;
-
-  let targetEl = triggerBtn;
-  if (!targetEl) {
-    const navButtons = document.querySelectorAll('.nav-link');
-    navButtons.forEach(btn => {
-      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(sectionId)) {
-        targetEl = btn;
-      }
-    });
-  }
-
-  if (targetEl) {
-    const rect = targetEl.getBoundingClientRect();
-    originX = rect.left + rect.width / 2;
-    originY = rect.top + rect.height / 2;
-    targetEl.classList.remove("galaxy-burst-word");
-    void targetEl.offsetWidth;
-    targetEl.classList.add("galaxy-burst-word");
-  }
-
+  // Phase 1 (0ms -> 1000ms): Fade out into overlay
+  overlay.style.transition = "opacity 1s ease";
   overlay.classList.add("active");
 
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  // Swap section at 1000ms and Phase 2 (1000ms -> 2000ms): Fade back in
+  transitionFadeTimer = setTimeout(() => {
+    applySectionSwitch(sectionId);
+    overlay.classList.remove("active");
 
-  const maxRadius = Math.hypot(
-    Math.max(originX, canvas.width - originX),
-    Math.max(originY, canvas.height - originY)
-  ) * 1.15;
-
-  const particleCount = 360;
-  const particles = Array.from({ length: particleCount }, (_, i) => {
-    const arm = i % 5;
-    const baseAngle = (arm / 5) * Math.PI * 2 + (Math.random() - 0.5) * 0.65;
-    return {
-      angle: baseAngle,
-      distance: Math.random() * 14,
-      targetDist: (0.14 + Math.random() * 0.92) * maxRadius,
-      spinSpeed: (0.04 + Math.random() * 0.06) * (i % 2 === 0 ? 1 : -0.7),
-      size: 1.4 + Math.random() * 3.2,
-      color: palette.stars[i % palette.stars.length]
-    };
-  });
-
-  const DURATION_MS = 1000;
-  const startTime = performance.now();
-  let sectionSwapped = false;
-
-  function renderGalaxyTransition(now) {
-    const elapsed = now - startTime;
-    const t = Math.min(1, elapsed / DURATION_MS);
-
-    const expandEase = t < 0.55
-      ? 1 - Math.pow(1 - (t / 0.55), 3)
-      : 1;
-
-    const fadeOutAlpha = t > 0.72 ? Math.max(0, 1 - (t - 0.72) / 0.28) : 1;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.save();
-    ctx.globalAlpha = fadeOutAlpha;
-
-    const nebulaRadius = Math.max(36, maxRadius * expandEase * 1.1);
-    const nebulaGrad = ctx.createRadialGradient(originX, originY, 6, originX, originY, nebulaRadius);
-    nebulaGrad.addColorStop(0, palette.core);
-    nebulaGrad.addColorStop(0.22, palette.primary);
-    nebulaGrad.addColorStop(0.55, palette.secondary);
-    nebulaGrad.addColorStop(1, palette.backdrop);
-
-    ctx.fillStyle = nebulaGrad;
-    ctx.beginPath();
-    ctx.arc(originX, originY, nebulaRadius, 0, Math.PI * 2);
-    ctx.fill();
-
-    for (const p of particles) {
-      p.angle += p.spinSpeed;
-      const currentDist = p.distance + p.targetDist * expandEase;
-      const swirlAngle = p.angle + currentDist * 0.0045;
-      const px = originX + Math.cos(swirlAngle) * currentDist;
-      const py = originY + Math.sin(swirlAngle) * currentDist;
-
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.arc(px, py, p.size * (0.65 + 0.55 * expandEase), 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    const reticleAngle = now * 0.012;
-    const reticleR = 32 + Math.sin(now * 0.018) * 3;
-
-    ctx.save();
-    ctx.translate(originX, originY);
-
-    ctx.save();
-    ctx.rotate(reticleAngle);
-    ctx.strokeStyle = palette.core;
-    ctx.lineWidth = 2.2;
-    ctx.setLineDash([12, 8]);
-    ctx.beginPath();
-    ctx.arc(0, 0, reticleR, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
-
-    ctx.save();
-    ctx.rotate(-reticleAngle * 1.6);
-    ctx.strokeStyle = palette.primary;
-    ctx.lineWidth = 1.6;
-    ctx.setLineDash([5, 6]);
-    ctx.beginPath();
-    ctx.arc(0, 0, reticleR * 0.58, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
-
-    ctx.strokeStyle = palette.core;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(-reticleR - 14, 0);
-    ctx.lineTo(-10, 0);
-    ctx.moveTo(10, 0);
-    ctx.lineTo(reticleR + 14, 0);
-    ctx.moveTo(0, -reticleR - 14);
-    ctx.lineTo(0, -10);
-    ctx.moveTo(0, 10);
-    ctx.lineTo(0, reticleR + 14);
-    ctx.stroke();
-
-    ctx.fillStyle = palette.core;
-    ctx.beginPath();
-    ctx.arc(0, 0, 4, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
-    ctx.restore();
-
-    if (elapsed >= 500 && !sectionSwapped) {
-      sectionSwapped = true;
-      applySectionSwitch(sectionId);
-    }
-
-    if (t < 1) {
-      requestAnimationFrame(renderGalaxyTransition);
-    } else {
-      overlay.classList.remove("active");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    transitionDoneTimer = setTimeout(() => {
       isTransitioning = false;
-    }
-  }
-
-  requestAnimationFrame(renderGalaxyTransition);
+    }, 1000);
+  }, 1000);
 }
 
 // 12. ACHIEVEMENTS GALLERY DATA
@@ -1007,7 +850,7 @@ function openSingleModal(imgUrl, caption) {
   modal.classList.add('active');
 }
 
-// 13. FAMILY AND FRIENDS 8-PHOTO GALLERY & ENLARGED SPLIT MODAL
+// 13. FAMILY AND FRIENDS 8-PHOTO GALLERY & INDIVIDUAL ENLARGED SPLIT MODAL
 const familyFriendsPhotos = [
   {
     id: 0,
@@ -1039,45 +882,49 @@ const familyFriendsPhotos = [
   {
     id: 3,
     category: "Friends",
-    title: "My Friends — Memory 1",
-    subtitle: "Click to view all 5 Friends photos",
-    src: "./friend1.jpg"
+    title: "Friend 1 — Shared Laughter & Good Vibes",
+    subtitle: "Click to view enlarged photo & letter",
+    src: "./friends 3.jpg",
+    phrase: "“Good friends make even the most ordinary days feel like a celebration.”",
+    letter: "Dear Friend 1,\n\nThank you for always bringing warmth, humor, and genuine care into our moments together. Whenever things get overwhelming at school or in life, talking and laughing with you reminds me to breathe and keep going."
   },
   {
     id: 4,
     category: "Friends",
-    title: "My Friends — Memory 2",
-    subtitle: "Click to view all 5 Friends photos",
-    src: "./friend2.jpg"
+    title: "Friend 2 — Creative Sparks & Jam Sessions",
+    subtitle: "Click to view enlarged photo & letter",
+    src: "./friends 2.png",
+    phrase: "“Real friendship inspires you to create, grow, and be unapologetically yourself.”",
+    letter: "Dear Friend 2,\n\nThank you for encouraging my art, music, and ideas without hesitation. Being around you makes it easy to stay inspired and confident in the things I love doing."
   },
   {
     id: 5,
     category: "Friends",
-    title: "My Friends — Memory 3",
-    subtitle: "Click to view all 5 Friends photos",
-    src: "./friend3.jpg"
+    title: "Friend 3 — Steady Support Through Every Season",
+    subtitle: "Click to view enlarged photo & letter",
+    src: "./friend 1.jpg",
+    phrase: "“A true friend stays steady when everything else feels uncertain.”",
+    letter: "Dear Friend 3,\n\nThank you for listening, understanding, and standing by me through busy schedules and tough weeks. Having someone as dependable and kind as you in my corner means more than words can say."
   },
   {
     id: 6,
     category: "Friends",
-    title: "My Friends — Memory 4",
-    subtitle: "Click to view all 5 Friends photos",
-    src: "./friend4.jpg"
+    title: "Friend 4 — Spontaneous Adventures & Stories",
+    subtitle: "Click to view enlarged photo & letter",
+    src: "./friend 4.jpg",
+    phrase: "“The best stories are the ones we write together along the way.”",
+    letter: "Dear Friend 4,\n\nThank you for every random walk, hangout, and story we’ve shared. Every memory with you adds color to my journey and gives me something to smile about whenever I look back."
   },
   {
     id: 7,
     category: "Friends",
-    title: "My Friends — Memory 5",
-    subtitle: "Click to view all 5 Friends photos",
-    src: "./ff1.jpg"
+    title: "Friend 5 — Lasting Bond & Gratitude",
+    subtitle: "Click to view enlarged photo & letter",
+    src: "./friend 5.jpg",
+    phrase: "“Friendship is one of life’s greatest gifts—rare, honest, and enduring.”",
+    letter: "Dear Friend 5,\n\nThank you for the kindness, loyalty, and memories we’ve built together. No matter how much time passes or how busy life gets, I’m truly grateful for the friendship we share."
   }
 ];
-
-const friendsSharedStory = {
-  title: "My Friends — Cherished Memories Together",
-  phrase: "“True friends turn ordinary days into unforgettable chapters of laughter and growth.”",
-  letter: "To my closest friends,\n\nThank you for every spontaneous hangout, jamming session, shared laugh, and honest conversation. You have cheered for my art, stood by me during stressful school days, and made every memory brighter. Life is infinitely better with all five of you in it."
-};
 
 let activeFamilyIndex = 0;
 
@@ -1159,27 +1006,10 @@ function openFamilyModal(index) {
 
   if (!titleEl || !mediaEl || !phraseEl || !paraEl || !modalEl) return;
 
-  if (item.category === "Friends") {
-    const friendItems = familyFriendsPhotos.filter(p => p.category === "Friends");
-    titleEl.textContent = friendsSharedStory.title;
-    phraseEl.textContent = friendsSharedStory.phrase;
-    paraEl.textContent = friendsSharedStory.letter;
-
-    mediaEl.innerHTML = `
-      <div class="friends-five-grid">
-        ${friendItems.map((f, idx) => `
-          <div class="friends-five-item">
-            <img src="${f.src}" alt="Friend ${idx + 1}" class="no-enlarge" />
-          </div>
-        `).join("")}
-      </div>
-    `;
-  } else {
-    titleEl.textContent = item.title;
-    phraseEl.textContent = item.phrase;
-    paraEl.textContent = item.letter;
-    mediaEl.innerHTML = `<img src="${item.src}" alt="${item.title}" class="single-enlarged no-enlarge" />`;
-  }
+  titleEl.textContent = item.title;
+  phraseEl.textContent = item.phrase;
+  paraEl.textContent = item.letter;
+  mediaEl.innerHTML = `<img src="${item.src}" alt="${item.title}" class="single-enlarged no-enlarge" />`;
 
   modalEl.classList.add("active");
 }
