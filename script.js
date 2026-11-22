@@ -1017,7 +1017,7 @@ const familyFriendsPhotos = [
     subtitle: "Click to view enlarged photo & letter",
     src: "./grp pic.png",
     phrase: "“Before the world ever knew my name, my family gave me the roots to stand tall and the wings to dream.”",
-    letter: "Dear Family 5,\n\nFirst of all, I want to thank you for all love, patience, support, guidance, teachings and never ending care that you all given to me. I cannot name all efforts you have given me but I'am here to achieve my dreams and make you proud. I will make sure that every single thing that you all did for me, will be given back to you with love and respect. I hope you all in good health and always be safe. <3"
+    letter: "Dear Family,\n\nFirst of all, I want to thank you for all love, patience, support, guidance, teachings and never ending care that you all given to me. I cannot name all efforts you have given me but I'am here to achieve my dreams and make you proud. I will make sure that every single thing that you all did for me, will be given back to you with love and respect. I hope you all in good health and always be safe. <3"
   }
 ];
 
