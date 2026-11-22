@@ -144,23 +144,23 @@ img {
   cursor: pointer;
 }
 
-/* ==================== CIRCUIT INTRO OVERLAY ==================== */
+/* ==================== 3-SECOND STEAMPUNK / NIHONGA GEAR INTRO OVERLAY ==================== */
 .intro-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, #120e07 0%, #050505 68%, #000000 100%);
+  background: radial-gradient(circle at 30% 35%, #2b1e08 0%, #0d0a04 58%, #040404 100%);
   z-index: 50000;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  padding-bottom: 5.5vh;
+  padding-left: clamp(2rem, 6vw, 5.5rem);
   transition: opacity 0.85s ease, transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .intro-overlay.exploded {
   opacity: 0;
-  transform: scale(1.14);
+  transform: scale(1.12);
   pointer-events: none;
 }
 
@@ -171,63 +171,65 @@ img {
   height: 100%;
 }
 
-.intro-hud-panel {
+.intro-left-panel {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.7rem;
-  width: min(460px, 86vw);
-  padding: 1rem 1.5rem;
-  border-radius: 16px;
-  background: rgba(8, 8, 8, 0.78);
-  border: 1px solid rgba(217, 197, 160, 0.45);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 24px rgba(166, 124, 82, 0.25);
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: min(430px, 84vw);
+  padding: 1.4rem 1.7rem;
+  border-radius: 14px;
+  background: rgba(8, 7, 5, 0.82);
+  border: 1.5px solid rgba(217, 197, 160, 0.55);
+  border-left: 4px solid #F6E0B6;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 28px rgba(199, 152, 74, 0.25);
   backdrop-filter: blur(8px);
 }
 
 .intro-status-text {
   font-family: 'Fira Code', monospace;
-  font-size: 1.35rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
   font-weight: 700;
-  letter-spacing: 3.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--gilded-champagne);
+  color: #F6E0B6;
   text-shadow: 0 0 16px rgba(217, 197, 160, 0.65);
   transition: all 0.3s ease;
 }
 
 .intro-status-text.success {
-  color: #F6E0B6;
+  color: #FFF1CE;
   text-shadow: 0 0 22px rgba(246, 224, 182, 0.95);
-  transform: scale(1.06);
+}
+
+.intro-progress-percent {
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #D9C5A0;
+  line-height: 1;
 }
 
 .intro-progress-track {
   width: 100%;
   height: 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(217, 197, 160, 0.35);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(217, 197, 160, 0.4);
   overflow: hidden;
+  margin-top: 0.25rem;
 }
 
 .intro-progress-fill {
   width: 0%;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #A67C52 0%, #D9C5A0 55%, #FFF1CE 100%);
+  background: linear-gradient(90deg, #8A5A2B 0%, #D9C5A0 55%, #FFF1CE 100%);
   box-shadow: 0 0 16px rgba(217, 197, 160, 0.75);
   transition: width 0.05s linear;
-}
-
-.intro-progress-percent {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--champagne-sparkle);
 }
 
 .main-content.pan-reveal {
@@ -245,20 +247,150 @@ img {
   }
 }
 
-/* ==================== 2-SECOND FADE IN / FADE OUT TRANSITION OVERLAY ==================== */
+/* ==================== 2-SECOND THEME-SYNCED HUD TRANSITION OVERLAY ==================== */
 .page-transition-overlay {
   position: fixed;
   inset: 0;
-  background: var(--dark-bg);
+  background: radial-gradient(circle at center, var(--bg-center) 0%, var(--bg-edge) 100%);
   z-index: 45000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1s ease;
+  overflow: hidden;
 }
 
 .page-transition-overlay.active {
   opacity: 1;
   pointer-events: auto;
+}
+
+#transition-galaxy-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.transition-hud-layer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud-center-spinner {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud-ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: dashed;
+}
+
+.hud-ring-outer {
+  width: 210px;
+  height: 210px;
+  border-width: 2px;
+  border-color: var(--gilded-champagne);
+  animation: hudSpinCW 2s linear infinite;
+}
+
+.hud-ring-middle {
+  width: 162px;
+  height: 162px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--gilded-champagne) transparent var(--bronze-aura) transparent;
+  animation: hudSpinCCW 1.4s linear infinite;
+}
+
+.hud-ring-inner {
+  width: 114px;
+  height: 114px;
+  border-width: 1.5px;
+  border-color: var(--champagne-sparkle);
+  animation: hudSpinCW 1s linear infinite;
+}
+
+.hud-center-core {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--gilded-champagne);
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid var(--gilded-champagne);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+}
+
+@keyframes hudSpinCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hudSpinCCW {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.hud-rect {
+  position: absolute;
+  min-width: 245px;
+  max-width: 310px;
+  padding: 0.85rem 1.15rem;
+  background: rgba(10, 10, 12, 0.84);
+  border: 1.5px solid var(--gilded-champagne);
+  border-left: 4px solid var(--gilded-champagne);
+  border-radius: 4px 12px 12px 4px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hud-rect-1 {
+  top: 20%;
+  left: 14%;
+}
+
+.hud-rect-2 {
+  top: 22%;
+  right: 14%;
+}
+
+.hud-rect-3 {
+  bottom: 20%;
+  left: 16%;
+}
+
+.hud-rect-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--wheat);
+  opacity: 0.85;
+}
+
+.hud-rect-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--gilded-champagne);
+  letter-spacing: 0.5px;
 }
 
 /* ==================== CUSTOM CURSOR & BACKGROUND CANVAS ==================== */
@@ -474,7 +606,7 @@ img {
   transform: scale(1) translateY(0);
 }
 
-/* ==================== HOME SECTION — BIGGER PHOTO, SMALL TOP & BOTTOM GAP ==================== */
+/* ==================== HOME SECTION ==================== */
 #home-section.view-section {
   padding-top: 0.3rem;
   padding-bottom: 0.45rem;
@@ -1718,24 +1850,30 @@ img {
   transform: scale(1.04);
 }
 
-/* ==================== FAMILY & FRIENDS INDIVIDUAL ENLARGED SPLIT MODAL ==================== */
+/* ==================== FAMILY & FRIENDS INDIVIDUAL ENLARGED SPLIT MODAL (OVERLAP FIXED) ==================== */
 .family-modal-box {
   max-width: 1120px;
   width: 94%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .family-modal-split {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1.2fr 1.1fr;
   gap: 1.65rem;
   align-items: stretch;
   margin-top: 1.1rem;
   text-align: left;
+  min-height: 0;
+  flex: 1;
 }
 
 .family-modal-media {
   width: 100%;
   height: 440px;
+  max-height: 60vh;
   border-radius: 12px;
   overflow: hidden;
   border: 1.5px solid var(--gilded-champagne);
@@ -1758,34 +1896,45 @@ img {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 1.45rem;
+  padding: 1.35rem 1.45rem;
   height: 440px;
+  max-height: 60vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
 }
 
 .family-modal-phrase {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
   margin: 0;
-  padding: 0.65rem 0.95rem;
+  padding: 0.7rem 1rem;
   border-left: 3.5px solid var(--gilded-champagne);
-  background: rgba(217, 197, 160, 0.08);
+  background: rgba(217, 197, 160, 0.1);
   border-radius: 0 8px 8px 0;
   font-style: italic;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   color: var(--gilded-champagne);
-  line-height: 1.45;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .family-modal-letter {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
   color: #E5DFD0;
-  font-size: 1.02rem;
+  font-size: 0.98rem;
   line-height: 1.72;
   margin: 0;
   white-space: pre-line;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ==================== MODALS BASE ==================== */
@@ -1830,6 +1979,7 @@ img {
   color: var(--gilded-champagne);
   font-size: 1.32rem;
   margin: 0;
+  padding-right: 2rem;
 }
 
 .close-modal-btn {
@@ -1844,7 +1994,8 @@ img {
 }
 
 .modal-exit-note {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0;
   font-size: 0.88rem;
   color: var(--wheat);
   opacity: 0.85;
@@ -1873,4 +2024,5 @@ img {
   .diary-card.slot-left-2 { transform: translateX(-355px) scale(0.68); }
   .diary-card.slot-right-2 { transform: translateX(355px) scale(0.68); }
   .camera-wrapper { transform: scale(0.95); top: -8px; }
+  .family-modal-media, .family-modal-text { height: 350px; }
 }

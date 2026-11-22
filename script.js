@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateClock, 1000);
   updateClock();
 
-  // 3. GOLD & BLACK CIRCUIT BOARD INTRO WITH "Info Tech Data" CPU + RETICLE
+  // 3. 3-SECOND STEAMPUNK / NIHONGA ROTATING WHEELS INTRO ("Loading Information" + %)
   function startGalaxyIntro() {
     const introOverlay = document.getElementById("intro-overlay");
     const canvas = document.getElementById("circuit-intro-canvas");
@@ -68,195 +68,172 @@ document.addEventListener("DOMContentLoaded", () => {
     resize();
     window.addEventListener("resize", resize);
 
-    const INTRO_DURATION_MS = 2200;
+    const INTRO_DURATION_MS = 3000;
     const startTime = performance.now();
     let completed = false;
     let animationActive = true;
 
-    const traceCount = 34;
-    const traces = Array.from({ length: traceCount }, (_, idx) => {
-      const baseAngle = (idx / traceCount) * Math.PI * 2 + (Math.random() - 0.5) * 0.08;
-      const maxRadius = Math.max(canvas.width, canvas.height) * (0.48 + Math.random() * 0.16);
-      const innerRadius = 68;
-      const midRadius = innerRadius + (maxRadius - innerRadius) * (0.35 + Math.random() * 0.3);
-      const bendOffset = (Math.random() - 0.5) * 0.24;
+    function drawGear(cx, cy, outerR, innerR, holeR, teeth, angle, fillStyle, strokeStyle) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
 
-      return {
-        baseAngle,
-        bendAngle: baseAngle + bendOffset,
-        innerRadius,
-        midRadius,
-        maxRadius,
-        lineWidth: idx % 3 === 0 ? 2.6 : 1.5,
-        pulseSpeed: 0.45 + Math.random() * 0.55,
-        pulsePhase: Math.random(),
-        hasPin: idx % 2 === 0
-      };
-    });
+      ctx.beginPath();
+      const step = (Math.PI * 2) / teeth;
+      for (let i = 0; i < teeth; i++) {
+        const a0 = i * step;
+        const a1 = a0 + step * 0.22;
+        const a2 = a0 + step * 0.48;
+        const a3 = a0 + step * 0.72;
 
-    function getPointOnTrace(trace, t, cx, cy) {
-      const clampedT = Math.max(0, Math.min(1, t));
-      let r, angle;
+        const rBase = innerR;
+        const rTip = outerR;
 
-      if (clampedT < 0.55) {
-        const localT = clampedT / 0.55;
-        r = trace.maxRadius - (trace.maxRadius - trace.midRadius) * localT;
-        angle = trace.baseAngle + (trace.bendAngle - trace.baseAngle) * Math.min(1, localT * 1.2);
-      } else {
-        const localT = (clampedT - 0.55) / 0.45;
-        r = trace.midRadius - (trace.midRadius - trace.innerRadius) * localT;
-        angle = trace.bendAngle + (trace.baseAngle - trace.bendAngle) * localT;
+        if (i === 0) {
+          ctx.moveTo(Math.cos(a0) * rBase, Math.sin(a0) * rBase);
+        } else {
+          ctx.lineTo(Math.cos(a0) * rBase, Math.sin(a0) * rBase);
+        }
+        ctx.lineTo(Math.cos(a1) * rTip, Math.sin(a1) * rTip);
+        ctx.lineTo(Math.cos(a2) * rTip, Math.sin(a2) * rTip);
+        ctx.lineTo(Math.cos(a3) * rBase, Math.sin(a3) * rBase);
+      }
+      ctx.closePath();
+
+      if (holeR > 0) {
+        ctx.moveTo(holeR, 0);
+        ctx.arc(0, 0, holeR, 0, Math.PI * 2, true);
       }
 
-      return {
-        x: cx + Math.cos(angle) * r,
-        y: cy + Math.sin(angle) * r
-      };
-    }
+      ctx.fillStyle = fillStyle;
+      ctx.fill("evenodd");
+      if (strokeStyle) {
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+      }
 
-    function drawIntroReticle(cx, cy, now) {
-      const angle = now * 0.0018;
-      const outerR = 138;
-      const innerR = 96;
-
-      ctx.save();
-      ctx.translate(cx, cy);
-
-      ctx.save();
-      ctx.rotate(angle);
-      ctx.strokeStyle = "rgba(217, 197, 160, 0.72)";
-      ctx.lineWidth = 1.8;
-      ctx.setLineDash([18, 12]);
+      // Inner spokes / detail ring
+      ctx.strokeStyle = strokeStyle || "rgba(246, 224, 182, 0.45)";
+      ctx.lineWidth = 1.2;
       ctx.beginPath();
-      ctx.arc(0, 0, outerR, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-
-      ctx.save();
-      ctx.rotate(-angle * 1.4);
-      ctx.strokeStyle = "rgba(166, 124, 82, 0.85)";
-      ctx.lineWidth = 1.4;
-      ctx.setLineDash([8, 10]);
-      ctx.beginPath();
-      ctx.arc(0, 0, innerR, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-
-      ctx.strokeStyle = "rgba(246, 224, 182, 0.8)";
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(-outerR - 22, 0);
-      ctx.lineTo(-innerR + 12, 0);
-      ctx.moveTo(innerR - 12, 0);
-      ctx.lineTo(outerR + 22, 0);
-      ctx.moveTo(0, -outerR - 22);
-      ctx.lineTo(0, -innerR + 12);
-      ctx.moveTo(0, innerR - 12);
-      ctx.lineTo(0, outerR + 22);
+      ctx.arc(0, 0, innerR * 0.72, 0, Math.PI * 2);
       ctx.stroke();
 
-      ctx.font = "bold 11px 'Fira Code', monospace";
-      ctx.fillStyle = "rgba(246, 224, 182, 0.85)";
-      ctx.fillText("SYS.RETICLE // LOCKED", outerR + 14, -8);
+      for (let s = 0; s < 6; s++) {
+        const sa = (s / 6) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(sa) * holeR, Math.sin(sa) * holeR);
+        ctx.lineTo(Math.cos(sa) * (innerR * 0.72), Math.sin(sa) * (innerR * 0.72));
+        ctx.stroke();
+      }
 
       ctx.restore();
     }
 
-    function drawCircuitBoard(now, progressRatio) {
-      ctx.fillStyle = "rgba(4, 4, 4, 0.28)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const cx = canvas.width / 2;
-      const cy = canvas.height / 2 - 24;
-      const burstScale = completed ? 1 + (progressRatio - 1) * 1.8 : 1;
-
+    function drawCornerMotif(x, y, flipX, flipY) {
       ctx.save();
-      ctx.translate(cx, cy);
-      ctx.scale(burstScale, burstScale);
-      ctx.translate(-cx, -cy);
+      ctx.translate(x, y);
+      ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
+      ctx.strokeStyle = "rgba(217, 197, 160, 0.55)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, 68);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(68, 0);
+      ctx.moveTo(14, 52);
+      ctx.lineTo(14, 14);
+      ctx.lineTo(52, 14);
+      ctx.moveTo(28, 36);
+      ctx.lineTo(28, 28);
+      ctx.lineTo(36, 28);
+      ctx.stroke();
+      ctx.restore();
+    }
 
-      [115, 195, 285].forEach((ringR, i) => {
-        ctx.strokeStyle = `rgba(166, 124, 82, ${0.14 - i * 0.03})`;
-        ctx.lineWidth = 1;
+    function drawSteampunkScene(now) {
+      const w = canvas.width;
+      const h = canvas.height;
+      const t = now * 0.001;
+
+      // Rich gold & nihonga black background wash
+      const bgGrad = ctx.createRadialGradient(w * 0.62, h * 0.42, 40, w * 0.55, h * 0.5, Math.max(w, h) * 0.8);
+      bgGrad.addColorStop(0, "rgba(184, 134, 45, 0.34)");
+      bgGrad.addColorStop(0.45, "rgba(24, 18, 8, 0.88)");
+      bgGrad.addColorStop(1, "rgba(5, 5, 5, 0.98)");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle nihonga gold dust / speckles
+      for (let i = 0; i < 45; i++) {
+        const sx = ((i * 197 + Math.sin(t + i) * 18) % w + w) % w;
+        const sy = ((i * 131 + Math.cos(t * 0.8 + i) * 14) % h + h) % h;
+        ctx.fillStyle = i % 2 === 0 ? "rgba(246, 224, 182, 0.25)" : "rgba(166, 124, 82, 0.22)";
         ctx.beginPath();
-        ctx.arc(cx, cy, ringR, 0, Math.PI * 2);
-        ctx.stroke();
-      });
-
-      for (const trace of traces) {
-        const pOuter = getPointOnTrace(trace, 0, cx, cy);
-        const pMid = getPointOnTrace(trace, 0.55, cx, cy);
-        const pInner = getPointOnTrace(trace, 1, cx, cy);
-
-        ctx.strokeStyle = completed
-          ? "rgba(246, 224, 182, 0.75)"
-          : "rgba(166, 124, 82, 0.36)";
-        ctx.lineWidth = trace.lineWidth;
-        ctx.beginPath();
-        ctx.moveTo(pOuter.x, pOuter.y);
-        ctx.lineTo(pMid.x, pMid.y);
-        ctx.lineTo(pInner.x, pInner.y);
-        ctx.stroke();
-
-        if (trace.hasPin) {
-          ctx.fillStyle = "#D9C5A0";
-          ctx.beginPath();
-          ctx.arc(pMid.x, pMid.y, 2.5, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        const pulseT = ((now / 1000) * trace.pulseSpeed + trace.pulsePhase) % 1;
-        const pulsePos = getPointOnTrace(trace, pulseT, cx, cy);
-
-        const glow = ctx.createRadialGradient(pulsePos.x, pulsePos.y, 0, pulsePos.x, pulsePos.y, 12);
-        glow.addColorStop(0, "rgba(255, 241, 206, 0.95)");
-        glow.addColorStop(0.5, "rgba(217, 197, 160, 0.45)");
-        glow.addColorStop(1, "rgba(217, 197, 160, 0)");
-
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(pulsePos.x, pulsePos.y, 12, 0, Math.PI * 2);
+        ctx.arc(sx, sy, (i % 3) + 1, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      drawIntroReticle(cx, cy, now);
+      // Corner geometric motifs
+      drawCornerMotif(22, 22, false, false);
+      drawCornerMotif(w - 22, 22, true, false);
+      drawCornerMotif(22, h - 22, false, true);
+      drawCornerMotif(w - 22, h - 22, true, true);
 
-      const chipSize = 104;
-      const chipHalf = chipSize / 2;
+      // Large sweeping astrolabe / mechanism arc on right-center
+      const arcCx = w * 0.66;
+      const arcCy = h * 0.52;
+      const arcR = Math.min(w, h) * 0.34;
 
-      ctx.fillStyle = "#D9C5A0";
-      for (let i = -3; i <= 3; i++) {
-        const offset = i * 12;
-        ctx.fillRect(cx + offset - 2, cy - chipHalf - 9, 4, 8);
-        ctx.fillRect(cx + offset - 2, cy + chipHalf + 1, 4, 8);
-        ctx.fillRect(cx - chipHalf - 9, cy + offset - 2, 8, 4);
-        ctx.fillRect(cx + chipHalf + 1, cy + offset - 2, 8, 4);
-      }
-
-      ctx.fillStyle = "#090909";
-      ctx.strokeStyle = "#D9C5A0";
-      ctx.lineWidth = 2.5;
+      ctx.save();
+      ctx.translate(arcCx, arcCy);
+      ctx.rotate(t * 0.22);
+      ctx.strokeStyle = "rgba(217, 197, 160, 0.48)";
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.roundRect(cx - chipHalf, cy - chipHalf, chipSize, chipSize, 10);
-      ctx.fill();
+      ctx.arc(0, 0, arcR, -Math.PI * 0.65, Math.PI * 0.72);
       ctx.stroke();
 
-      ctx.strokeStyle = "rgba(217, 197, 160, 0.55)";
-      ctx.lineWidth = 1.2;
-      ctx.strokeRect(cx - chipHalf + 10, cy - chipHalf + 10, chipSize - 20, chipSize - 20);
-
-      ctx.font = "bold 11.5px 'Fira Code', monospace";
-      ctx.fillStyle = "#F6E0B6";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText("Info Tech", cx, cy - 8);
-      ctx.fillStyle = "#D9C5A0";
-      ctx.font = "bold 11.5px 'Fira Code', monospace";
-      ctx.fillText("Data", cx, cy + 9);
-      ctx.textAlign = "start";
-      ctx.textBaseline = "alphabetic";
-
+      for (let k = 0; k < 36; k++) {
+        const ang = (k / 36) * Math.PI * 2;
+        const r1 = arcR - 12;
+        const r2 = k % 3 === 0 ? arcR + 10 : arcR + 4;
+        ctx.strokeStyle = "rgba(246, 224, 182, 0.45)";
+        ctx.lineWidth = k % 3 === 0 ? 2 : 1;
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(ang) * r1, Math.sin(ang) * r1);
+        ctx.lineTo(Math.cos(ang) * r2, Math.sin(ang) * r2);
+        ctx.stroke();
+      }
       ctx.restore();
+
+      // Circuit / mechanism lines
+      ctx.strokeStyle = "rgba(217, 197, 160, 0.32)";
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(w * 0.48, h * 0.82);
+      ctx.lineTo(w * 0.78, h * 0.82);
+      ctx.lineTo(w * 0.86, h * 0.74);
+      ctx.lineTo(w * 0.96, h * 0.74);
+      ctx.moveTo(w * 0.74, h * 0.16);
+      ctx.lineTo(w * 0.94, h * 0.16);
+      ctx.stroke();
+
+      // Rotating interlocking gears inspired by the first image
+      const scale = Math.min(w / 1280, h / 800, 1.15);
+      const g1x = w * 0.74;
+      const g1y = h * 0.38;
+      const g2x = w * 0.61;
+      const g2y = h * 0.63;
+      const g3x = w * 0.81;
+      const g3y = h * 0.65;
+      const g4x = w * 0.91;
+      const g4y = h * 0.52;
+
+      drawGear(g1x, g1y, 118 * scale, 98 * scale, 34 * scale, 22, t * 0.65, "#0b0b0b", "#D9C5A0");
+      drawGear(g2x, g2y, 86 * scale, 70 * scale, 24 * scale, 16, -t * 0.9 + 0.2, "#D9C5A0", "#111111");
+      drawGear(g3x, g3y, 64 * scale, 51 * scale, 16 * scale, 14, t * 1.15, "#C7984A", "#F6E0B6");
+      drawGear(g4x, g4y, 48 * scale, 38 * scale, 12 * scale, 12, -t * 1.4, "#0d0d0d", "#D9C5A0");
     }
 
     function tick(now) {
@@ -269,14 +246,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (progressFill) progressFill.style.width = `${percentValue}%`;
       if (progressPercent) progressPercent.textContent = `${percentValue}%`;
 
-      drawCircuitBoard(now, rawProgress);
+      drawSteampunkScene(now);
 
       if (rawProgress < 1) {
         requestAnimationFrame(tick);
       } else if (!completed) {
         completed = true;
         if (statusText) {
-          statusText.textContent = "Success";
+          statusText.textContent = "Loading Information";
           statusText.classList.add("success");
         }
 
@@ -290,8 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
             animationActive = false;
             introOverlay.style.display = "none";
-          }, 950);
-        }, 450);
+          }, 850);
+        }, 120);
       }
     }
 
@@ -438,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startGalaxyIntro();
 
-  // 6. INITIALIZE FAMILY & FRIENDS 8-PHOTO CASCADING CAROUSEL
+  // 6. INITIALIZE FAMILY & FRIENDS CAROUSEL
   renderFamilyCarousel();
 
   // 7. CLICK TO ENLARGE GENERAL IMAGES FEATURE
@@ -544,10 +521,110 @@ function setTheme(themeName) {
   toggleThemeMenu();
 }
 
-// 11. 2-SECOND FADE IN / FADE OUT PAGE TRANSITION ENGINE
+// 11. 2-SECOND THEME-SYNCED HUD TRANSITION WITH 50% OPACITY MOVING RETICLE
 let isTransitioning = false;
 let transitionFadeTimer = null;
 let transitionDoneTimer = null;
+let transitionRafId = null;
+
+function getThemeAccentColor() {
+  const styles = getComputedStyle(document.body);
+  return styles.getPropertyValue('--gilded-champagne').trim() || '#D9C5A0';
+}
+
+function startTransitionReticleCanvas(durationMs) {
+  const canvas = document.getElementById("transition-galaxy-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const accent = getThemeAccentColor();
+  const start = performance.now();
+
+  const reticle = {
+    x: canvas.width * 0.5,
+    y: canvas.height * 0.5,
+    tx: canvas.width * 0.72,
+    ty: canvas.height * 0.35,
+    angle: 0,
+    radius: 64
+  };
+
+  if (transitionRafId) cancelAnimationFrame(transitionRafId);
+
+  function frame(now) {
+    const elapsed = now - start;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Moving Reticle at 50% opacity
+    const dx = reticle.tx - reticle.x;
+    const dy = reticle.ty - reticle.y;
+    if (Math.hypot(dx, dy) < 20) {
+      reticle.tx = 140 + Math.random() * Math.max(120, canvas.width - 280);
+      reticle.ty = 120 + Math.random() * Math.max(120, canvas.height - 240);
+    } else {
+      reticle.x += dx * 0.05;
+      reticle.y += dy * 0.05;
+    }
+    reticle.angle += 0.045;
+
+    ctx.save();
+    ctx.globalAlpha = 0.5;
+    ctx.translate(reticle.x, reticle.y);
+
+    ctx.save();
+    ctx.rotate(reticle.angle);
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([16, 10]);
+    ctx.beginPath();
+    ctx.arc(0, 0, reticle.radius, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.rotate(-reticle.angle * 1.4);
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([8, 8]);
+    ctx.beginPath();
+    ctx.arc(0, 0, reticle.radius * 0.65, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(-reticle.radius - 18, 0);
+    ctx.lineTo(-14, 0);
+    ctx.moveTo(14, 0);
+    ctx.lineTo(reticle.radius + 18, 0);
+    ctx.moveTo(0, -reticle.radius - 18);
+    ctx.lineTo(0, -14);
+    ctx.moveTo(0, 14);
+    ctx.lineTo(0, reticle.radius + 18);
+    ctx.stroke();
+
+    ctx.fillStyle = accent;
+    ctx.beginPath();
+    ctx.arc(0, 0, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.font = "bold 11px 'Fira Code', monospace";
+    ctx.fillText(`RETICLE [${Math.round(reticle.x)}, ${Math.round(reticle.y)}]`, reticle.radius + 14, -10);
+
+    ctx.restore();
+
+    if (elapsed < durationMs) {
+      transitionRafId = requestAnimationFrame(frame);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  transitionRafId = requestAnimationFrame(frame);
+}
 
 function switchSection(sectionId) {
   const currentActive = document.querySelector('.view-section.active');
@@ -563,11 +640,11 @@ function switchSection(sectionId) {
   clearTimeout(transitionFadeTimer);
   clearTimeout(transitionDoneTimer);
 
-  // Phase 1 (0ms -> 1000ms): Fade out into overlay
+  // Total transition duration: 2 seconds (1s fade in + 1s fade out)
   overlay.style.transition = "opacity 1s ease";
   overlay.classList.add("active");
+  startTransitionReticleCanvas(2000);
 
-  // Swap section at 1000ms and Phase 2 (1000ms -> 2000ms): Fade back in
   transitionFadeTimer = setTimeout(() => {
     applySectionSwitch(sectionId);
     overlay.classList.remove("active");
@@ -850,7 +927,7 @@ function openSingleModal(imgUrl, caption) {
   modal.classList.add('active');
 }
 
-// 13. FAMILY AND FRIENDS 8-PHOTO GALLERY & INDIVIDUAL ENLARGED SPLIT MODAL
+// 13. FAMILY AND FRIENDS GALLERY & INDIVIDUAL ENLARGED SPLIT MODAL
 const familyFriendsPhotos = [
   {
     id: 0,
@@ -1028,6 +1105,9 @@ function openFamilyModal(index) {
   phraseEl.textContent = item.phrase;
   paraEl.textContent = item.letter;
   mediaEl.innerHTML = `<img src="${item.src}" alt="${item.title}" class="single-enlarged no-enlarge" />`;
+
+  const textContainer = modalEl.querySelector(".family-modal-text");
+  if (textContainer) textContainer.scrollTop = 0;
 
   modalEl.classList.add("active");
 }

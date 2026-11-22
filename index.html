@@ -9,21 +9,44 @@
 </head>
 <body data-theme="gold">
 
-  <!-- GOLD & BLACK CIRCUIT BOARD INTRO OVERLAY WITH RETICLE -->
+  <!-- 3-SECOND STEAMPUNK / NIHONGA GEAR INTRO OVERLAY -->
   <div id="intro-overlay" class="intro-overlay">
     <canvas id="circuit-intro-canvas"></canvas>
-    <div class="intro-hud-panel">
-      <div id="intro-status-text" class="intro-status-text">Reloading Data</div>
+    <div class="intro-left-panel">
+      <div id="intro-status-text" class="intro-status-text">Loading Information</div>
+      <div id="intro-progress-percent" class="intro-progress-percent">0%</div>
       <div class="intro-progress-track">
         <div id="intro-progress-fill" class="intro-progress-fill"></div>
       </div>
-      <div id="intro-progress-percent" class="intro-progress-percent">0%</div>
     </div>
   </div>
 
-  <!-- 1-SECOND THEME-SYNCED GALAXY EXPLOSION + RETICLE PAGE TRANSITION OVERLAY -->
+  <!-- 2-SECOND THEME-SYNCED HUD + 3 RECTANGLES + 50% OPACITY RETICLE TRANSITION OVERLAY -->
   <div id="page-transition-overlay" class="page-transition-overlay">
     <canvas id="transition-galaxy-canvas"></canvas>
+    <div class="transition-hud-layer" id="transition-hud-layer">
+      <div class="hud-rect hud-rect-1">
+        <span class="hud-rect-tag">MODULE // 01</span>
+        <span class="hud-rect-label">Loading Achievements</span>
+      </div>
+
+      <div class="hud-center-spinner" id="transition-center-spinner">
+        <div class="hud-ring hud-ring-outer"></div>
+        <div class="hud-ring hud-ring-middle"></div>
+        <div class="hud-ring hud-ring-inner"></div>
+        <div class="hud-center-core">SYNC</div>
+      </div>
+
+      <div class="hud-rect hud-rect-2">
+        <span class="hud-rect-tag">MODULE // 02</span>
+        <span class="hud-rect-label">Loading Personal Information</span>
+      </div>
+
+      <div class="hud-rect hud-rect-3">
+        <span class="hud-rect-tag">MODULE // 03</span>
+        <span class="hud-rect-label">Loading Family and Friends</span>
+      </div>
+    </div>
   </div>
 
   <!-- Custom Cursor Elements -->
