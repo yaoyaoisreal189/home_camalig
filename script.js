@@ -936,16 +936,16 @@ const familyFriendsPhotos = [
     subtitle: "My First Teacher & Guiding Light",
     src: "./mother.jpe",
     phrase: "“A mother’s love is the quiet strength behind every dream I dare to chase.”",
-    letter: "Dear Mama,\n\nThank you for your endless patience, sacrifices, and unconditional love. Through every late-night study session and every milestone I have reached, your encouragement has been my anchor. Everything I am today starts with the kindness and resilience you taught me."
+    letter: "Dear Mama,\n\nThank you for bringing me into this world and giving me the chance to experience all the beauty and joy that life has to offer. From my earliest memories to this very day, you have been right by my side, guiding me as I grew up and helping me become someone capable of standing on my own two feet. Even now that I am learning to navigate life independently, I feel your constant love and care—knowing that you will always be there and will never truly let go gives me so much strength. I see and deeply appreciate every single sacrifice you have made for us. Thank you for working so hard just to make sure we always had a meal on the table every single day. I am endlessly grateful for every peso you spent to send me to school and invest in my education, as well as for the unwavering support you gave me every time I wanted to join a new sport. You never held me back; instead, you cheered me on and made sure I had what I needed to chase my passions. As I continue working toward my dreams, please know that you are my biggest motivation. When I succeed, I promise to give back everything I can so that you can finally rest, relax, and enjoy life to the fullest. More than anything, I want to make you proud and show you that you raised a daughter who would do anything for you. I love you so much, Mom. Thank you for everything."
   },
   {
     id: 1,
     category: "Father",
     title: "Father — Silang Camalig",
     subtitle: "My Pillar of Strength & Wisdom",
-    src: "./father.jpe",
+    src: "./father.png",
     phrase: "“Behind every confident step I take is a father who believed in me first.”",
-    letter: "Dear Papa,\n\nThank you for always working hard for our family and teaching me the value of perseverance, humility, and integrity. No matter how challenging life gets, knowing you are always there gives me the courage to keep pushing forward."
+    letter: "Dear Papa,\n\nThank you for bringing me into this world and giving me the chance to experience all the good that life has to offer. As I have grown up and learned how to stand on my own two feet, having you by my side has meant everything to me. Even now that I am becoming more independent, I still feel your quiet strength, protection, and care—knowing you are always watching out for me and never truly letting go gives me so much comfort and confidence. I see and deeply appreciate all the hard work and sacrifices you have made just to make sure we had food on the table every single day. Thank you for every peso you worked hard to earn so I could go to school and build my future, and for always supporting me whenever I wanted to join a sport. Your encouragement and belief in me have pushed me to always give my best. You are a huge part of why I strive so hard to achieve my dreams. When I become successful, I promise to give back everything I can so that you can finally rest, take it easy, and enjoy life to the fullest. Above all, I want to make you proud and show you that you raised a daughter who would do anything for you. I love you so much, Dad. Thank you for everything you have done and continue to do for me."
   },
   {
     id: 2,
