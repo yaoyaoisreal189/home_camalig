@@ -46,236 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateClock, 1000);
   updateClock();
 
-  // 3. 3-SECOND STEAMPUNK / NIHONGA ROTATING WHEELS INTRO ("Loading Information" + %)
-  function startGalaxyIntro() {
-    const introOverlay = document.getElementById("intro-overlay");
-    const canvas = document.getElementById("circuit-intro-canvas");
-    const statusText = document.getElementById("intro-status-text");
-    const progressFill = document.getElementById("intro-progress-fill");
-    const progressPercent = document.getElementById("intro-progress-percent");
-    const mainContent = document.getElementById("main-app-content");
-
-    if (!introOverlay || !canvas) {
-      startDegreeTypewriter();
-      return;
-    }
-
-    const ctx = canvas.getContext("2d");
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    const INTRO_DURATION_MS = 3000;
-    const startTime = performance.now();
-    let completed = false;
-    let animationActive = true;
-
-    function drawGear(cx, cy, outerR, innerR, holeR, teeth, angle, fillStyle, strokeStyle) {
-      ctx.save();
-      ctx.translate(cx, cy);
-      ctx.rotate(angle);
-
-      ctx.beginPath();
-      const step = (Math.PI * 2) / teeth;
-      for (let i = 0; i < teeth; i++) {
-        const a0 = i * step;
-        const a1 = a0 + step * 0.22;
-        const a2 = a0 + step * 0.48;
-        const a3 = a0 + step * 0.72;
-
-        const rBase = innerR;
-        const rTip = outerR;
-
-        if (i === 0) {
-          ctx.moveTo(Math.cos(a0) * rBase, Math.sin(a0) * rBase);
-        } else {
-          ctx.lineTo(Math.cos(a0) * rBase, Math.sin(a0) * rBase);
-        }
-        ctx.lineTo(Math.cos(a1) * rTip, Math.sin(a1) * rTip);
-        ctx.lineTo(Math.cos(a2) * rTip, Math.sin(a2) * rTip);
-        ctx.lineTo(Math.cos(a3) * rBase, Math.sin(a3) * rBase);
-      }
-      ctx.closePath();
-
-      if (holeR > 0) {
-        ctx.moveTo(holeR, 0);
-        ctx.arc(0, 0, holeR, 0, Math.PI * 2, true);
-      }
-
-      ctx.fillStyle = fillStyle;
-      ctx.fill("evenodd");
-      if (strokeStyle) {
-        ctx.strokeStyle = strokeStyle;
-        ctx.lineWidth = 1.6;
-        ctx.stroke();
-      }
-
-      // Inner spokes / detail ring
-      ctx.strokeStyle = strokeStyle || "rgba(246, 224, 182, 0.45)";
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.arc(0, 0, innerR * 0.72, 0, Math.PI * 2);
-      ctx.stroke();
-
-      for (let s = 0; s < 6; s++) {
-        const sa = (s / 6) * Math.PI * 2;
-        ctx.beginPath();
-        ctx.moveTo(Math.cos(sa) * holeR, Math.sin(sa) * holeR);
-        ctx.lineTo(Math.cos(sa) * (innerR * 0.72), Math.sin(sa) * (innerR * 0.72));
-        ctx.stroke();
-      }
-
-      ctx.restore();
-    }
-
-    function drawCornerMotif(x, y, flipX, flipY) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
-      ctx.strokeStyle = "rgba(217, 197, 160, 0.55)";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(0, 68);
-      ctx.lineTo(0, 0);
-      ctx.lineTo(68, 0);
-      ctx.moveTo(14, 52);
-      ctx.lineTo(14, 14);
-      ctx.lineTo(52, 14);
-      ctx.moveTo(28, 36);
-      ctx.lineTo(28, 28);
-      ctx.lineTo(36, 28);
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    function drawSteampunkScene(now) {
-      const w = canvas.width;
-      const h = canvas.height;
-      const t = now * 0.001;
-
-      // Rich gold & nihonga black background wash
-      const bgGrad = ctx.createRadialGradient(w * 0.62, h * 0.42, 40, w * 0.55, h * 0.5, Math.max(w, h) * 0.8);
-      bgGrad.addColorStop(0, "rgba(184, 134, 45, 0.34)");
-      bgGrad.addColorStop(0.45, "rgba(24, 18, 8, 0.88)");
-      bgGrad.addColorStop(1, "rgba(5, 5, 5, 0.98)");
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, w, h);
-
-      // Subtle nihonga gold dust / speckles
-      for (let i = 0; i < 45; i++) {
-        const sx = ((i * 197 + Math.sin(t + i) * 18) % w + w) % w;
-        const sy = ((i * 131 + Math.cos(t * 0.8 + i) * 14) % h + h) % h;
-        ctx.fillStyle = i % 2 === 0 ? "rgba(246, 224, 182, 0.25)" : "rgba(166, 124, 82, 0.22)";
-        ctx.beginPath();
-        ctx.arc(sx, sy, (i % 3) + 1, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Corner geometric motifs
-      drawCornerMotif(22, 22, false, false);
-      drawCornerMotif(w - 22, 22, true, false);
-      drawCornerMotif(22, h - 22, false, true);
-      drawCornerMotif(w - 22, h - 22, true, true);
-
-      // Large sweeping astrolabe / mechanism arc on right-center
-      const arcCx = w * 0.66;
-      const arcCy = h * 0.52;
-      const arcR = Math.min(w, h) * 0.34;
-
-      ctx.save();
-      ctx.translate(arcCx, arcCy);
-      ctx.rotate(t * 0.22);
-      ctx.strokeStyle = "rgba(217, 197, 160, 0.48)";
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.arc(0, 0, arcR, -Math.PI * 0.65, Math.PI * 0.72);
-      ctx.stroke();
-
-      for (let k = 0; k < 36; k++) {
-        const ang = (k / 36) * Math.PI * 2;
-        const r1 = arcR - 12;
-        const r2 = k % 3 === 0 ? arcR + 10 : arcR + 4;
-        ctx.strokeStyle = "rgba(246, 224, 182, 0.45)";
-        ctx.lineWidth = k % 3 === 0 ? 2 : 1;
-        ctx.beginPath();
-        ctx.moveTo(Math.cos(ang) * r1, Math.sin(ang) * r1);
-        ctx.lineTo(Math.cos(ang) * r2, Math.sin(ang) * r2);
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      // Circuit / mechanism lines
-      ctx.strokeStyle = "rgba(217, 197, 160, 0.32)";
-      ctx.lineWidth = 1.6;
-      ctx.beginPath();
-      ctx.moveTo(w * 0.48, h * 0.82);
-      ctx.lineTo(w * 0.78, h * 0.82);
-      ctx.lineTo(w * 0.86, h * 0.74);
-      ctx.lineTo(w * 0.96, h * 0.74);
-      ctx.moveTo(w * 0.74, h * 0.16);
-      ctx.lineTo(w * 0.94, h * 0.16);
-      ctx.stroke();
-
-      // Rotating interlocking gears inspired by the first image
-      const scale = Math.min(w / 1280, h / 800, 1.15);
-      const g1x = w * 0.74;
-      const g1y = h * 0.38;
-      const g2x = w * 0.61;
-      const g2y = h * 0.63;
-      const g3x = w * 0.81;
-      const g3y = h * 0.65;
-      const g4x = w * 0.91;
-      const g4y = h * 0.52;
-
-      drawGear(g1x, g1y, 118 * scale, 98 * scale, 34 * scale, 22, t * 0.65, "#0b0b0b", "#D9C5A0");
-      drawGear(g2x, g2y, 86 * scale, 70 * scale, 24 * scale, 16, -t * 0.9 + 0.2, "#D9C5A0", "#111111");
-      drawGear(g3x, g3y, 64 * scale, 51 * scale, 16 * scale, 14, t * 1.15, "#C7984A", "#F6E0B6");
-      drawGear(g4x, g4y, 48 * scale, 38 * scale, 12 * scale, 12, -t * 1.4, "#0d0d0d", "#D9C5A0");
-    }
-
-    function tick(now) {
-      if (!animationActive) return;
-
-      const elapsed = now - startTime;
-      const rawProgress = Math.min(1, elapsed / INTRO_DURATION_MS);
-      const percentValue = Math.round(rawProgress * 100);
-
-      if (progressFill) progressFill.style.width = `${percentValue}%`;
-      if (progressPercent) progressPercent.textContent = `${percentValue}%`;
-
-      drawSteampunkScene(now);
-
-      if (rawProgress < 1) {
-        requestAnimationFrame(tick);
-      } else if (!completed) {
-        completed = true;
-        if (statusText) {
-          statusText.textContent = "Loading Information";
-          statusText.classList.add("success");
-        }
-
-        setTimeout(() => {
-          introOverlay.classList.add("exploded");
-          if (mainContent) {
-            mainContent.classList.add("pan-reveal");
-          }
-          startDegreeTypewriter();
-
-          setTimeout(() => {
-            animationActive = false;
-            introOverlay.style.display = "none";
-          }, 850);
-        }, 120);
-      }
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  // 4. MATRIX RAIN + AUTONOMOUS MOVING RETICLE BACKGROUND
+  // 3. MATRIX RAIN + AUTONOMOUS MOVING RETICLE BACKGROUND
   function setupMatrixAndReticle(canvasId, fontSize = 16) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -395,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupMatrixAndReticle("home-matrix-canvas", 16);
 
-  // 5. HOME DEGREE TYPEWRITER EFFECT
+  // 4. HOME DEGREE TYPEWRITER EFFECT (Starts immediately without intro)
   function startDegreeTypewriter() {
     const degreeText = "BACHELOR OF SCIENCE AND INFORMATION TECHNOLOGY MAJOR IN ENTERPRISE RESOURCE PLANNING TRACK";
     const typingElement = document.getElementById("typing-degree");
@@ -413,18 +184,18 @@ document.addEventListener("DOMContentLoaded", () => {
     typeText();
   }
 
-  startGalaxyIntro();
+  startDegreeTypewriter();
 
-  // 6. INITIALIZE FAMILY & FRIENDS CAROUSEL
-  renderFamilyCarousel();
+  // 5. INITIALIZE FAMILY & FRIENDS RIBBON GALLERY
+  renderFamilyGallery("all", 0);
 
-  // 7. CLICK TO ENLARGE GENERAL IMAGES FEATURE
+  // 6. CLICK TO ENLARGE GENERAL IMAGES FEATURE
   document.addEventListener("click", (e) => {
     const target = e.target;
     if (
       target.tagName === 'IMG' &&
       !target.closest('.modal-content') &&
-      !target.closest('.diary-card') &&
+      !target.closest('.bento-photo-slot') &&
       !target.classList.contains('btn-icon') &&
       !target.classList.contains('no-enlarge')
     ) {
@@ -442,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// 8. SECTION TYPEWRITER HELPERS
+// 7. SECTION TYPEWRITER HELPERS
 let careerTypingTimer = null;
 let hobbiesTypingTimer = null;
 
@@ -482,7 +253,7 @@ function runSectionTypewriters(sectionId) {
   }
 }
 
-// 9. APPLY SECTION SWITCH
+// 8. APPLY SECTION SWITCH
 function applySectionSwitch(sectionId) {
   const targetSection = document.getElementById(sectionId);
   if (!targetSection) return;
@@ -506,7 +277,7 @@ function applySectionSwitch(sectionId) {
   runSectionTypewriters(sectionId);
 }
 
-// 10. THEME SWITCHING FUNCTION
+// 9. THEME SWITCHING FUNCTION
 function toggleThemeMenu() {
   const menu = document.getElementById('theme-menu');
   if (menu) menu.classList.toggle('active');
@@ -521,7 +292,7 @@ function setTheme(themeName) {
   toggleThemeMenu();
 }
 
-// 11. 2-SECOND THEME-SYNCED HUD TRANSITION WITH 50% OPACITY MOVING RETICLE
+// 10. 2-SECOND THEME-SYNCED HUD TRANSITION WITH 50% OPACITY MOVING RETICLE
 let isTransitioning = false;
 let transitionFadeTimer = null;
 let transitionDoneTimer = null;
@@ -557,7 +328,6 @@ function startTransitionReticleCanvas(durationMs) {
     const elapsed = now - start;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Moving Reticle at 50% opacity
     const dx = reticle.tx - reticle.x;
     const dy = reticle.ty - reticle.y;
     if (Math.hypot(dx, dy) < 20) {
@@ -640,7 +410,6 @@ function switchSection(sectionId) {
   clearTimeout(transitionFadeTimer);
   clearTimeout(transitionDoneTimer);
 
-  // Total transition duration: 2 seconds (1s fade in + 1s fade out)
   overlay.style.transition = "opacity 1s ease";
   overlay.classList.add("active");
   startTransitionReticleCanvas(2000);
@@ -655,7 +424,7 @@ function switchSection(sectionId) {
   }, 1000);
 }
 
-// 12. ACHIEVEMENTS GALLERY DATA
+// 11. ACHIEVEMENTS GALLERY DATA
 const achievementsData = {
   "elem-edu": {
     title: "Lubas Elementary School — Educational Achievements",
@@ -927,7 +696,7 @@ function openSingleModal(imgUrl, caption) {
   modal.classList.add('active');
 }
 
-// 13. FAMILY AND FRIENDS GALLERY & INDIVIDUAL ENLARGED SPLIT MODAL
+// 12. FAMILY AND FRIENDS STAGGERED RIBBON GALLERY & SPLIT MODAL
 const familyFriendsPhotos = [
   {
     id: 0,
@@ -950,7 +719,7 @@ const familyFriendsPhotos = [
   {
     id: 2,
     category: "Sibling",
-    title: "Sister - Emerald Camlaig",
+    title: "Sister — Emerald Camalig",
     subtitle: "Lifelong Companion & Best Friend",
     src: "./sister.jpg",
     phrase: "“Side by side or miles apart, siblings are always connected by heart.”",
@@ -1021,76 +790,75 @@ const familyFriendsPhotos = [
   }
 ];
 
-let activeFamilyIndex = 0;
+let currentFamilyCategory = "all";
+let currentFamilyPage = 0;
+const FAMILY_SLOTS_PER_PAGE = 4;
 
-function renderFamilyCarousel() {
-  const stage = document.getElementById("diary-carousel-stage");
-  if (!stage) return;
+function applyOrientationClass(imgEl) {
+  const slot = imgEl.closest(".bento-photo-slot");
+  if (!slot || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
 
-  const total = familyFriendsPhotos.length;
+  if (imgEl.naturalWidth > imgEl.naturalHeight) {
+    slot.classList.add("is-landscape");
+    slot.classList.remove("is-portrait");
+  } else {
+    slot.classList.add("is-portrait");
+    slot.classList.remove("is-landscape");
+  }
+}
 
-  stage.innerHTML = familyFriendsPhotos.map((item, idx) => {
-    let diff = idx - activeFamilyIndex;
-    if (diff > total / 2) diff -= total;
-    if (diff < -total / 2) diff += total;
+function renderFamilyGallery(category = currentFamilyCategory, page = currentFamilyPage) {
+  const grid = document.getElementById("editorial-bento-grid");
+  const prevBtn = document.getElementById("diary-prev-btn");
+  const nextBtn = document.getElementById("diary-next-btn");
+  const indicator = document.getElementById("diary-page-indicator");
+  if (!grid) return;
 
-    let slotClass = "slot-hidden";
-    if (diff === 0) slotClass = "slot-center";
-    else if (diff === -1) slotClass = "slot-left-1";
-    else if (diff === 1) slotClass = "slot-right-1";
-    else if (diff === -2) slotClass = "slot-left-2";
-    else if (diff === 2) slotClass = "slot-right-2";
+  currentFamilyCategory = category;
 
-    return `
-      <div class="diary-card ${slotClass}" onclick="handleFamilyCardClick(${idx})">
-        <span class="diary-card-badge">${item.category}</span>
-        <img src="${item.src}" alt="${item.title}" class="no-enlarge" />
-        <div class="diary-card-caption">
-          <h4>${item.title}</h4>
-          <span>${item.subtitle}</span>
-        </div>
+  const filtered = category === "all"
+    ? familyFriendsPhotos
+    : familyFriendsPhotos.filter(item => item.category === category);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / FAMILY_SLOTS_PER_PAGE));
+  currentFamilyPage = Math.max(0, Math.min(page, totalPages - 1));
+
+  const startIdx = currentFamilyPage * FAMILY_SLOTS_PER_PAGE;
+  const pageItems = filtered.slice(startIdx, startIdx + FAMILY_SLOTS_PER_PAGE);
+
+  if (indicator) indicator.textContent = `${currentFamilyPage + 1} / ${totalPages}`;
+  if (prevBtn) prevBtn.disabled = currentFamilyPage === 0;
+  if (nextBtn) nextBtn.disabled = currentFamilyPage >= totalPages - 1;
+
+  grid.innerHTML = pageItems.map((item) => `
+    <div class="bento-photo-slot is-portrait" onclick="openFamilyModal(${item.id})">
+      <span class="diary-card-badge">${item.category}</span>
+      <img
+        src="${item.src}"
+        alt="${item.title}"
+        class="no-enlarge"
+        onload="applyOrientationClass(this)"
+      />
+      <div class="diary-card-caption">
+        <h4>${item.title}</h4>
+        <span>${item.subtitle}</span>
       </div>
-    `;
-  }).join("");
+    </div>
+  `).join("");
+}
 
-  const currentCat = familyFriendsPhotos[activeFamilyIndex].category;
-  document.querySelectorAll('.diary-pill').forEach(pill => {
-    const pillCat = pill.getAttribute('data-category');
-    pill.classList.toggle('active', pillCat === currentCat);
-  });
+function stepFamilyPage(direction) {
+  renderFamilyGallery(currentFamilyCategory, currentFamilyPage + direction);
 }
 
 function selectFamilyCategory(category, btnEl) {
   document.querySelectorAll('.diary-pill').forEach(p => p.classList.remove('active'));
   if (btnEl) btnEl.classList.add('active');
-
-  if (category === "all") {
-    activeFamilyIndex = 0;
-  } else {
-    const foundIdx = familyFriendsPhotos.findIndex(item => item.category === category);
-    if (foundIdx !== -1) {
-      activeFamilyIndex = foundIdx;
-    }
-  }
-  renderFamilyCarousel();
-}
-
-function stepFamilyCarousel(direction) {
-  const total = familyFriendsPhotos.length;
-  activeFamilyIndex = (activeFamilyIndex + direction + total) % total;
-  renderFamilyCarousel();
-}
-
-function handleFamilyCardClick(index) {
-  if (index !== activeFamilyIndex) {
-    activeFamilyIndex = index;
-    renderFamilyCarousel();
-  }
-  openFamilyModal(index);
+  renderFamilyGallery(category, 0);
 }
 
 function openFamilyModal(index) {
-  const item = familyFriendsPhotos[index];
+  const item = familyFriendsPhotos.find(p => p.id === index) || familyFriendsPhotos[index];
   if (!item) return;
 
   const titleEl = document.getElementById("family-modal-title");
