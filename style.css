@@ -793,12 +793,12 @@ img {
 
 /* ==================== PERSONAL INFORMATION SECTION (NO-SCROLL ONE-SCREEN FIT) ==================== */
 .about-grid {
-  max-width: 1440px;
+  max-width: 1460px;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1.42fr 0.58fr;
-  gap: 1.75rem;
+  grid-template-columns: 1.48fr 0.52fr;
+  gap: 1.5rem;
   align-items: center;
 }
 
@@ -818,50 +818,50 @@ img {
 
 .about-top-header .top-back-btn {
   margin-bottom: 0;
-  padding: 0.38rem 0.95rem;
-  font-size: 0.82rem;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
 }
 
 .about-name {
-  font-size: 1.85rem;
+  font-size: 1.72rem;
   color: var(--gilded-champagne);
   font-weight: 800;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.08;
 }
 
 .career-obj {
   color: var(--bronze-aura);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin: 0.18rem 0 0.45rem 0;
+  margin: 0.14rem 0 0.38rem 0;
 }
 
 .bio-card {
   background: rgba(45, 45, 45, 0.45);
   border: 1px solid var(--border-color);
-  padding: 0.75rem 1rem;
+  padding: 0.62rem 0.85rem;
   border-radius: 14px;
-  font-size: 0.82rem;
-  line-height: 1.3;
+  font-size: 0.78rem;
+  line-height: 1.24;
   backdrop-filter: blur(6px);
 }
 
 .categorized-info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.48rem 0.75rem;
-  margin-bottom: 0.48rem;
+  gap: 0.4rem 0.65rem;
+  margin-bottom: 0.4rem;
 }
 
 .info-category-box {
-  background: rgba(15, 15, 18, 0.52);
+  background: rgba(15, 15, 18, 0.55);
   border: 1px solid var(--border-color);
   border-radius: 10px;
-  padding: 0.46rem 0.68rem;
+  padding: 0.4rem 0.6rem;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.14rem;
 }
 
 .info-category-box.span-2 {
@@ -870,26 +870,26 @@ img {
 
 .info-category-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.9px;
   color: var(--gilded-champagne);
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.16rem;
-  margin-bottom: 0.14rem;
+  padding-bottom: 0.12rem;
+  margin-bottom: 0.1rem;
 }
 
 .category-items-two-col {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.16rem 0.9rem;
+  gap: 0.12rem 0.8rem;
 }
 
 .info-row {
   display: flex;
-  gap: 0.35rem;
-  line-height: 1.24;
+  gap: 0.3rem;
+  line-height: 1.2;
   align-items: baseline;
 }
 
@@ -902,44 +902,44 @@ img {
   font-weight: 700;
   min-width: 96px;
   flex-shrink: 0;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .info-row .info-val {
   color: var(--champagne-sparkle);
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .school-bg-list {
-  margin: 0.12rem 0 0 1.05rem;
+  margin: 0.08rem 0 0 1rem;
   padding: 0;
   color: var(--champagne-sparkle);
-  font-size: 0.77rem;
-  line-height: 1.26;
+  font-size: 0.72rem;
+  line-height: 1.2;
 }
 
 .school-bg-list li {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.06rem;
 }
 
 .growth-text {
   margin-top: 0.45rem;
   color: var(--champagne-sparkle);
-  font-size: 0.82rem;
-  line-height: 1.38;
+  font-size: 0.8rem;
+  line-height: 1.35;
   opacity: 0.88;
   border-top: 1px dashed var(--border-color);
-  padding-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  padding-top: 0.45rem;
+  margin-bottom: 0.45rem;
 }
 
 .connect-and-id-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  padding-top: 0.42rem;
+  gap: 0.7rem;
+  padding-top: 0.35rem;
   border-top: 1px dashed var(--border-color);
 }
 
@@ -947,7 +947,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.35rem;
+  gap: 0.3rem;
   margin-top: 0;
   width: 100%;
 }
@@ -955,37 +955,37 @@ img {
 .connect-header-row {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   flex-wrap: wrap;
 }
 
 .connect-text {
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 800;
   color: var(--champagne-sparkle);
 }
 
 .mobile-badge {
   font-family: 'Fira Code', monospace;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 700;
   color: var(--gilded-champagne);
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-color);
-  padding: 0.16rem 0.52rem;
+  padding: 0.14rem 0.48rem;
   border-radius: 6px;
 }
 
 .social-buttons {
   display: flex;
-  gap: 0.45rem;
+  gap: 0.42rem;
   flex-wrap: wrap;
 }
 
 .social-btn {
-  padding: 0.3rem 0.78rem;
+  padding: 0.26rem 0.72rem;
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
   text-decoration: none;
   color: #E5DFD0;
@@ -996,55 +996,55 @@ img {
 .social-btn:hover { background: var(--bronze-aura); color: var(--deep-onyx); border-color: var(--gilded-champagne); }
 
 .about-right {
-  padding-left: 0.6rem;
+  padding-left: 0.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .section-subtitle {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--gilded-champagne);
   letter-spacing: 1.5px;
-  margin: 0 0 0.65rem 0;
+  margin: 0 0 0.55rem 0;
 }
 
-.skills-block { margin-bottom: 0.75rem; }
+.skills-block { margin-bottom: 0.65rem; }
 .skill-group-title {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--gilded-champagne);
   opacity: 0.88;
   display: block;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
 }
 
-.skills-tags { display: flex; flex-wrap: wrap; gap: 0.42rem; }
+.skills-tags { display: flex; flex-wrap: wrap; gap: 0.38rem; }
 .skill-card {
   background: rgba(45, 45, 45, 0.75);
   border: 1px solid var(--border-color);
-  padding: 0.38rem 0.72rem;
+  padding: 0.34rem 0.66rem;
   border-radius: 8px;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   color: #E5DFD0;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.32rem;
 }
 
 .subnav-buttons.right-aligned-subnav {
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.75rem;
+  margin-top: 0.65rem;
 }
 
 .subnav-btn {
   background: rgba(166, 124, 82, 0.35);
   border: 1px solid var(--gilded-champagne);
   color: var(--champagne-sparkle);
-  padding: 0.65rem 1.35rem;
+  padding: 0.6rem 1.25rem;
   border-radius: 10px;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   letter-spacing: 0.8px;
   transition: background 0.3s ease, transform 0.2s ease;
   cursor: pointer;
@@ -1064,7 +1064,7 @@ img {
   70% { transform: scale(1); }
 }
 
-/* ==================== HOBBIES SECTION (RESET DIGICAM -> UPWARD 7-PHOTO SCROLL) ==================== */
+/* ==================== HOBBIES SECTION ==================== */
 .hobbies-layout {
   max-width: 1280px;
   width: 100%;
@@ -1078,15 +1078,15 @@ img {
   background: none;
   border: 1px solid var(--gilded-champagne);
   color: var(--gilded-champagne);
-  padding: 0.55rem 1.25rem;
+  padding: 0.5rem 1.15rem;
   border-radius: 50px;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   width: fit-content;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
   cursor: pointer;
 }
 .back-btn:hover { background: var(--bronze-aura); color: var(--deep-onyx); }
@@ -1177,35 +1177,66 @@ img {
   transform: scale(1.05);
 }
 
-/* 7 items * (185px height + 14px gap) = 1393px */
 @keyframes filmFlowUp {
   0% { transform: translateY(0); }
   100% { transform: translateY(-1393px); }
 }
 
-/* ==================== ACHIEVEMENTS SECTION ==================== */
+/* ==================== ACHIEVEMENTS SECTION (SPLIT WITH VERTICAL TIMELINE) ==================== */
 .extra-layout {
-  max-width: 1380px;
+  max-width: 1480px;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  justify-content: space-between;
+  gap: 0.6rem;
 }
 
-.extra-header-bar { display: flex; align-items: center; justify-content: space-between; }
-.extra-main-title { font-size: 1.75rem; color: var(--gilded-champagne); letter-spacing: 1.5px; margin: 0; }
+.extra-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.extra-main-title {
+  font-size: 1.55rem;
+  color: var(--gilded-champagne);
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+.achievements-split-workspace {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.48fr 0.62fr;
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+.achievements-left-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
+  min-height: 0;
+}
 
 .school-boxes-grid {
+  flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.35rem;
+  gap: 0.85rem;
 }
 
 .school-box {
   background: rgba(45, 45, 45, 0.58);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 1.15rem 1.05rem;
+  border-radius: 14px;
+  padding: 0.8rem 0.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1213,82 +1244,50 @@ img {
   justify-content: space-between;
   backdrop-filter: blur(6px);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  min-height: 0;
 }
 
 .school-box:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--gilded-champagne);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
 }
 
-.school-top-group,
-.school-bottom-group {
+.code-stage-header {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.school-logo-circle {
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
-  border: 2.5px solid var(--gilded-champagne);
-  background: rgba(0, 0, 0, 0.6);
-  overflow: hidden;
+  background: rgba(10, 10, 12, 0.82);
+  border: 1px solid var(--gilded-champagne);
+  border-radius: 8px;
+  padding: 0.42rem 0.55rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--gilded-champagne);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.6rem;
-  flex-shrink: 0;
+  gap: 0.35rem;
+  min-height: 2.35rem;
 }
 
-.school-logo-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: default;
-}
-
-.school-map-link {
-  color: #E5DFD0;
-  text-decoration: none;
-  font-size: 0.94rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 0.7rem;
-  padding: 0.3rem 0.5rem;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: color 0.25s ease, background 0.25s ease;
-}
-
-.school-map-link:hover {
-  color: var(--gilded-champagne);
-  background: rgba(217, 197, 160, 0.1);
-}
-
-.map-click-note {
-  font-size: 0.78rem;
-  font-weight: 500;
-  font-style: italic;
-  color: var(--gilded-champagne);
-  opacity: 0.85;
-  margin-top: 0.22rem;
-  text-decoration: underline;
+.code-prompt {
+  color: var(--bronze-aura);
+  font-weight: 800;
 }
 
 .school-categories {
   width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.65rem;
+  margin: 0.5rem 0;
 }
 
 .category-item {
   width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -1306,7 +1305,9 @@ img {
 
 .category-preview-img {
   width: 100%;
-  height: 74px;
+  flex: 1;
+  min-height: 92px;
+  max-height: 138px;
   object-fit: cover;
   display: block;
   border-bottom: 1px solid var(--border-color);
@@ -1323,8 +1324,8 @@ img {
   border-radius: 0;
   background: linear-gradient(135deg, rgba(166, 124, 82, 0.45), rgba(26, 26, 26, 0.95));
   color: #E5DFD0;
-  padding: 0.52rem 0.6rem;
-  font-size: 0.86rem;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.2px;
   cursor: pointer;
@@ -1336,16 +1337,208 @@ img {
 }
 
 .total-achievements-badge {
-  margin-top: 0.7rem;
-  padding: 0.35rem 0.95rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 50px;
   background: rgba(217, 197, 160, 0.14);
   border: 1px dashed var(--gilded-champagne);
   color: var(--gilded-champagne);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.4px;
   display: inline-block;
+}
+
+/* RIGHT PANEL: VERTICAL TIMELINE (Inspired by download.jpe) */
+.school-timeline-panel {
+  position: relative;
+  background: rgba(18, 18, 22, 0.68);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 0.85rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+
+/* Central Vertical Axis Line with Top & Bottom Dots */
+.timeline-axis-line {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  background: var(--gilded-champagne);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline-axis-line::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gilded-champagne);
+  box-shadow: 0 0 10px var(--gilded-champagne);
+}
+
+.timeline-axis-line::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gilded-champagne);
+}
+
+.timeline-bottom-tag {
+  position: absolute;
+  bottom: 14px;
+  left: 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--gilded-champagne);
+  opacity: 0.75;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  border-left: 2px solid var(--gilded-champagne);
+  padding-left: 3px;
+}
+
+.timeline-node {
+  position: relative;
+  z-index: 2;
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-node.node-left {
+  align-self: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.timeline-node.node-right {
+  align-self: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.timeline-year {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--gilded-champagne);
+  line-height: 1.1;
+  margin-bottom: 0.22rem;
+}
+
+/* Horizontal Connector Line + Endpoint Dot touching the Center Axis */
+.timeline-branch-rule {
+  position: relative;
+  width: calc(100% + 6%);
+  height: 1.5px;
+  background: var(--gilded-champagne);
+  margin-bottom: 0.32rem;
+}
+
+.timeline-node.node-left .timeline-branch-rule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gilded-champagne);
+}
+
+.timeline-node.node-right .timeline-branch-rule {
+  align-self: flex-end;
+}
+
+.timeline-node.node-right .timeline-branch-rule::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gilded-champagne);
+}
+
+.timeline-school-card {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(35, 35, 40, 0.72);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.35rem 0.5rem;
+  width: 100%;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.timeline-node.node-right .timeline-school-card {
+  flex-direction: row-reverse;
+}
+
+.timeline-school-card:hover {
+  border-color: var(--gilded-champagne);
+  transform: translateY(-1px);
+}
+
+.timeline-logo-ring {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gilded-champagne);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #000;
+}
+
+.timeline-logo-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: default;
+}
+
+.timeline-school-link {
+  color: var(--champagne-sparkle);
+  text-decoration: none;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.22;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-school-link:hover {
+  color: var(--gilded-champagne);
+}
+
+.timeline-map-hint {
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--gilded-champagne);
+  text-decoration: underline;
+  margin-top: 2px;
 }
 
 /* ==================== 10-PHOTO RIGHT-TO-LEFT MARQUEE ==================== */
@@ -1354,15 +1547,16 @@ img {
   overflow: hidden;
   background: rgba(45, 45, 45, 0.48);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 0.65rem 0;
+  border-radius: 12px;
+  padding: 0.48rem 0;
   position: relative;
   backdrop-filter: blur(4px);
+  flex-shrink: 0;
 }
 
 .marquee-track {
   display: flex;
-  gap: 1rem;
+  gap: 0.85rem;
   width: max-content;
   animation: marqueeRightToLeft 28s linear infinite;
 }
@@ -1372,9 +1566,9 @@ img {
 }
 
 .marquee-item {
-  width: 150px;
-  height: 94px;
-  border-radius: 10px;
+  width: 132px;
+  height: 78px;
+  border-radius: 8px;
   overflow: hidden;
   border: 1.5px solid var(--gilded-champagne);
   flex-shrink: 0;
@@ -1397,7 +1591,7 @@ img {
   100% { transform: translateX(-50%); }
 }
 
-/* ==================== FAMILY AND FRIENDS SECTION (STAGGERED RIBBON LAYOUT) ==================== */
+/* ==================== FAMILY AND FRIENDS SECTION (6-SLOT COLLAGE LAYOUT) ==================== */
 .ribbon-gallery-layout {
   max-width: 1380px;
   width: 100%;
@@ -1406,7 +1600,7 @@ img {
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.15rem 0;
+  padding: 0.1rem 0;
   overflow: hidden;
 }
 
@@ -1416,22 +1610,29 @@ img {
   align-items: flex-end;
   gap: 1.5rem;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.45rem;
+  padding-bottom: 0.4rem;
   flex-shrink: 0;
 }
 
 .ribbon-main-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.1rem;
+  font-size: 1.95rem;
   font-weight: 800;
   color: var(--champagne-sparkle);
   margin: 0;
   line-height: 1.05;
 }
 
+.diary-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  flex-wrap: wrap;
+}
+
 .ribbon-subtitle {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: var(--champagne-sparkle);
   opacity: 0.82;
 }
@@ -1439,59 +1640,16 @@ img {
 .diary-eyebrow {
   display: inline-block;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--gilded-champagne);
   background: rgba(217, 197, 160, 0.12);
   border: 1px solid var(--border-color);
-  padding: 0.18rem 0.65rem;
+  padding: 0.15rem 0.6rem;
   border-radius: 999px;
-  margin-bottom: 0.25rem;
-}
-
-.diary-controls-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  flex-shrink: 0;
-}
-
-.diary-categories {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.diary-pill {
-  background: rgba(30, 30, 30, 0.65);
-  border: 1.5px solid var(--border-color);
-  color: var(--champagne-sparkle);
-  padding: 0.34rem 1.05rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(6px);
-}
-
-.diary-pill:hover {
-  border-color: var(--gilded-champagne);
-  transform: translateY(-1px);
-}
-
-.diary-pill.active {
-  background: var(--gilded-champagne);
-  color: #09090B;
-  border-color: var(--gilded-champagne);
-  box-shadow: 0 4px 16px rgba(217, 197, 160, 0.35);
+  margin-bottom: 0.2rem;
 }
 
 .diary-page-controls {
@@ -1504,7 +1662,7 @@ img {
   background: rgba(30, 30, 30, 0.75);
   border: 1.5px solid var(--gilded-champagne);
   color: var(--gilded-champagne);
-  padding: 0.3rem 0.8rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 999px;
   font-family: 'Fira Code', monospace;
   font-size: 0.78rem;
@@ -1530,122 +1688,102 @@ img {
   color: var(--gilded-champagne);
 }
 
-.ribbon-stage-wrap {
-  position: relative;
+.collage-stage-wrap {
   flex: 1;
   min-height: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
   border-radius: 16px;
   border: 1px solid var(--border-color);
-  background: rgba(14, 14, 16, 0.55);
-  padding: 1rem 1.5rem;
+  background: rgba(10, 10, 12, 0.68);
+  padding: 0.65rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
 }
 
-/* Sweeping Ribbon Strip Behind Staggered Cards (inspired by download.jpe) */
-.ribbon-connector-line {
-  position: absolute;
-  left: -4%;
-  right: -4%;
-  top: 50%;
-  height: 22px;
-  transform: translateY(-50%) rotate(-3.5deg);
-  background: linear-gradient(
-    90deg,
-    rgba(217, 197, 160, 0.08) 0%,
-    var(--gilded-champagne) 22%,
-    var(--bronze-aura) 52%,
-    var(--gilded-champagne) 82%,
-    rgba(217, 197, 160, 0.08) 100%
-  );
-  opacity: 0.45;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.ribbon-track-row {
-  position: relative;
-  z-index: 2;
+/* Exact 6-Slot Collage Structure matching Photo collage template.jpe */
+.family-collage-grid {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.35rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  gap: 0.55rem;
 }
 
-.bento-photo-slot {
+/* 1. Father — Upper Left */
+.collage-slot-father {
+  grid-column: 1 / 5;
+  grid-row: 1 / 7;
+}
+
+/* 2. Sister — Upper Middle */
+.collage-slot-sister {
+  grid-column: 5 / 9;
+  grid-row: 1 / 6;
+}
+
+/* 3. Mother — Upper Right */
+.collage-slot-mother {
+  grid-column: 9 / 13;
+  grid-row: 1 / 7;
+}
+
+/* 4. SHS Bestfriends — Below Father (Bottom Left) */
+.collage-slot-friends-left {
+  grid-column: 1 / 4;
+  grid-row: 7 / 13;
+}
+
+/* 5. Family Group Picture — Large Center Box */
+.collage-slot-family-center {
+  grid-column: 4 / 10;
+  grid-row: 6 / 13;
+}
+
+/* 6. Friend 5 (College Friends) — Below Mother (Bottom Right) */
+.collage-slot-friends-right {
+  grid-column: 10 / 13;
+  grid-row: 7 / 13;
+}
+
+.collage-photo-slot {
   position: relative;
-  flex: 0 0 auto;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
   border: 2px solid var(--gilded-champagne);
   background: #111111;
-  box-shadow: 10px 14px 28px rgba(0, 0, 0, 0.78);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.72);
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
 }
 
-/* Portrait = Vertical Slot, Landscape = Horizontal Slot */
-.bento-photo-slot.is-portrait {
-  width: 210px;
-  height: 270px;
-}
-
-.bento-photo-slot.is-landscape {
-  width: 315px;
-  height: 205px;
-}
-
-/* Staggered vertical offsets matching the reference composition */
-.bento-photo-slot:nth-child(4n + 1) {
-  transform: translateY(-34px);
-}
-
-.bento-photo-slot:nth-child(4n + 2) {
-  transform: translateY(30px);
-}
-
-.bento-photo-slot:nth-child(4n + 3) {
-  transform: translateY(-22px);
-}
-
-.bento-photo-slot:nth-child(4n + 4) {
-  transform: translateY(36px);
-}
-
-.bento-photo-slot:hover {
+.collage-photo-slot:hover {
+  transform: scale(1.014);
   border-color: var(--champagne-sparkle);
-  box-shadow: 12px 18px 36px rgba(0, 0, 0, 0.9), 0 0 20px rgba(217, 197, 160, 0.35);
-  z-index: 5;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.9), 0 0 18px rgba(217, 197, 160, 0.35);
+  z-index: 4;
 }
 
-.bento-photo-slot:nth-child(4n + 1):hover { transform: translateY(-40px) scale(1.03); }
-.bento-photo-slot:nth-child(4n + 2):hover { transform: translateY(24px) scale(1.03); }
-.bento-photo-slot:nth-child(4n + 3):hover { transform: translateY(-28px) scale(1.03); }
-.bento-photo-slot:nth-child(4n + 4):hover { transform: translateY(30px) scale(1.03); }
-
-.bento-photo-slot img {
+.collage-photo-slot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 22%;
   display: block;
-  transition: transform 0.45s ease;
+  transition: transform 0.4s ease;
 }
 
-.bento-photo-slot:hover img {
-  transform: scale(1.05);
+.collage-photo-slot:hover img {
+  transform: scale(1.04);
 }
 
 .diary-card-badge {
   position: absolute;
   top: 8px;
   left: 8px;
-  background: rgba(10, 10, 10, 0.82);
+  background: rgba(10, 10, 10, 0.84);
   border: 1px solid var(--gilded-champagne);
   color: var(--gilded-champagne);
   font-family: 'Fira Code', monospace;
@@ -1653,7 +1791,7 @@ img {
   font-weight: 800;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  padding: 0.18rem 0.55rem;
+  padding: 0.16rem 0.52rem;
   border-radius: 4px;
   z-index: 2;
 }
@@ -1661,8 +1799,8 @@ img {
 .diary-card-caption {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 1.5rem 0.75rem 0.65rem 0.75rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.5) 65%, transparent 100%);
+  padding: 1.35rem 0.75rem 0.55rem 0.75rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.52) 65%, transparent 100%);
   color: #FFFFFF;
   text-align: left;
   z-index: 2;
@@ -1671,7 +1809,7 @@ img {
 .diary-card-caption h4 {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   font-weight: 800;
   letter-spacing: 0.3px;
   color: var(--gilded-champagne);
@@ -1680,7 +1818,7 @@ img {
 .diary-card-caption span {
   display: block;
   font-size: 0.7rem;
-  opacity: 0.86;
+  opacity: 0.88;
   margin-top: 2px;
 }
 
@@ -1896,13 +2034,19 @@ img {
   transform: scale(1.04);
 }
 
-/* ==================== FAMILY & FRIENDS INDIVIDUAL ENLARGED SPLIT MODAL ==================== */
+/* ==================== FAMILY & FRIENDS INDIVIDUAL & 6-PHOTO FRIENDS SPLIT MODAL ==================== */
 .family-modal-box {
   max-width: 1120px;
   width: 94%;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
+}
+
+.family-modal-box.friends-six-modal {
+  max-width: 1340px;
+  width: 96%;
+  max-height: 94vh;
 }
 
 .family-modal-split {
@@ -1916,10 +2060,15 @@ img {
   flex: 1;
 }
 
+.family-modal-box.friends-six-modal .family-modal-split {
+  grid-template-columns: 1.48fr 0.92fr;
+  gap: 1.35rem;
+}
+
 .family-modal-media {
   width: 100%;
-  height: 440px;
-  max-height: 60vh;
+  height: 460px;
+  max-height: 64vh;
   border-radius: 12px;
   overflow: hidden;
   border: 1.5px solid var(--gilded-champagne);
@@ -1930,6 +2079,12 @@ img {
   justify-content: center;
 }
 
+.family-modal-box.friends-six-modal .family-modal-media {
+  height: 540px;
+  max-height: 74vh;
+  padding: 0.55rem;
+}
+
 .family-modal-media img.single-enlarged {
   width: 100%;
   height: 100%;
@@ -1938,18 +2093,73 @@ img {
   border-radius: 0;
 }
 
+/* 3x2 Six-Photo Friends Grid (Inspired by 6 Photos Template.jpe) */
+.friends-six-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.55rem;
+}
+
+.friend-grid-tile {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+  background: #141416;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.friend-grid-tile:hover,
+.friend-grid-tile.active-tile {
+  border-color: var(--gilded-champagne);
+  box-shadow: 0 0 16px rgba(217, 197, 160, 0.45);
+  transform: scale(1.015);
+  z-index: 2;
+}
+
+.friend-grid-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  margin-top: 0;
+  border-radius: 0;
+  display: block;
+}
+
+.friend-tile-label {
+  position: absolute;
+  inset: auto 0 0 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.55) 70%, transparent);
+  color: var(--gilded-champagne);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.95rem 0.5rem 0.35rem 0.5rem;
+  text-align: center;
+}
+
 .family-modal-text {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1.35rem 1.45rem;
-  height: 440px;
-  max-height: 60vh;
+  height: 460px;
+  max-height: 64vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 1rem;
+}
+
+.family-modal-box.friends-six-modal .family-modal-text {
+  height: 540px;
+  max-height: 74vh;
 }
 
 .family-modal-phrase {
@@ -2005,7 +2215,7 @@ img {
 .modal-content {
   background: #1A1A1A;
   border: 1px solid var(--gilded-champagne);
-  padding: 1.75rem;
+  padding: 1.65rem;
   border-radius: 14px;
   max-width: 760px;
   width: 92%;
@@ -2040,9 +2250,9 @@ img {
 }
 
 .modal-exit-note {
-  margin-top: 0.85rem;
+  margin-top: 0.75rem;
   margin-bottom: 0;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--wheat);
   opacity: 0.85;
   font-style: italic;
@@ -2056,21 +2266,23 @@ img {
   .hero-section { grid-template-columns: minmax(380px, 36vw) 1fr; gap: 2rem; }
   .cyber-portrait-frame { width: 390px; height: calc(100vh - 64px); }
   .main-name { font-size: 2.85rem; }
-  .about-name { font-size: 1.55rem; }
-  .career-obj { font-size: 0.82rem; margin: 0.12rem 0 0.35rem 0; }
-  .bio-card { padding: 0.58rem 0.85rem; }
-  .categorized-info-grid { gap: 0.36rem 0.6rem; margin-bottom: 0.36rem; }
-  .info-category-box { padding: 0.36rem 0.56rem; gap: 0.14rem; }
-  .info-category-title { font-size: 0.68rem; }
-  .info-row .info-label, .info-row .info-val { font-size: 0.74rem; line-height: 1.18; }
-  .info-row .info-label { min-width: 86px; }
-  .school-bg-list { font-size: 0.71rem; line-height: 1.18; }
-  .growth-text { font-size: 0.75rem; line-height: 1.28; }
-  .school-logo-circle { width: 64px; height: 64px; }
-  .category-preview-img { height: 54px; }
-  .marquee-item { width: 125px; height: 76px; }
-  .editorial-main-title { font-size: 1.95rem; }
-  .editorial-bento-grid { grid-auto-rows: 195px; gap: 0.75rem; }
+  .about-name { font-size: 1.5rem; }
+  .career-obj { font-size: 0.78rem; margin: 0.1rem 0 0.28rem 0; }
+  .bio-card { padding: 0.48rem 0.72rem; }
+  .categorized-info-grid { gap: 0.3rem 0.55rem; margin-bottom: 0.3rem; }
+  .info-category-box { padding: 0.3rem 0.5rem; gap: 0.1rem; }
+  .info-category-title { font-size: 0.65rem; }
+  .info-row .info-label, .info-row .info-val { font-size: 0.7rem; line-height: 1.15; }
+  .info-row .info-label { min-width: 84px; }
+  .school-bg-list { font-size: 0.68rem; line-height: 1.15; }
+  .growth-text { font-size: 0.72rem; line-height: 1.24; }
+  .category-preview-img { min-height: 70px; max-height: 105px; }
+  .marquee-item { width: 118px; height: 68px; }
+  .timeline-year { font-size: 0.92rem; }
+  .timeline-logo-ring { width: 32px; height: 32px; }
+  .timeline-school-link { font-size: 0.68rem; }
   .photo-film-strip { width: 300px; height: 390px; }
-  .family-modal-media, .family-modal-text { height: 350px; }
+  .family-modal-media, .family-modal-text { height: 360px; }
+  .family-modal-box.friends-six-modal .family-modal-media,
+  .family-modal-box.friends-six-modal .family-modal-text { height: 420px; }
 }
