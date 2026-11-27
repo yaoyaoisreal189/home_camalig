@@ -27,8 +27,8 @@ const achievementsData = {
     title: "La Trinidad National Highschool — Educational Achievements",
     mode: "carousel",
     items: [
-      { src: "./grade 8.jpg", desc: "Consistent Honor Student from Grade 7–10 (Grade 8 Honor Student)" },
-      { src: "./honor medals.png", desc: "Grade 7, 9, 10 Honor Student" },
+      { src: "./grade 8.jpg", desc: "Consistent Honor Student from Grade 7–10" },
+      { src: "./honor medals.png", desc: "Medals" },
       { src: "./grd 10.jpg", desc: "Grade 10 Graduation" },
       { src: "./Acad excel.jpg", desc: "Academic Excellence Award" },
       { src: "./diploma 2.jpg", desc: "Diploma - Junior Highschool Graduate (2020–2024)" }
@@ -164,7 +164,7 @@ const familyFriendsPhotos = [
     category: "Father",
     title: "Father — Silang Camalig",
     subtitle: "My Pillar of Strength & Wisdom",
-    src: "./father.png",
+    src: "./father.jpe",
     phrase: "“Behind every confident step I take is a father who believed in me first.”",
     letter: "Dear Papa,\n\nThank you for bringing me into this world and giving me the chance to experience all the good that life has to offer. As I have grown up and learned how to stand on my own two feet, having you by my side has meant everything to me. Even now that I am becoming more independent, I still feel your quiet strength, protection, and care—knowing you are always watching out for me and never truly letting go gives me so much comfort and confidence. I see and deeply appreciate all the hard work and sacrifices you have made just to make sure we had food on the table every single day. Thank you for every peso you worked hard to earn so I could go to school and build my future, and for always supporting me whenever I wanted to join a sport. Your encouragement and belief in me have pushed me to always give my best. You are a huge part of why I strive so hard to achieve my dreams. When I become successful, I promise to give back everything I can so that you can finally rest, take it easy, and enjoy life to the fullest. Above all, I want to make you proud and show you that you raised a daughter who would do anything for you. I love you so much, Dad. Thank you for everything you have done and continue to do for me."
   },
